@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://b07upwbxe75ue" path="res://data/TileResource.gd" id="1_tile"]
+
+[resource]
+script = ExtResource("1_tile")
+walkable = true
+blocks_zombie = false
+blocks_noise = false
+heat = 0.0

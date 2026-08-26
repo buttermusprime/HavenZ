@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CorpseResource" load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://bhe2x110yi6et" path="res://data/CorpseResource.gd" id="1_corpse"]
+[ext_resource type="Script" uid="uid://dfvx0smdd0v4j" path="res://data/CardResource.gd" id="2_card"]
+
+[resource]
+script = ExtResource("1_corpse")
+deck_snapshot = Array[ExtResource("2_card")]([])
+position = Vector2i(0, 0)
+cards_remaining = 0

@@ -25,11 +25,17 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
   `docs/LESSONS.md` gap #4 (this was previously flagged as dead scaffolding risk).
 - `.gitignore` added (Godot 4 template) and local git repo initialized with an initial commit.
 - This file (`SESSION_LOG.md`) created.
+- Pushed to a private remote: https://github.com/buttermusprime/HavenZ.git (`origin/master`).
+- `docs/ROADMAP.md` added — a faithful structural conversion of `HavenZ_Roadmap.html` (the
+  published artifact, still kept at the project root as the reference copy) via a one-off
+  regex-based HTML-to-Markdown script, not a hand rewrite. Covers all 61 sessions (1 tentative)
+  across 15 phases + POST, plus the Start.01-10 reference sections, Field Notes, and the Card
+  Roster proposal. Spot-checked structurally against the source after several regex bugs (a
+  malformed `</p>`-for-`</div>` typo in 2 source callouts, a non-greedy div-matching bug in the
+  palette swatch section, and checkpoint/parallel-track session cards using an extra CSS class
+  that the first pass didn't match) — all fixed and re-verified before committing.
 
 **Stubbed / deferred:**
-- Remote git push — not done yet, needs explicit go-ahead to create/push to a remote.
-- `docs/ROADMAP.md` — the roadmap still lives only as `HavenZ_Roadmap.html` at the project root
-  (outside the Godot project folder); converting it into the repo is a separate, larger pass.
 - Godot editor has not yet been opened against the new project.godot — the localization CSV and
   any texture import settings won't actually take effect until the editor does its first import
   pass. Open the project once before trusting `tr()` lookups or texture filtering in-editor.

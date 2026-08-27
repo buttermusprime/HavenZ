@@ -15,6 +15,14 @@ run/main_scene="res://scenes/gray_box/GrayBox.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
+
+[autoload]
+
+AudioSettings="*res://systems/audio/AudioSettings.tscn"
+
 [display]
 
 window/size/viewport_width=512
@@ -23,14 +31,6 @@ window/size/window_width_override=1024
 window/size/window_height_override=576
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
-
-[audio]
-
-buses/default_bus_layout="res://audio/default_bus_layout.tres"
-
-[autoload]
-
-AudioSettings="*res://systems/audio/AudioSettings.tscn"
 
 [internationalization]
 

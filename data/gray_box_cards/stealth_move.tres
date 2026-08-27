@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_card")
 id = &"gb_stealth_move"
-display_name = "Stealth Move"
+display_name = "Stealth"
 category = 4
 noise_cost = 0.0
 effect_data = {}

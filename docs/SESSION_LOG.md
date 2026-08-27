@@ -13,8 +13,58 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
 | 1 | 1.1 | build | 1 | 1 | 1 sitting | no |
+| 1 | 1.1 (iteration) | build | - | 1 | 1 sitting | no |
 
 ## Entries
+
+### S1.1 iteration — playtest feedback from the first real play session
+
+The user played the S1.1 gray-box (editor F5) and reported 6 issues. Sorted into "real gray-box
+gaps, fix now" vs. "actually later-phase scope" before touching anything, since several genuinely
+could have gone either way:
+
+**Fixed (real gaps, not later-phase scope):**
+- **Hand overflowed off-screen with no scroll** — `HandContainer` is now wrapped in a horizontal
+  `ScrollContainer`; card display names shortened too (Stealth/Loud/Attack/Loot/Food/Water).
+- **Turn end wasn't legible** and **no action/movement counters existed** — replaced the
+  "exactly 1 card = 1 turn" simplification with a visible `ACTIONS_PER_TURN = 2` counter shown in
+  the HUD; the turn boundary (enemy moves, decay ticks) now only fires when it hits 0, with an
+  explicit "-- Turn N ends, zombie moves --" status message. Documented in a header comment that
+  the REAL turn-length rule (ends when no legal play + Supply-card extensions) is session 4.4's
+  job, not something this counter is meant to anticipate.
+- **No distinct Food/Water cards** — `CardResource` already had `SUPPLY_FOOD`/`SUPPLY_WATER`
+  categories from session 0.2; added `data/gray_box_cards/supply_{food,water}.tres` and removed
+  the single generic `supply.tres` placeholder. Hand size bumped 5 → 6 to show one of every type
+  from the start (a deliberate, playtest-driven deviation from S1.1's literal "5-card hand" spec).
+- **No reason to move (loot had no target)** — added `LOOT_TILE_COUNT = 3` marked tiles (distinct
+  green base tint) that the Loot card can actually claim (+1 salvage, shown in HUD), replenished
+  back up to 3 after each pickup. Still a bare signal, not Phase 6's real Supply Request economy.
+- **Attack had no target, no way to know where it lands** — rather than building real
+  facing/directional combat (not asked for anywhere in the roadmap), Attack now auto-targets
+  whichever of the 4 adjacent tiles the zombie occupies, dealing 1 damage; killing it respawns it
+  at its original spawn tile with full HP. Zombie HP shown in the HUD.
+- **Unclear where a move card could actually go** — selecting a move card now highlights its up
+  to 4 valid adjacent destination tiles (distinct gold tint); clicking the same card again cancels
+  the selection (previously had no way to back out of a selection at all).
+
+**Deliberately not done** (flagged to the user as possibly-intentional-later, not silently
+skipped): literal multi-tile/directional movement cards — nothing in the roadmap or the locked
+input-scheme decision calls for movement further than one tile per play; treated the "direction"
+complaint as a missing-affordance problem (solved by highlighting) rather than a new mechanic,
+pending user confirmation.
+
+**Verified headlessly** (throwaway script, deleted after use) before handing back: 6-card initial
+hand, 2-action turn economy (turn only rolls over at 0, resets to 2), loot pickup increments
+salvage and the tile count self-heals back to 3, combat deals exactly 1 damage per hit and
+respawns the zombie at full HP after 3 hits, and move-card selection highlights up to 4 tiles.
+Two of the test's own assertions were initially too strict/wrong (silently falling back to
+`hand[-1]` when a searched-for card wasn't in hand, and asserting the respawned zombie's exact
+position when it can legitimately take its own AI turn again immediately after respawning in the
+same action tick) — fixed in the test, not the game code, after confirming the underlying
+mechanic was actually correct both times.
+
+**Next:** hand back to the user for another play pass. Per the roadmap's own S1.2 allowance, up to
+3 total play/iterate/recheck rounds before deciding Phase 2 (art) vs. a bigger rethink.
 
 ### S1.1 — Gray-box the core loop
 

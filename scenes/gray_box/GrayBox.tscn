@@ -6,7 +6,7 @@
 script = ExtResource("1_graybox")
 
 [node name="GridVisual" type="Node2D" parent="."]
-position = Vector2(150, 56)
+position = Vector2(150, 58)
 
 [node name="PlayerVisual" type="ColorRect" parent="."]
 color = Color(0.2, 0.5, 1, 1)
@@ -25,28 +25,35 @@ mouse_filter = 2
 
 [node name="TurnLabel" type="Label" parent="HUD/Root"]
 offset_left = 4.0
-offset_top = 2.0
-offset_right = 200.0
-offset_bottom = 16.0
-text = "Turn 1"
+offset_top = 1.0
+offset_right = 508.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 11
+text = "Turn 1  |  Radio: Off (x1.0) [0-5]  |  Actions: 2/2"
 
-[node name="RadioLabel" type="Label" parent="HUD/Root"]
+[node name="StatsLabel" type="Label" parent="HUD/Root"]
 offset_left = 4.0
-offset_top = 16.0
-offset_right = 300.0
-offset_bottom = 30.0
-text = "Radio: Off (x1.0)  [press 0-5]"
+offset_top = 13.0
+offset_right = 508.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 11
+text = "Salvage: 0  |  Zombie HP: 3/3"
 
 [node name="StatusLabel" type="Label" parent="HUD/Root"]
 offset_left = 4.0
-offset_top = 30.0
+offset_top = 25.0
 offset_right = 508.0
-offset_bottom = 52.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 11
 autowrap_mode = 2
 text = "Select a card, then click the tile it acts on."
 
-[node name="HandContainer" type="HBoxContainer" parent="HUD/Root"]
+[node name="HandScroll" type="ScrollContainer" parent="HUD/Root"]
 offset_left = 4.0
-offset_top = 254.0
+offset_top = 252.0
 offset_right = 508.0
 offset_bottom = 286.0
+vertical_scroll_mode = 0
+
+[node name="HandContainer" type="HBoxContainer" parent="HUD/Root/HandScroll"]
+layout_mode = 2

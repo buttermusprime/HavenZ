@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_card")
-id = &"gb_supply"
-display_name = "Supply"
-category = 6
+id = &"gb_supply_water"
+display_name = "Water"
+category = 7
 noise_cost = 0.0
 effect_data = {}

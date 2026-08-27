@@ -317,7 +317,7 @@ func _render_visual_positions() -> void:
 
 func _update_hud() -> void:
 	var tier_name := "Off" if radio_tier_index == 0 else "Tier %d" % radio_tier_index
-	turn_label.text = "Turn %d  |  Radio (stealth): %s (x%.1f) [0-5]  |  Actions: %d/%d" % [
+	turn_label.text = "Turn %d  |  Radio: %s (x%.1f) [0-5]  |  Actions: %d/%d" % [
 		turn_number, tier_name, RADIO_MULTIPLIERS[radio_tier_index], actions_remaining, ACTIONS_PER_TURN,
 	]
 	stats_label.text = "Salvage: %d  |  Zombie HP: %d/%d" % [

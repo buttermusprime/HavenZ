@@ -23,6 +23,14 @@ window/size/window_height_override=576
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
+
+[autoload]
+
+AudioSettings="*res://systems/audio/AudioSettings.tscn"
+
 [internationalization]
 
 locale/translations=PackedStringArray("res://localization/strings.csv")

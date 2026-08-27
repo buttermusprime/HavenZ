@@ -9,8 +9,56 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 |-------|---------|------|-------------------|------------------|-------------------|--------|
 | 0 | 0.1 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.2 | build | 1 | 1 | 1 sitting | no |
+| 0 | 0.3 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S0.3 — Audio bus setup
+
+**Shipped:**
+- `audio/default_bus_layout.tres` — Master (implicit), SFX, and Music buses, both new buses
+  routed to Master at 0 dB. Generated programmatically (`AudioServer.add_bus`/`set_bus_send` +
+  `AudioServer.generate_bus_layout()` + `ResourceSaver.save()`) via a throwaway headless script
+  rather than hand-typing the resource format, to avoid guessing at Godot's exact property
+  naming. Wired in via `project.godot`'s new `[audio] buses/default_bus_layout` key.
+- `systems/audio/AudioSettings.gd` + `AudioSettings.tscn`, registered as the `AudioSettings`
+  autoload singleton (`[autoload]` in project.godot). Holds `master_volume`/`sfx_volume`/
+  `music_volume` as linear 0..1 (Settings-menu-slider shape), applies them to the real
+  `AudioServer` buses via `linear_to_db()`, and persists them through a `ConfigFile` at
+  `user://settings.cfg` — loaded on `_ready()`, saved on every setter call. No Settings UI exists
+  yet (that's session 12.1); this is the apply/persist layer built ahead of it, same pattern as
+  session 0.1's localization stub. Bus lookup is by name (`AudioServer.get_bus_index`), not a
+  hardcoded index, so it stays correct if the bus layout changes later.
+- The `AudioSettings` scene also hosts two silent placeholder `AudioStreamPlayer` children,
+  `SFXPlaceholder` (bus="SFX") and `MusicPlaceholder` (bus="Music") — no stream assigned yet, so
+  session 12.2 (and whichever session first needs a music cue) only has to drop an
+  AudioStream in and call play(), not build bus routing from scratch.
+- **Real bug caught while building this:** the script was originally declared
+  `class_name AudioSettings extends Node`, which collided with the autoload singleton of the same
+  name — Godot refuses to load a script whose `class_name` shadows an existing autoload
+  ("Class 'AudioSettings' hides an autoload singleton"), breaking the whole project. Fixed by
+  dropping the redundant `class_name` — the autoload registration already provides global access
+  via that name, so the class-level identifier was never needed. Caught via the same
+  headless-editor-then-verify discipline used for S0.2's CSV bug, not by inspection.
+- Verified end-to-end with a throwaway headless `SceneTree` script (deleted after use, per the
+  "no `res://scripts/tests/` folder until session 0.5" constraint): all three buses resolve by
+  name, the autoload is present in `root` with correct default volumes applied, a volume change
+  round-trips through the real `ConfigFile` on disk, and both placeholder players report the
+  correct `bus` property. One timing gotcha worth remembering: a custom `SceneTree`-extending
+  `--script` main loop does NOT yet have autoloads under `root` inside `_init()` — they're added
+  later in engine startup. Override `_initialize()` instead when a headless verification script
+  needs to see autoloads.
+
+**Stubbed / deferred:**
+- No real audio assets — see the roadmap's Audio Audit table (Core SFX set, ambient loop, radio
+  cues/station music) for what still needs sourcing before these buses carry real sound.
+- No Settings UI to drive `AudioSettings`'s setters yet (session 12.1); no persisted-volume
+  loading test beyond the one round-trip check above.
+- A Radio bus/volume-tier system (5 tiers + Off, per the Portable Radio System design folded into
+  the roadmap) is Phase 10 scope, not built here — deliberately not pre-built to avoid guessing
+  at a shape that system doesn't need yet.
+
+**Next:** Session 0.4 (pause architecture) per the roadmap.
 
 ### S0.2 — Core Resource class definitions
 

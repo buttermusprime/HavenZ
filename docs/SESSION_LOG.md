@@ -11,8 +11,30 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.2 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.3 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
+| 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S0.5 — Testing conventions
+
+**Shipped:**
+- `res://scripts/tests/{logic,ui,integration}/` created (each with a `.gitkeep` so the empty
+  folders survive a fresh clone), so every future test file has an obvious home from day one
+  instead of landing in one flat folder that needs sorting later.
+- `CLAUDE.md` gained a "Testing conventions" section, right alongside S0.4's pause convention:
+  the shared blast-radius classification (cosmetic / structural scene edit / logic /
+  cross-cutting) adapted to concrete HavenZ examples, the mechanical `.tscn`-diff test for telling
+  cosmetic from structural without reopening the editor, the required `# Exercises: file.gd, ...`
+  depends-on header convention, and an explicit note that checkpoints (1.2, 9.1, 14.1-14.3) always
+  run the full suite regardless of blast radius — this rule is for iteration speed between
+  checkpoints, not a substitute for them.
+
+**Stubbed / deferred:**
+- No real tests exist yet — this session is structure and documentation only, since no gameplay
+  code exists yet either. Session 4.1 is the first to actually populate `logic/`.
+
+**Next:** Phase 0 (Foundation & Tooling) is now complete. Session 1.1 (gray-box the core loop) is
+the first session of Phase 1 — Concept Validation, and the first to write real gameplay code.
 
 ### S0.4 — Pause architecture
 

@@ -14,8 +14,46 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
 | 1 | 1.1 | build | 1 | 1 | 1 sitting | no |
 | 1 | 1.1 (iteration) | build | - | 1 | 1 sitting | no |
+| 1 | 1.1 (iteration 2) | build | - | 1 | 1 sitting | no |
 
 ## Entries
+
+### S1.1 iteration 2 — direction+distance movement cards, per a design clarification
+
+Second playtest round. Clarified two of iteration 1's fixes were misreadings, not UI polish:
+the user meant a real mechanic change ("the whole point of picking what movement card to play"
+is choosing among direction+distance options), and pointed out that a separate Stealth-vs-Loud
+movement distinction is redundant now that the debug radio dial already governs how loud the
+player is being for every action, not just movement.
+
+**Changed:**
+- `CardResource.gd` gained `move_direction: Vector2i` and `move_distance: int` fields — baked
+  into the card itself, not chosen after playing it. `effect_data` (the generic undecided-shape
+  bucket) wasn't the right home for these; they're stable, structural concepts worth being real
+  fields.
+- Removed `stealth_move.tres` and `loud_move.tres` entirely. The gray-box's move-card pool is now
+  12 procedurally-generated `CardResource` instances (4 directions x 3 distances, `North x1`
+  through `West x3`), built in code rather than as 12 near-duplicate authored `.tres` files, since
+  these are placeholder gray-box content, not designed GDD card concepts the way Attack/Loot/
+  Food/Water are. Heat cost scales with distance (`distance * 0.5`, before the radio multiplier) —
+  moving further is louder, same spirit as the original "Loud move +1/tile" doc value.
+  `MOVE_STEALTH` stays defined on `CardResource` (removing an enum member has wider blast radius
+  than a gray-box iteration warrants) but is simply unused now.
+- **Interaction model simplified as a consequence**: since a move card now fully determines its
+  own destination, there's no more "select a card, then click a tile to confirm" step for
+  anything — every card (move or not) resolves the instant it's clicked, matching how Attack/Loot
+  already worked. Removed the entire select-then-target flow: `selected_card_index`, tile
+  `gui_input` handling, and the highlight-adjacent-tiles logic from iteration 1 are all gone; grid
+  tiles are now purely visual (`mouse_filter = IGNORE`, no click handling at all).
+- HUD's radio line relabeled "Radio (stealth)" to make the dual role explicit.
+
+**Verified headlessly** (throwaway script, deleted after use): card pool is 16 entries (4 fixed +
+12 move), no card named "Stealth" exists anywhere in the pool, a "North x2" card has the correct
+`Vector2i(0,-1)`/distance-2 fields and actually moves the player 2 tiles north when played, and a
+"West x3" move from near the grid edge clamps to the boundary tile instead of erroring or going
+out of bounds.
+
+**Next:** hand back for another play pass (round 2 of the roadmap's up-to-3-iteration allowance).
 
 ### S1.1 iteration — playtest feedback from the first real play session
 

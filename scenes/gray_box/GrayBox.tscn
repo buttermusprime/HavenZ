@@ -29,7 +29,7 @@ offset_top = 1.0
 offset_right = 508.0
 offset_bottom = 13.0
 theme_override_font_sizes/font_size = 11
-text = "Turn 1  |  Radio: Off (x1.0) [0-5]  |  Actions: 2/2"
+text = "Turn 1  |  Radio (stealth): Off (x1.0) [0-5]  |  Actions: 2/2"
 
 [node name="StatsLabel" type="Label" parent="HUD/Root"]
 offset_left = 4.0
@@ -46,7 +46,7 @@ offset_right = 508.0
 offset_bottom = 55.0
 theme_override_font_sizes/font_size = 11
 autowrap_mode = 2
-text = "Select a card, then click the tile it acts on."
+text = "Click a card to play it."
 
 [node name="HandScroll" type="ScrollContainer" parent="HUD/Root"]
 offset_left = 4.0

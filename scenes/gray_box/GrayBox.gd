@@ -5,6 +5,13 @@ extends Node2D
 ## art or full systems exist. Routed through the real CardResource/TileResource/EnemyResource
 ## classes from session 0.2 so this survives Phase 2's reskin rather than being thrown away.
 ##
+## Every card resolves the instant it's clicked -- there is no separate "select, then click a
+## tile to target" step. A movement card bakes in its own direction+distance (see CardResource's
+## move_direction/move_distance), so choosing WHICH card to play is the tactical decision, not
+## where to click afterward. Stealth vs. loud is no longer a per-movement-card distinction either:
+## the debug radio dial already controls how loud the player is being, for every card, not just
+## movement, so a separate "Stealth Move" card would just duplicate that.
+##
 ## Deliberately NOT built here (real design/systems work for later sessions, not gray-box scope):
 ## - Variable turn length ("ends when no legal play" + Supply-card turn extension) - session 4.4.
 ##   This gray-box uses a simpler fixed ACTIONS_PER_TURN instead, just to make turn boundaries
@@ -25,20 +32,30 @@ const ENEMY_PULL_HEAT_SCALE := 8.0
 
 const ATTACK_DAMAGE := 1
 const LOOT_TILE_COUNT := 3
+const HAND_SIZE := 6
 
 ## Fixed actions-per-turn for gray-box legibility only -- see the header comment above.
 const ACTIONS_PER_TURN := 2
 
 ## Debug-only stand-in for the Portable Radio System's card-play heat burst (real system:
-## sessions 10.5/10.6). Index 0 = Off (baseline, no burst); 1-5 stand in for its 5 volume tiers.
+## sessions 10.5/10.6), doubling here as the player's general stealth dial per playtest feedback.
+## Index 0 = Off (quietest, baseline 1.0x); 1-5 stand in for its 5 volume tiers, each louder.
 const RADIO_MULTIPLIERS: Array[float] = [1.0, 1.2, 1.5, 2.0, 2.5, 3.0]
 
-const MOVE_CATEGORIES := [CardResource.Category.MOVE_STEALTH, CardResource.Category.MOVE_LOUD]
-const ORTHOGONAL_OFFSETS: Array[Vector2i] = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+## MOVE_STEALTH is defined on CardResource but unused here -- see the header comment.
+const MOVE_CATEGORIES := [CardResource.Category.MOVE_LOUD]
 
-const CARD_POOL_PATHS: Array[String] = [
-	"res://data/gray_box_cards/stealth_move.tres",
-	"res://data/gray_box_cards/loud_move.tres",
+const MOVE_DIRECTIONS: Dictionary = {
+	"North": Vector2i(0, -1),
+	"South": Vector2i(0, 1),
+	"East": Vector2i(1, 0),
+	"West": Vector2i(-1, 0),
+}
+const MOVE_DISTANCES: Array[int] = [1, 2, 3]
+## Heat per tile of movement, before the radio-dial multiplier -- moving further is louder.
+const BASE_MOVE_NOISE := 0.5
+
+const FIXED_CARD_POOL_PATHS: Array[String] = [
 	"res://data/gray_box_cards/attack.tres",
 	"res://data/gray_box_cards/loot.tres",
 	"res://data/gray_box_cards/supply_food.tres",
@@ -49,7 +66,6 @@ const ENEMY_RESOURCE_PATH := "res://data/samples/enemy_walker_basic.tres"
 
 const LOOT_COLOR := Color(0.12, 0.26, 0.14)
 const NORMAL_COLOR := Color(0.15, 0.15, 0.18)
-const HIGHLIGHT_COLOR := Color(0.85, 0.75, 0.2)
 
 @onready var grid_visual: Node2D = $GridVisual
 @onready var player_visual: ColorRect = $PlayerVisual
@@ -71,7 +87,6 @@ var enemy_pos: Vector2i
 var enemy_spawn_pos: Vector2i
 var enemy_current_hp: int
 var salvage_count: int = 0
-var selected_card_index: int = -1
 var turn_number: int = 1
 var radio_tier_index: int = 0
 var actions_remaining: int = ACTIONS_PER_TURN
@@ -87,8 +102,8 @@ func _ready() -> void:
 	_build_grid()
 	_place_loot_tiles()
 	_render_visual_positions()
-	for card in card_pool:
-		hand.append(card)
+	for i in range(HAND_SIZE):
+		hand.append(card_pool[randi() % card_pool.size()])
 	_render_hand()
 	_redraw_tiles()
 	_update_hud()
@@ -104,8 +119,19 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		_update_hud()
 
 func _load_card_pool() -> void:
-	for path in CARD_POOL_PATHS:
+	for path in FIXED_CARD_POOL_PATHS:
 		card_pool.append(load(path))
+	for dir_name in MOVE_DIRECTIONS:
+		var dir_vec: Vector2i = MOVE_DIRECTIONS[dir_name]
+		for distance in MOVE_DISTANCES:
+			var card := CardResource.new()
+			card.id = "gb_move_%s_%d" % [String(dir_name).to_lower(), distance]
+			card.display_name = "%s x%d" % [dir_name, distance]
+			card.category = CardResource.Category.MOVE_LOUD
+			card.move_direction = dir_vec
+			card.move_distance = distance
+			card.noise_cost = distance * BASE_MOVE_NOISE
+			card_pool.append(card)
 
 func _build_grid() -> void:
 	for y in range(GRID_HEIGHT):
@@ -117,6 +143,7 @@ func _build_grid() -> void:
 			rect.size = Vector2(TILE_SIZE - 2, TILE_SIZE - 2)
 			rect.position = Vector2(x * TILE_SIZE, y * TILE_SIZE)
 			rect.color = NORMAL_COLOR
+			rect.mouse_filter = Control.MOUSE_FILTER_IGNORE  # purely visual now -- see header comment.
 			grid_visual.add_child(rect)
 
 			var label := Label.new()
@@ -129,10 +156,6 @@ func _build_grid() -> void:
 			label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			rect.add_child(label)
 
-			# gui_input's bound coord comes from Callable.bind(), not a captured loop variable -
-			# GDScript lambdas/closures capture by value at creation time, which would otherwise
-			# make every tile's callback see the loop's *final* coord.
-			rect.gui_input.connect(_on_tile_gui_input.bind(coord))
 			tile_views[coord] = {"rect": rect, "label": label}
 
 func _place_loot_tiles() -> void:
@@ -147,10 +170,6 @@ func _place_loot_tiles() -> void:
 	for i in range(mini(needed, candidates.size())):
 		loot_tiles[candidates[i]] = true
 
-func _on_tile_gui_input(event: InputEvent, coord: Vector2i) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		_try_play_selected_card_on_tile(coord)
-
 func _render_hand() -> void:
 	for child in hand_container.get_children():
 		child.queue_free()
@@ -158,46 +177,28 @@ func _render_hand() -> void:
 		var card := hand[i]
 		var button := Button.new()
 		button.text = "%s (%.1f)" % [card.display_name, card.noise_cost]
-		button.toggle_mode = true
-		button.button_pressed = (i == selected_card_index)
 		button.pressed.connect(_on_card_pressed.bind(i))
 		hand_container.add_child(button)
 
 func _on_card_pressed(i: int) -> void:
-	if i == selected_card_index:
-		# Clicking the already-selected move card again cancels the selection.
-		selected_card_index = -1
-		_render_hand()
-		_redraw_tiles()
-		status_label.text = "Selection cancelled."
-		return
-
 	var card := hand[i]
 	if card.category in MOVE_CATEGORIES:
-		selected_card_index = i
-		_render_hand()
-		_redraw_tiles()
-		status_label.text = "%s selected — highlighted tiles are 1 step away. Click one to move there." % card.display_name
-		return
-
-	_resolve_card_in_place(card)
+		_resolve_move(card)
+	else:
+		_resolve_card_in_place(card)
 	_consume_played_card(i)
 	_spend_action()
 
-func _try_play_selected_card_on_tile(coord: Vector2i) -> void:
-	if selected_card_index == -1:
-		status_label.text = "Select a move card first, then click a highlighted tile."
-		return
-	var dist := absi(coord.x - player_pos.x) + absi(coord.y - player_pos.y)
-	if dist != 1:
-		status_label.text = "Pick a tile orthogonally adjacent to the player (highlighted)."
-		return
-	var card := hand[selected_card_index]
-	player_pos = coord
+func _resolve_move(card: CardResource) -> void:
+	var raw_target := player_pos + card.move_direction * card.move_distance
+	var clamped := Vector2i(
+		clampi(raw_target.x, 0, GRID_WIDTH - 1),
+		clampi(raw_target.y, 0, GRID_HEIGHT - 1),
+	)
+	player_pos = clamped
 	_apply_card_heat(card, player_pos)
-	_consume_played_card(selected_card_index)
-	selected_card_index = -1
-	_spend_action()
+	if clamped != raw_target:
+		status_label.text += " Blocked by the grid edge — moved as far as possible."
 
 ## Resolves a non-move card's effect at the player's current tile: Attack hits an adjacent
 ## zombie (no facing/direction needed since it just targets whichever of the 4 neighbors the
@@ -298,29 +299,13 @@ func _decay_tiles() -> void:
 			tile.heat = maxf(0.0, tile.heat - HEAT_DECAY_RATE)
 		tile.clear_turn_origins()
 
-func _get_highlighted_tiles() -> Array[Vector2i]:
-	var result: Array[Vector2i] = []
-	if selected_card_index == -1:
-		return result
-	if not (hand[selected_card_index].category in MOVE_CATEGORIES):
-		return result
-	for offset in ORTHOGONAL_OFFSETS:
-		var neighbor: Vector2i = player_pos + offset
-		if tiles.has(neighbor):
-			result.append(neighbor)
-	return result
-
 func _redraw_tiles() -> void:
-	var highlighted := _get_highlighted_tiles()
 	for coord in tile_views.keys():
 		var tile: TileResource = tiles[coord]
 		var view: Dictionary = tile_views[coord]
-		if coord in highlighted:
-			view.rect.color = HIGHLIGHT_COLOR
-		else:
-			var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
-			var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
-			view.rect.color = Color(base.r + 0.7 * t, base.g, base.b)
+		var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
+		var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
+		view.rect.color = Color(base.r + 0.7 * t, base.g, base.b)
 		view.label.text = "%.1f" % tile.heat
 
 func _render_visual_positions() -> void:
@@ -332,7 +317,7 @@ func _render_visual_positions() -> void:
 
 func _update_hud() -> void:
 	var tier_name := "Off" if radio_tier_index == 0 else "Tier %d" % radio_tier_index
-	turn_label.text = "Turn %d  |  Radio: %s (x%.1f) [0-5]  |  Actions: %d/%d" % [
+	turn_label.text = "Turn %d  |  Radio (stealth): %s (x%.1f) [0-5]  |  Actions: %d/%d" % [
 		turn_number, tier_name, RADIO_MULTIPLIERS[radio_tier_index], actions_remaining, ACTIONS_PER_TURN,
 	]
 	stats_label.text = "Salvage: %d  |  Zombie HP: %d/%d" % [

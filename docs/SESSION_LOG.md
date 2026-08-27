@@ -12,8 +12,68 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.3 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
+| 1 | 1.1 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S1.1 — Gray-box the core loop
+
+**Shipped:** the first real gameplay code in the project — a playable prototype of HavenZ's core
+hook, `scenes/gray_box/GrayBox.tscn`/`.gd`, now the project's `run/main_scene`:
+- A 10x8 grid of `TileResource` instances (created at runtime, not authored `.tres` — the class
+  is used exactly as intended for procedural per-tile state), rendered as plain `ColorRect`s with
+  a heat-value `Label` overlay, tinted redder as heat rises.
+- A player square that moves one orthogonal tile at a time by clicking a move-type card, then
+  clicking an adjacent tile — per this phase's mouse point-and-click input-scheme decision.
+- A 5-card hand of real `CardResource` instances loaded from five new sample resources
+  (`data/gray_box_cards/{stealth_move,loud_move,attack,loot,supply}.tres`) — noise_cost values
+  match the ones documented on `CardResource.gd` itself (Attack +3, Loot +2, MoveLoud +1,
+  MoveStealth +0; Supply has no doc-specified value, set to 0.0 here as a placeholder, flagged
+  the same as Trap/Distraction for tuning). Playing a card replaces it in the hand from the same
+  5-card pool and ends the turn.
+- Per-tile heat that rises on a played card's `noise_cost` (times the debug radio multiplier
+  below) and decays by a flat rate each turn — except a tile pauses decay entirely for a turn if
+  `this_turn_origins` was non-empty during it, per the design doc's "a fight in one spot should
+  visibly compound" requirement. Verified directly: heat rose 3.0 on an Attack, held while the
+  player kept acting there, then resumed decaying the next turn the player was elsewhere.
+- One enemy square, loaded from session 0.2's `enemy_walker_basic.tres`, that scans tiles within
+  its `noise_aggro_radius` each turn, finds the hottest one, and rolls a pull chance that scales
+  with that heat value (linear up to a gray-box-only `ENEMY_PULL_HEAT_SCALE` constant, not a hard
+  threshold) before taking one grid step toward it if the roll succeeds.
+- A debug-only radio heat-burst multiplier (keys 0-5, 0 = Off/baseline 1.0x, 1-5 stand in for the
+  Portable Radio System's 5 volume tiers, sessions 10.5/10.6) applied on top of every card's
+  noise_cost, so the volume-vs-heat tradeoff that later system depends on gets a first feel-check
+  now instead of at Phase 10. Throwaway scaffolding only, not the real system.
+- Card-button click handlers use `Callable.bind(i)` rather than a lambda capturing the hand-index
+  loop variable, sidestepping GDScript's capture-by-value gotcha entirely instead of working
+  around it.
+- Verified end-to-end with a throwaway headless script (deleted after use): card play raises the
+  correct tile's heat, the turn counter advances, decay pauses/resumes correctly, movement lands
+  on the right tile, and the enemy moves toward a near-certain-heat tile. All passed.
+
+**Real bugs caught and fixed along the way** (all filed in the shared
+`Godot/dev-notes/PENDING_LESSONS.md`, since none are HavenZ-specific):
+- `abs()` on statically-typed `int` values (`Vector2i.x`/`.y`) defeats GDScript's `:=` type
+  inference the same way untyped-array-indexing does — fixed by switching to `absi()`, the same
+  family as the already-known `signi()`.
+- A node your own script `add_child()`s during a headless `--script`'s `_initialize()` is not
+  necessarily `_ready()` yet when `add_child()` returns — needed an `await process_frame` before
+  reading its state in the verification script. Refines (doesn't contradict) the S0.3 finding
+  that autoloads specifically ARE ready by `_initialize()` — a manually-added node is a different
+  timing case.
+
+**Stubbed / deferred:**
+- No walls, no adjacency heat bleed (not asked for by this session's own prompt — that's Phase
+  2.5/7.1 scope), no real card effects beyond the heat side-effect, no turn-extension for Supply
+  cards (Phase 4.4 scope). Grid size (10x8) and tile pixel size (24px) are gray-box-only choices,
+  independent of the real 16px asset unit — the data model is what survives into Phase 2's
+  reskin, not these literal pixel dimensions.
+- `run/main_scene` now points at the gray-box, not a real title/menu screen (none exists yet).
+
+**Next:** Session 1.2 — playtest & go/no-go. This is a human checkpoint, not a build session: play
+the gray-box for real (`F5`/`F6` in the editor, or export a debug build) and judge whether the
+noise/heat-vs-card-hand tension is actually compelling with nothing but colored squares. Up to 3
+iterate-and-recheck rounds before Phase 2 (art) or a redesign.
 
 ### S0.5 — Testing conventions
 

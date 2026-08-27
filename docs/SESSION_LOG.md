@@ -10,8 +10,36 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.1 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.2 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.3 | build | 1 | 1 | 1 sitting | no |
+| 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S0.4 — Pause architecture
+
+**Shipped:**
+- `CLAUDE.md` created at the project root, documenting the pause convention: `get_tree().paused`
+  is the single source of truth; every node's `process_mode` must be set deliberately
+  (`PROCESS_MODE_PAUSABLE` for anything that should freeze — AI timers, decay/propagation ticks,
+  card animations, corpse/respawn; `PROCESS_MODE_ALWAYS`/`PROCESS_MODE_WHEN_PAUSED` for anything
+  that must keep responding while paused — the pause menu, the gamepad virtual cursor). Chosen as
+  `CLAUDE.md` rather than a plain README since every future Claude Code session in this project
+  loads it automatically — the exact "every session needs this without re-deriving it" property
+  the roadmap asked for. Session 0.5 will add its testing-convention section to this same file.
+- Confirmed the underlying lesson was already flagged into the shared
+  `Godot/dev-notes/PENDING_LESSONS.md` back on 2026-08-02 when the roadmap itself moved pause
+  earlier (v9) — no duplicate entry needed, just linked from `CLAUDE.md`'s reasoning.
+- Also caught up on two lessons-ledger entries skipped during S0.2/S0.3 (should have been logged
+  when found, not retroactively): the CSV-importer crash-on-empty-file bug and the
+  class_name/autoload name-collision bug, both filed in `PENDING_LESSONS.md` as General Use.
+
+**Stubbed / deferred:**
+- No pause menu, no pause-triggering input, no code at all — this session is the decision +
+  documentation only, exactly as scoped. Session 8.5 builds the real (if UI-minimal) menu against
+  actual AI/state-machine code during the vertical slice; Session 12.3 wires it to Settings/Main
+  Menu once those exist.
+
+**Next:** Session 0.5 (testing conventions) per the roadmap — the last Phase 0 session before
+Phase 1's concept-validation gray-box.
 
 ### S0.3 — Audio bus setup
 

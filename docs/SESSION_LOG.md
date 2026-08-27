@@ -12,19 +12,24 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.3 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
-| 1 | 1.1 | build | 1 | 1 | 1 sitting | no |
-| 1 | 1.1 (iteration) | build | - | 1 | 1 sitting | no |
-| 1 | 1.1 (iteration 2) | build | - | 1 | 1 sitting | no |
+| 1 | 1.1 | build | 1 | 3 | 3 sittings | no |
 
 ## Entries
 
-### S1.1 iteration 2 — direction+distance movement cards, per a design clarification
+### S1.1 (sitting 3) — direction+distance movement cards, per a design clarification
 
-Second playtest round. Clarified two of iteration 1's fixes were misreadings, not UI polish:
-the user meant a real mechanic change ("the whole point of picking what movement card to play"
-is choosing among direction+distance options), and pointed out that a separate Stealth-vs-Loud
-movement distinction is redundant now that the debug radio dial already governs how loud the
-player is being for every action, not just movement.
+Still S1.1, not S1.2 — the user corrected this directly: pointing out missing core mechanics
+(no real attack effect, no loot target, no legible turn structure, movement with no direction or
+distance) isn't a "does the hook feel good" playtest verdict, it's "you haven't finished building
+the gray-box yet." S1.2's actual play-and-judge checkpoint has not started. Renumbered this and
+the previous entry from "iteration"/"iteration 2" accordingly; see the corrected metrics row above
+(session 1.1, 3 sittings so far, not yet closed out).
+
+This sitting: two of sitting 2's fixes turned out to be misreadings, not UI polish — the user
+meant a real mechanic ("the whole point of picking what movement card to play" is choosing among
+direction+distance options), and pointed out that a separate Stealth-vs-Loud movement distinction
+is redundant now that the debug radio dial already governs how loud the player is being for every
+action, not just movement.
 
 **Changed:**
 - `CardResource.gd` gained `move_direction: Vector2i` and `move_distance: int` fields — baked
@@ -53,13 +58,17 @@ player is being for every action, not just movement.
 "West x3" move from near the grid edge clamps to the boundary tile instead of erroring or going
 out of bounds.
 
-**Next:** hand back for another play pass (round 2 of the roadmap's up-to-3-iteration allowance).
+Also dropped the redundant "(stealth)" qualifier added to the radio HUD label in sitting 3 above —
+the radio dial's role is apparent from play, per direct user feedback.
 
-### S1.1 iteration — playtest feedback from the first real play session
+**Next:** confirm with the user whether the gray-box now actually covers what S1.1 asked for, or
+whether more core mechanics are still missing. S1.2's play-and-judge checkpoint starts only once
+S1.1 is actually done, not automatically after this sitting.
 
-The user played the S1.1 gray-box (editor F5) and reported 6 issues. Sorted into "real gray-box
-gaps, fix now" vs. "actually later-phase scope" before touching anything, since several genuinely
-could have gone either way:
+### S1.1 (sitting 2) — completing missing core mechanics
+
+Still S1.1 — see the note in sitting 3 above about the corrected framing. The user played the
+sitting-1 build and pointed out 6 things the gray-box was missing, not 6 opinions about feel:
 
 **Fixed (real gaps, not later-phase scope):**
 - **Hand overflowed off-screen with no scroll** — `HandContainer` is now wrapped in a horizontal
@@ -101,10 +110,10 @@ position when it can legitimately take its own AI turn again immediately after r
 same action tick) — fixed in the test, not the game code, after confirming the underlying
 mechanic was actually correct both times.
 
-**Next:** hand back to the user for another play pass. Per the roadmap's own S1.2 allowance, up to
-3 total play/iterate/recheck rounds before deciding Phase 2 (art) vs. a bigger rethink.
+**Next:** more missing-mechanic feedback arrived (sitting 3, above) — still S1.1, not yet the real
+S1.2 playtest checkpoint.
 
-### S1.1 — Gray-box the core loop
+### S1.1 (sitting 1) — Gray-box the core loop
 
 **Shipped:** the first real gameplay code in the project — a playable prototype of HavenZ's core
 hook, `scenes/gray_box/GrayBox.tscn`/`.gd`, now the project's `run/main_scene`:
@@ -158,10 +167,8 @@ hook, `scenes/gray_box/GrayBox.tscn`/`.gd`, now the project's `run/main_scene`:
   reskin, not these literal pixel dimensions.
 - `run/main_scene` now points at the gray-box, not a real title/menu screen (none exists yet).
 
-**Next:** Session 1.2 — playtest & go/no-go. This is a human checkpoint, not a build session: play
-the gray-box for real (`F5`/`F6` in the editor, or export a debug build) and judge whether the
-noise/heat-vs-card-hand tension is actually compelling with nothing but colored squares. Up to 3
-iterate-and-recheck rounds before Phase 2 (art) or a redesign.
+**Next (corrected in sitting 3):** turned out this build was still missing core mechanics
+(sitting 2), not ready for the real S1.2 playtest-and-judge checkpoint yet.
 
 ### S0.5 — Testing conventions
 

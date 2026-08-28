@@ -28,11 +28,13 @@ enum Category {
 ## Effect payload — shape is undecided until Phase 1/4 build real card resolution.
 @export var effect_data: Dictionary = {}
 
-## Direction and tile count for a movement card, baked into the card itself rather than chosen
-## after playing it — per the design, deciding WHICH movement card to play (not where to click
-## afterward) is the actual tactical choice. Only meaningful when category is a MOVE_* type; zero
-## for every other category. Stealth vs. loud movement is no longer a per-card distinction (the
-## debug radio dial in the S1.1 gray-box already governs how loud the player is being), so
-## MOVE_STEALTH is currently unused rather than removed from the enum.
-@export var move_direction: Vector2i = Vector2i.ZERO
-@export var move_distance: int = 0
+## Max tile range for a movement card. The card picks how FAR you can go (and how much that
+## costs in noise_cost/heat); the player still picks WHICH direction and exactly how far up to
+## that cap by clicking a tile after playing it — baking the direction into the card too made
+## movement feel bad in practice (a bad hand of cards could leave you unable to go the direction
+## you actually needed, e.g. only "South" cards while fleeing something to the north). Only
+## meaningful when category is a MOVE_* type; zero for every other category. Stealth vs. loud
+## movement is not a per-card distinction (the debug radio dial in the S1.1 gray-box already
+## governs how loud the player is being), so MOVE_STEALTH is currently unused rather than
+## removed from the enum.
+@export var move_range: int = 0

@@ -12,9 +12,37 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.3 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
-| 1 | 1.1 | build | 1 | 3 | 3 sittings | no |
+| 1 | 1.1 | build | 1 | 4 | 4 sittings | no |
 
 ## Entries
+
+### S1.1 (sitting 4) — movement is a range, player picks the tile
+
+The direction-baked-into-the-card design from sitting 3 didn't land in play: "movement being that
+tied to card draw feels crappy." Root problem — locking a movement card to one fixed direction
+means a run of bad draws can leave you unable to go the way you actually need to, which is a much
+worse failure mode than not having quite enough range. Fixed by decoupling direction from the
+card entirely:
+
+- `CardResource.move_direction`/`move_distance` replaced with a single `move_range: int`. The
+  card only decides how far (and how much noise that costs); the player picks which of the 4
+  cardinal directions, and exactly how far up to that cap, by clicking a tile after playing it.
+- Move-card pool shrank from 12 (4 directions x 3 distances) to 3 (`Move x1/x2/x3`, one per
+  range) — direction is free again, so the combinatorial spread was no longer buying anything.
+- Reintroduced the select-card-then-click-a-tile flow (removed in sitting 3) specifically for
+  movement: `_get_valid_move_tiles()` walks all 4 orthogonal rays out to the card's range,
+  stopping at the grid edge, and highlights every tile along the way — not just the endpoint — so
+  a range-3 card can still be played for a cheaper 1-tile hop when that's the better call. Heat is
+  charged for the distance actually picked, not the card's max range.
+- Attack/Loot/Food/Water are unaffected — they still resolve instantly in place.
+
+**Verified headlessly:** card pool is 7 (4 fixed + 3 range cards), a range-3 card's valid-tile set
+is exactly the 12 tiles across its 4 rays (confirmed a 3-tiles-away tile is included and a
+4-tiles-away tile is not), picking a nearer tile than the card's max range moves there and charges
+heat only for that distance (0.5 for 1 tile, not 1.5 for the card's full range-3 cost), and
+clicking a tile outside the valid set is rejected without moving the player or consuming the card.
+
+**Next:** hand back for another play pass.
 
 ### S1.1 (sitting 3) — direction+distance movement cards, per a design clarification
 

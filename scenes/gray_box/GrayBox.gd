@@ -1,16 +1,16 @@
 extends Node2D
 
-## Phase 1 gray-box (session 1.1, iterated per session 1.2 playtest feedback): proves the
-## noise/heat + card-hand tension hook with nothing but ColorRects and debug labels before any
-## art or full systems exist. Routed through the real CardResource/TileResource/EnemyResource
-## classes from session 0.2 so this survives Phase 2's reskin rather than being thrown away.
+## Phase 1 gray-box (session 1.1, multiple build sittings): proves the noise/heat + card-hand
+## tension hook with nothing but ColorRects and debug labels before any art or full systems
+## exist. Routed through the real CardResource/TileResource/EnemyResource classes from session
+## 0.2 so this survives Phase 2's reskin rather than being thrown away.
 ##
-## Every card resolves the instant it's clicked -- there is no separate "select, then click a
-## tile to target" step. A movement card bakes in its own direction+distance (see CardResource's
-## move_direction/move_distance), so choosing WHICH card to play is the tactical decision, not
-## where to click afterward. Stealth vs. loud is no longer a per-movement-card distinction either:
-## the debug radio dial already controls how loud the player is being, for every card, not just
-## movement, so a separate "Stealth Move" card would just duplicate that.
+## Attack/Loot/Food/Water resolve instantly on click. A movement card is different: it sets a
+## RANGE (and its noise cost), and the player then clicks any tile along one of the 4 cardinal
+## rays out to that range to actually move there. An earlier version baked a fixed direction into
+## the card itself, which felt bad in play -- a run of unlucky draws could leave you with no way
+## to go the direction you actually needed. Range-then-pick keeps "which movement card to play"
+## a real tradeoff (further costs more noise) without ever locking out a direction.
 ##
 ## Deliberately NOT built here (real design/systems work for later sessions, not gray-box scope):
 ## - Variable turn length ("ends when no legal play" + Supply-card turn extension) - session 4.4.
@@ -45,14 +45,10 @@ const RADIO_MULTIPLIERS: Array[float] = [1.0, 1.2, 1.5, 2.0, 2.5, 3.0]
 ## MOVE_STEALTH is defined on CardResource but unused here -- see the header comment.
 const MOVE_CATEGORIES := [CardResource.Category.MOVE_LOUD]
 
-const MOVE_DIRECTIONS: Dictionary = {
-	"North": Vector2i(0, -1),
-	"South": Vector2i(0, 1),
-	"East": Vector2i(1, 0),
-	"West": Vector2i(-1, 0),
-}
-const MOVE_DISTANCES: Array[int] = [1, 2, 3]
-## Heat per tile of movement, before the radio-dial multiplier -- moving further is louder.
+const ORTHOGONAL_DIRECTIONS: Array[Vector2i] = [Vector2i(0, -1), Vector2i(0, 1), Vector2i(1, 0), Vector2i(-1, 0)]
+const MOVE_RANGES: Array[int] = [1, 2, 3]
+## Heat per tile actually moved, before the radio-dial multiplier -- moving further is louder.
+## Charged for the distance the player actually picks, not a card's max range.
 const BASE_MOVE_NOISE := 0.5
 
 const FIXED_CARD_POOL_PATHS: Array[String] = [
@@ -66,6 +62,7 @@ const ENEMY_RESOURCE_PATH := "res://data/samples/enemy_walker_basic.tres"
 
 const LOOT_COLOR := Color(0.12, 0.26, 0.14)
 const NORMAL_COLOR := Color(0.15, 0.15, 0.18)
+const HIGHLIGHT_COLOR := Color(0.85, 0.75, 0.2)
 
 @onready var grid_visual: Node2D = $GridVisual
 @onready var player_visual: ColorRect = $PlayerVisual
@@ -90,6 +87,7 @@ var salvage_count: int = 0
 var turn_number: int = 1
 var radio_tier_index: int = 0
 var actions_remaining: int = ACTIONS_PER_TURN
+var selected_card_index: int = -1
 
 func _ready() -> void:
 	randomize()
@@ -121,17 +119,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _load_card_pool() -> void:
 	for path in FIXED_CARD_POOL_PATHS:
 		card_pool.append(load(path))
-	for dir_name in MOVE_DIRECTIONS:
-		var dir_vec: Vector2i = MOVE_DIRECTIONS[dir_name]
-		for distance in MOVE_DISTANCES:
-			var card := CardResource.new()
-			card.id = "gb_move_%s_%d" % [String(dir_name).to_lower(), distance]
-			card.display_name = "%s x%d" % [dir_name, distance]
-			card.category = CardResource.Category.MOVE_LOUD
-			card.move_direction = dir_vec
-			card.move_distance = distance
-			card.noise_cost = distance * BASE_MOVE_NOISE
-			card_pool.append(card)
+	for r in MOVE_RANGES:
+		var card := CardResource.new()
+		card.id = "gb_move_range_%d" % r
+		card.display_name = "Move x%d" % r
+		card.category = CardResource.Category.MOVE_LOUD
+		card.move_range = r
+		card.noise_cost = r * BASE_MOVE_NOISE
+		card_pool.append(card)
 
 func _build_grid() -> void:
 	for y in range(GRID_HEIGHT):
@@ -143,7 +138,6 @@ func _build_grid() -> void:
 			rect.size = Vector2(TILE_SIZE - 2, TILE_SIZE - 2)
 			rect.position = Vector2(x * TILE_SIZE, y * TILE_SIZE)
 			rect.color = NORMAL_COLOR
-			rect.mouse_filter = Control.MOUSE_FILTER_IGNORE  # purely visual now -- see header comment.
 			grid_visual.add_child(rect)
 
 			var label := Label.new()
@@ -156,6 +150,10 @@ func _build_grid() -> void:
 			label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			rect.add_child(label)
 
+			# gui_input's bound coord comes from Callable.bind(), not a captured loop variable -
+			# GDScript lambdas/closures capture by value at creation time, which would otherwise
+			# make every tile's callback see the loop's *final* coord.
+			rect.gui_input.connect(_on_tile_gui_input.bind(coord))
 			tile_views[coord] = {"rect": rect, "label": label}
 
 func _place_loot_tiles() -> void:
@@ -170,6 +168,10 @@ func _place_loot_tiles() -> void:
 	for i in range(mini(needed, candidates.size())):
 		loot_tiles[candidates[i]] = true
 
+func _on_tile_gui_input(event: InputEvent, coord: Vector2i) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		_try_move_to_tile(coord)
+
 func _render_hand() -> void:
 	for child in hand_container.get_children():
 		child.queue_free()
@@ -177,35 +179,72 @@ func _render_hand() -> void:
 		var card := hand[i]
 		var button := Button.new()
 		button.text = "%s (%.1f)" % [card.display_name, card.noise_cost]
+		button.toggle_mode = true
+		button.button_pressed = (i == selected_card_index)
 		button.pressed.connect(_on_card_pressed.bind(i))
 		hand_container.add_child(button)
 
 func _on_card_pressed(i: int) -> void:
+	if i == selected_card_index:
+		# Clicking the already-selected move card again cancels the selection.
+		selected_card_index = -1
+		_render_hand()
+		_redraw_tiles()
+		status_label.text = "Selection cancelled."
+		return
+
 	var card := hand[i]
 	if card.category in MOVE_CATEGORIES:
-		_resolve_move(card)
-	else:
-		_resolve_card_in_place(card)
+		selected_card_index = i
+		_render_hand()
+		_redraw_tiles()
+		status_label.text = "%s selected — click any highlighted tile up to %d away." % [card.display_name, card.move_range]
+		return
+
+	_resolve_card_in_place(card)
 	_consume_played_card(i)
 	_spend_action()
 
-func _resolve_move(card: CardResource) -> void:
-	var raw_target := player_pos + card.move_direction * card.move_distance
-	var clamped := Vector2i(
-		clampi(raw_target.x, 0, GRID_WIDTH - 1),
-		clampi(raw_target.y, 0, GRID_HEIGHT - 1),
-	)
-	player_pos = clamped
-	_apply_card_heat(card, player_pos)
-	if clamped != raw_target:
-		status_label.text += " Blocked by the grid edge — moved as far as possible."
+func _try_move_to_tile(coord: Vector2i) -> void:
+	if selected_card_index == -1:
+		status_label.text = "Select a movement card first, then click a highlighted tile."
+		return
+	var valid := _get_valid_move_tiles()
+	if not (coord in valid):
+		status_label.text = "That tile isn't reachable with the selected card."
+		return
+	var card := hand[selected_card_index]
+	var distance := absi(coord.x - player_pos.x) + absi(coord.y - player_pos.y)
+	player_pos = coord
+	_apply_card_heat(card, player_pos, distance * BASE_MOVE_NOISE)
+	_consume_played_card(selected_card_index)
+	selected_card_index = -1
+	_spend_action()
+
+## All tiles reachable in a straight orthogonal line (no diagonals, no obstacles yet) out to the
+## selected card's move_range -- every tile along the way is a valid stop, not just the far end,
+## so a long-range card can still be played for a short, quieter hop if that's the better play.
+func _get_valid_move_tiles() -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	if selected_card_index == -1:
+		return result
+	var card := hand[selected_card_index]
+	if not (card.category in MOVE_CATEGORIES):
+		return result
+	for dir in ORTHOGONAL_DIRECTIONS:
+		for step in range(1, card.move_range + 1):
+			var coord: Vector2i = player_pos + dir * step
+			if not tiles.has(coord):
+				break  # off the grid edge in this direction -- further steps would be too.
+			result.append(coord)
+	return result
 
 ## Resolves a non-move card's effect at the player's current tile: Attack hits an adjacent
 ## zombie (no facing/direction needed since it just targets whichever of the 4 neighbors the
 ## zombie occupies), Loot claims a loot tile if the player is standing on one, everything else
 ## (Food/Water) is a heat-only placeholder until Phase 6's real economy exists.
 func _resolve_card_in_place(card: CardResource) -> void:
-	_apply_card_heat(card, player_pos)
+	_apply_card_heat(card, player_pos, card.noise_cost)
 	match card.category:
 		CardResource.Category.ATTACK:
 			_resolve_attack()
@@ -234,10 +273,12 @@ func _resolve_loot() -> void:
 	else:
 		status_label.text += " Nothing to loot here."
 
-func _apply_card_heat(card: CardResource, coord: Vector2i) -> void:
+## noise_cost_override lets a movement card charge for the distance actually picked (which may be
+## less than its max range) rather than the card's own noise_cost field, which represents the cap.
+func _apply_card_heat(card: CardResource, coord: Vector2i, noise_cost_override: float) -> void:
 	var tile: TileResource = tiles[coord]
 	var multiplier := RADIO_MULTIPLIERS[radio_tier_index]
-	var heat_delta := card.noise_cost * multiplier
+	var heat_delta := noise_cost_override * multiplier
 	tile.heat += heat_delta
 	tile.add_heat_origin(TileResource.HeatOrigin.PLAYER)
 	status_label.text = "Played %s (+%.1f heat, radio x%.1f) at (%d,%d)." % [
@@ -300,12 +341,16 @@ func _decay_tiles() -> void:
 		tile.clear_turn_origins()
 
 func _redraw_tiles() -> void:
+	var highlighted := _get_valid_move_tiles()
 	for coord in tile_views.keys():
 		var tile: TileResource = tiles[coord]
 		var view: Dictionary = tile_views[coord]
-		var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
-		var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
-		view.rect.color = Color(base.r + 0.7 * t, base.g, base.b)
+		if coord in highlighted:
+			view.rect.color = HIGHLIGHT_COLOR
+		else:
+			var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
+			var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
+			view.rect.color = Color(base.r + 0.7 * t, base.g, base.b)
 		view.label.text = "%.1f" % tile.heat
 
 func _render_visual_positions() -> void:

@@ -6,11 +6,16 @@ extends Node2D
 ## 0.2 so this survives Phase 2's reskin rather than being thrown away.
 ##
 ## Attack/Loot/Food/Water resolve instantly on click. A movement card is different: it sets a
-## RANGE (and its noise cost), and the player then clicks any tile along one of the 4 cardinal
-## rays out to that range to actually move there. An earlier version baked a fixed direction into
-## the card itself, which felt bad in play -- a run of unlucky draws could leave you with no way
-## to go the direction you actually needed. Range-then-pick keeps "which movement card to play"
-## a real tradeoff (further costs more noise) without ever locking out a direction.
+## RANGE (and its noise cost), and the player then clicks any reachable tile -- including
+## diagonals -- to actually move there. An earlier version baked a fixed direction into the card
+## itself, which felt bad in play -- a run of unlucky draws could leave you with no way to go the
+## direction you actually needed. Range-then-pick keeps "which movement card to play" a real
+## tradeoff (further costs more noise) without ever locking out a direction.
+##
+## Reachability uses true (Euclidean) distance, floored, not a step count -- a diagonal step is
+## sqrt(2) away, not 1, so diagonal movement can't out-cover orthogonal movement for the same
+## range value. This produces a roughly circular reachable area rather than a square (which is
+## what naively counting steps in any of 8 directions -- Chebyshev distance -- would give).
 ##
 ## Deliberately NOT built here (real design/systems work for later sessions, not gray-box scope):
 ## - Variable turn length ("ends when no legal play" + Supply-card turn extension) - session 4.4.
@@ -45,7 +50,6 @@ const RADIO_MULTIPLIERS: Array[float] = [1.0, 1.2, 1.5, 2.0, 2.5, 3.0]
 ## MOVE_STEALTH is defined on CardResource but unused here -- see the header comment.
 const MOVE_CATEGORIES := [CardResource.Category.MOVE_LOUD]
 
-const ORTHOGONAL_DIRECTIONS: Array[Vector2i] = [Vector2i(0, -1), Vector2i(0, 1), Vector2i(1, 0), Vector2i(-1, 0)]
 const MOVE_RANGES: Array[int] = [1, 2, 3]
 ## Heat per tile actually moved, before the radio-dial multiplier -- moving further is louder.
 ## Charged for the distance the player actually picks, not a card's max range.
@@ -214,16 +218,24 @@ func _try_move_to_tile(coord: Vector2i) -> void:
 		status_label.text = "That tile isn't reachable with the selected card."
 		return
 	var card := hand[selected_card_index]
-	var distance := absi(coord.x - player_pos.x) + absi(coord.y - player_pos.y)
+	var distance := _floored_distance(player_pos, coord)
 	player_pos = coord
 	_apply_card_heat(card, player_pos, distance * BASE_MOVE_NOISE)
 	_consume_played_card(selected_card_index)
 	selected_card_index = -1
 	_spend_action()
 
-## All tiles reachable in a straight orthogonal line (no diagonals, no obstacles yet) out to the
-## selected card's move_range -- every tile along the way is a valid stop, not just the far end,
-## so a long-range card can still be played for a short, quieter hop if that's the better play.
+## True (Euclidean) distance between two tiles, floored to an int -- not a step count. A diagonal
+## step is sqrt(2) away, not 1, so this is what keeps diagonal movement from out-covering
+## orthogonal movement for the same range/noise cost.
+func _floored_distance(a: Vector2i, b: Vector2i) -> int:
+	var delta := b - a
+	return floori(sqrt(float(delta.x * delta.x + delta.y * delta.y)))
+
+## All tiles (including diagonals, no obstacles yet) within the selected card's move_range,
+## using true floored distance so the reachable area is roughly circular, not a square -- every
+## tile in range is a valid stop, not just the far edge, so a long-range card can still be played
+## for a short, quieter hop if that's the better play.
 func _get_valid_move_tiles() -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	if selected_card_index == -1:
@@ -231,12 +243,16 @@ func _get_valid_move_tiles() -> Array[Vector2i]:
 	var card := hand[selected_card_index]
 	if not (card.category in MOVE_CATEGORIES):
 		return result
-	for dir in ORTHOGONAL_DIRECTIONS:
-		for step in range(1, card.move_range + 1):
-			var coord: Vector2i = player_pos + dir * step
+	var r := card.move_range
+	for dx in range(-r, r + 1):
+		for dy in range(-r, r + 1):
+			if dx == 0 and dy == 0:
+				continue
+			var coord := player_pos + Vector2i(dx, dy)
 			if not tiles.has(coord):
-				break  # off the grid edge in this direction -- further steps would be too.
-			result.append(coord)
+				continue
+			if _floored_distance(player_pos, coord) <= r:
+				result.append(coord)
 	return result
 
 ## Resolves a non-move card's effect at the player's current tile: Attack hits an adjacent

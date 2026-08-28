@@ -12,9 +12,35 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.3 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
-| 1 | 1.1 | build | 1 | 4 | 4 sittings | no |
+| 1 | 1.1 | build | 1 | 5 | 5 sittings | no |
 
 ## Entries
+
+### S1.1 (sitting 5) — diagonal movement, floored-distance range (circular, not square)
+
+Direct request, still S1.1: movement range should include diagonals, using a normalized
+(Euclidean) distance rounded down, so the reachable area is circular/diamond-shaped rather than a
+square that lets diagonal movement out-cover orthogonal movement for the same range.
+
+- New `_floored_distance(a, b)` helper: `floori(sqrt(dx² + dy²))` between two tile coordinates —
+  true distance, not a step count. A diagonal step is `sqrt(2) ≈ 1.41` away, not 1.
+- `_get_valid_move_tiles()` rewritten from "walk the 4 orthogonal rays" to "scan the full
+  `(2*range+1)²` bounding box, keep any tile with floored distance `<= range`" — this naturally
+  produces the circular shape (a range-3 card's valid set excludes its own bounding box's corners,
+  e.g. `(3,3)` is true distance 4.24, floors to 4, correctly excluded even though it's only 3
+  steps away on each axis).
+- Heat cost for a move now uses the same floored distance instead of the old Manhattan-distance
+  sum, so a 1-tile diagonal hop costs the same as a 1-tile orthogonal hop (both floor to distance
+  1), not double.
+- Attack/Loot/Food/Water, the action economy, and enemy AI are all unaffected.
+
+**Verified headlessly:** confirmed via `floori()` (verified to exist in Godot 4.6 first) that a
+diagonal 1-step and a diagonal 2-step (true distance 2.83, floors to 2) are both reachable with a
+range-2 card, an orthogonal 3-step is correctly excluded, every tile in a card's valid set
+satisfies `floored_distance <= range` (the actual "not a square" invariant), and a diagonal move
+charges heat for distance 1, not 2.
+
+**Next:** hand back for another play pass.
 
 ### S1.1 (sitting 4) — movement is a range, player picks the tile
 

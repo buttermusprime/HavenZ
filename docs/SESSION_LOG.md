@@ -12,9 +12,32 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.3 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
-| 1 | 1.1 | build | 1 | 5 | 5 sittings | no |
+| 1 | 1.1 | build | 1 | 6 | 6 sittings | no |
 
 ## Entries
+
+### S1.1 (sitting 6) — fix: flooring the distance before the range check let corners cheat
+
+Sitting 5's implementation had a real bug the user caught immediately from a screenshot: flooring
+the true distance and THEN comparing to range let tiles that are actually farther than the range
+sneak in — a range-2 card's screenshot showed the full 5x5-minus-center square highlighted
+(24 tiles), including the (±2,±2) corners at true distance 2.83, because `floori(2.83) == 2`
+passed the `<= 2` check. That's exactly the square-not-circle shape sitting 5 was supposed to
+prevent, and the corners genuinely are farther away than the card's stated range allows.
+
+Fix: split the single floored-distance helper into two. `_true_distance()` (unrounded) is now
+what the range membership check uses — a tile only counts as reachable if its real, un-floored
+distance is `<= range`, full stop. `_floored_distance()` still exists but is now used only for
+the noise-cost charge (so a diagonal move's cost stays a clean multiple of `BASE_MOVE_NOISE`
+instead of a fractional value) — flooring never again loosens what counts as "in range."
+
+**Verified headlessly** against the exact reported bug: a range-2 card's valid-tile count dropped
+from the buggy 24 to a correct 12; the reported corner (true distance 2.83) and its immediate
+neighbor (2.24) are both now excluded; a legitimate diagonal 1-step (1.41) and an orthogonal
+2-step exactly at the cap (2.0) both remain included; and every tile in the resulting set was
+swept to confirm none exceeds true distance 2.
+
+**Next:** hand back for another play pass.
 
 ### S1.1 (sitting 5) — diagonal movement, floored-distance range (circular, not square)
 

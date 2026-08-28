@@ -12,10 +12,12 @@ extends Node2D
 ## direction you actually needed. Range-then-pick keeps "which movement card to play" a real
 ## tradeoff (further costs more noise) without ever locking out a direction.
 ##
-## Reachability uses true (Euclidean) distance, floored, not a step count -- a diagonal step is
+## Reachability uses true (Euclidean) distance, unrounded, not a step count -- a diagonal step is
 ## sqrt(2) away, not 1, so diagonal movement can't out-cover orthogonal movement for the same
-## range value. This produces a roughly circular reachable area rather than a square (which is
-## what naively counting steps in any of 8 directions -- Chebyshev distance -- would give).
+## range value; a range-2 card cannot reach a tile that's actually 2.83 away just because it's
+## only 2 steps out on each axis. This produces a circular reachable area rather than a square
+## (which is what naively counting steps in any of 8 directions -- Chebyshev distance -- would
+## give). Only the noise-cost CHARGE for a move rounds distance down, not the range check itself.
 ##
 ## Deliberately NOT built here (real design/systems work for later sessions, not gray-box scope):
 ## - Variable turn length ("ends when no legal play" + Supply-card turn extension) - session 4.4.
@@ -225,17 +227,25 @@ func _try_move_to_tile(coord: Vector2i) -> void:
 	selected_card_index = -1
 	_spend_action()
 
-## True (Euclidean) distance between two tiles, floored to an int -- not a step count. A diagonal
-## step is sqrt(2) away, not 1, so this is what keeps diagonal movement from out-covering
-## orthogonal movement for the same range/noise cost.
-func _floored_distance(a: Vector2i, b: Vector2i) -> int:
+## True (Euclidean) distance between two tiles, unrounded. A diagonal step is sqrt(2) away, not
+## 1 -- this is the real distance used to decide what's IN RANGE, so diagonal movement can never
+## reach farther than the card's range actually allows (flooring this before comparing would let
+## e.g. a true-distance-2.83 corner sneak in under a range-2 cap -- it must not).
+func _true_distance(a: Vector2i, b: Vector2i) -> float:
 	var delta := b - a
-	return floori(sqrt(float(delta.x * delta.x + delta.y * delta.y)))
+	return sqrt(float(delta.x * delta.x + delta.y * delta.y))
 
-## All tiles (including diagonals, no obstacles yet) within the selected card's move_range,
-## using true floored distance so the reachable area is roughly circular, not a square -- every
-## tile in range is a valid stop, not just the far edge, so a long-range card can still be played
-## for a short, quieter hop if that's the better play.
+## Same distance, rounded down to a whole tile count -- used only for the noise-cost charge, so
+## a diagonal move's cost stays a clean multiple of BASE_MOVE_NOISE instead of an odd fraction.
+## Never used for the range check itself; see _true_distance.
+func _floored_distance(a: Vector2i, b: Vector2i) -> int:
+	return floori(_true_distance(a, b))
+
+## All tiles (including diagonals, no obstacles yet) within the selected card's move_range, using
+## unrounded true distance so the reachable area is circular, not a square -- a range-2 card
+## cannot reach a tile that's actually 2.83 tiles away just because two of its axes each moved by
+## only 2. Every tile within range is a valid stop, not just the far edge, so a long-range card
+## can still be played for a short, quieter hop if that's the better play.
 func _get_valid_move_tiles() -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	if selected_card_index == -1:
@@ -251,7 +261,7 @@ func _get_valid_move_tiles() -> Array[Vector2i]:
 			var coord := player_pos + Vector2i(dx, dy)
 			if not tiles.has(coord):
 				continue
-			if _floored_distance(player_pos, coord) <= r:
+			if _true_distance(player_pos, coord) <= float(r):
 				result.append(coord)
 	return result
 

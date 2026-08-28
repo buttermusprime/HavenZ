@@ -23,6 +23,10 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 
 AudioSettings="*res://systems/audio/AudioSettings.tscn"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/pixelpipe/plugin.cfg")
+
 [display]
 
 window/size/viewport_width=512

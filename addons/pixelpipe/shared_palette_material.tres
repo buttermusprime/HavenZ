@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dvhlc1bi6a0b4"]
+
+[ext_resource type="Shader" uid="uid://kl036wpq7h62" path="res://addons/pixelpipe/palette_unified.gdshader" id="1_pu1fd"]
+
+[sub_resource type="Image" id="Image_xsxcm"]
+data = {
+"data": PackedByteArray(200, 30, 30, 30, 90, 200, 40, 180, 60, 230, 200, 40, 230, 40, 180, 255, 140, 0, 0, 180, 180, 200, 30, 30, 30, 90, 200, 40, 180, 60, 230, 200, 40, 230, 40, 180, 255, 140, 0, 0, 180, 180, 200, 30, 30, 30, 90, 200, 40, 180, 60, 230, 200, 40, 230, 40, 180, 255, 140, 0, 0, 180, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"format": "RGB8",
+"height": 4,
+"mipmaps": false,
+"width": 7
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_hmsmq"]
+image = SubResource("Image_xsxcm")
+
+[resource]
+shader = ExtResource("1_pu1fd")
+shader_parameter/lut_texture = SubResource("ImageTexture_hmsmq")
+shader_parameter/palette_size = 7
+shader_parameter/max_intensity = 4.0
+shader_parameter/match_threshold = 0.02

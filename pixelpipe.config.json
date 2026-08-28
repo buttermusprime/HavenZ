@@ -1,0 +1,29 @@
+{
+  "source_packs": ["../PostApocalypse_AssetPack_v1.1.2"],
+  "art_source_path": "art_source",
+  "art_path": "art",
+  "godot_project_root": ".",
+  "palette_path": "palette/HavenZ_Field_Palette.gpl",
+  "pixel_scale": 1,
+  "aseprite_executable": "D:/SteamLibrary/steamapps/common/Aseprite/Aseprite.exe",
+  "ignore_globs": [
+    "Character/Guns/*/*reload*Sheet*.png",
+    "Character/Guns/*/*Reload*Sheet*.png",
+    "Character/Guns/*/*racking*Sheet*.png",
+    "UI/Hunger/*",
+    "*Puddles-And-Water-Anim*",
+    "*Rain-Drop_*",
+    "*Gutter-And-Downspout*",
+    "Objects/Vehicles/Overgrown/*",
+    "Objects/Vehicles/Rust/*",
+    "Objects/Vehicles/Normal/*/*_Gray*",
+    "Objects/Vehicles/Normal/*/*_Green*",
+    "Objects/Vehicles/Normal/*/*_Light-Green*",
+    "Objects/Vehicles/Normal/*/*_Orange*",
+    "Objects/Vehicles/Normal/*/*_Red*",
+    "Objects/Vehicles/Normal/*/*_Yellow*"
+  ],
+  "selectable_asset_globs": [],
+  "localization_output_dir": "localization",
+  "default_locale": "en"
+}

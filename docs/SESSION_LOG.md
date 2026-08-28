@@ -13,8 +13,79 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.4 | build | 1 | 1 | 1 sitting | no |
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
 | 1 | 1.1 | build | 1 | 6 | 6 sittings | no |
+| 1 | 1.2 | checkpoint | 1 | 1 | 1 sitting | no |
+| 2 | 2.1 | build | 1 | 1 (in progress) | 1 sitting | no |
 
 ## Entries
+
+### S2.1 (in progress) — Configure PixelPipe for HavenZ
+
+Per this session's own provisional-text instruction, opened PixelPipe's real `README.md`/`docs/ROADMAP.md`
+before writing anything, and found real mismatches against what this roadmap assumed:
+
+- **`pixel_scale` is not a display-scale multiplier.** The roadmap's own S2.1 text described "one
+  canonical screen-pixels-per-native-pixel scale factor" — but PixelPipe's actual `pixel_scale`
+  field is a narrower art-hygiene check (`asset_validator.gd`): every exported PNG's dimensions
+  must be a clean multiple of it. It never touches on-screen sizing — that's entirely Godot's
+  `canvas_items`/`integer` stretch mode, already locked in S0.1, unaffected by this tool. Inventoried
+  real dimensions across all 1,113 PNGs in `PostApocalypse_AssetPack_v1.1.2` (Python/Pillow) and found
+  them irregularly cropped to content bounds — `(15,15)`, `(39,20)`, `(7,8)`, `(147,16)` sheets, etc. —
+  not aligned to any shared grid, so **`pixel_scale=1`** is the only honest value (anything higher
+  would fail validation on most of the pack immediately). The 16px "logical tile" used for the
+  viewport/camera grid (S0.1) is a separate, already-solved concept and doesn't come from this field.
+- **`ignore_globs` is validated but never actually consumed anywhere in PixelPipe v1** — confirmed
+  by reading `extract_palette.py`, `convert_indexed.lua`, and `pixelpipe_sync.py`: the field exists in
+  the config schema (so a config naming it validates fine) but no script filters anything against it.
+  Flagged as a separate task rather than patched here (touching PixelPipe's own pipeline scripts is
+  out of scope for a HavenZ config session) — see the flagged background task. Populated HavenZ's
+  `ignore_globs` with the real intended patterns anyway (Asset Audit's deprioritized groups: gun
+  reload/racking sheets, `UI/Hunger/`, rain/puddle weather animation, the full vehicle recolor
+  matrix minus one canonical color per car) so it's ready the moment that gap is closed — currently
+  inert, not yet actually filtering S2.2's real extraction.
+- **Two hardcoded `test_fixtures/` paths the README's own quickstart doesn't mention**, beyond the two
+  dock `@export var config_path` fields it does call out: `validate_assets.gd`'s
+  `DEFAULT_CONFIG_PATH` and `import_sprite_frames.gd`'s `DEFAULT_ROOT` were both still pointing at
+  PixelPipe's own test fixtures. Repointed both (`res://pixelpipe.config.json`, `res://art`) in
+  HavenZ's copy of the addon.
+
+**Shipped:**
+- `haven-z/pixelpipe.config.json` — real config, validated clean via PixelPipe's own
+  `pixelpipe_config.py`. `source_packs` points at the now-unzipped
+  `../PostApocalypse_AssetPack_v1.1.2` (HavenZ root, sibling to `haven-z/`); `art_source_path`/
+  `art_path` are `art_source`/`art` inside the Godot project; `localization_output_dir` reuses
+  S0.1's existing `localization/` folder so PixelPipe's generated `display_names.csv` lands
+  alongside `strings.csv`; `selectable_asset_globs` left empty for now — no real card-art asset
+  keys exist to mark yet, that's Phase 11 scope.
+- `haven-z/palette/HavenZ_Field_Palette.gpl` — the 40-color seed palette from this roadmap's own
+  START.03 section, written out as a real GIMP-palette file for the first time (previously only
+  documented as hex values in the roadmap text). This is explicitly the *seed*, not final — S2.2's
+  real full-pack extraction supersedes it.
+- `haven-z/addons/pixelpipe/` — PixelPipe's addon package copied in, `.uid` cache files stripped
+  (let Godot regenerate its own fresh UIDs for this project rather than carrying over PixelPipe's),
+  `live_remaps.json` reset to `[]` (the copied file initially carried over 3 real audit-log entries
+  from PixelPipe's own Phase F testing — not HavenZ's history). Enabled in `project.godot` under a
+  new `[editor_plugins]` section.
+- Unzipped `PostApocalypse_AssetPack_v1.1.2.zip` to a sibling folder at the HavenZ project root
+  (1,113 PNGs) — this is the real `source_packs` target; the zip itself is left untouched.
+
+**Blocked:** a live Godot editor was already open on this project (`GrayBox.tscn - HavenZ - Godot
+Engine`) when it came time to do the first headless import/verification pass — per
+[[feedback-godot-editor-lock-before-export]], never race a headless process against the user's own
+open editor. Deferred: confirming the plugin actually loads/enables, the palette `.gpl` imports
+without error, and the new `.uid`s regenerate cleanly.
+
+**Next:** once the editor is closed (or the user does the equivalent check themselves in the live
+session), run `godot --headless --editor --quit` once to confirm the plugin loads with no errors,
+then S2.2 (real palette extraction & reconciliation against the full ~1,100-file pack).
+
+### S1.2 — Playtest & go/no-go: PASS
+
+The user played the gray-box for real (through sitting 6's diagonal-range fix) and confirmed the
+noise/card-hand tension works — a genuine "go" on the first attempt, not one of the checkpoint's
+up-to-3 iterate-and-recheck rounds. Phase 1 (Concept Validation) is closed. Phase 2 (Art Pipeline
+Adoption) begins with S2.1.
+
+**Next:** S2.1 — configure PixelPipe for HavenZ.
 
 ### S1.1 (sitting 6) — fix: flooring the distance before the range check let corners cheat
 

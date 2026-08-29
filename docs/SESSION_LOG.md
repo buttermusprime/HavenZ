@@ -20,8 +20,47 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 2 | 2.5 | build | 1 | 1 | 1 sitting | no |
 | 2 | 2.6 | build | 1 | 1 | 1 sitting | no |
 | 3 | 3.1 | build | 1 | 1 | 1 sitting | no |
+| 3 | 3.2 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S3.2 — World set-dressing & biome zones
+
+**Shipped:** 10 fixed, non-functional decoration props from `res://art/Objects/{Nature,Buildings,
+Vehicles}/`, purely visual per this session's own scope — no `TileResource` field touched, no
+movement/noise interaction. A new `_zone_for_coord()` splits the map diagonally (Home Haven
+top-right, the other Haven bottom-left, so a tile's `x - y` sign alone says which corner it's
+nearer) into GREEN/BLEAK_YELLOW zones, reusing the same two tints S3.1 already reserved for each
+Haven's entrance — matched with a real tree/bush/grass/HVAC prop from each zone's actual pack
+folder (`Nature/Green` vs `Nature/Bleak-Yellow`, `Buildings/HVAC_Overgrown_Green` vs
+`_Bleak-Yellow`), plus one zone-neutral vehicle wreck per side (`Car_9_Blue_Motorcycle_Side`,
+`Car_6_Blue_Scrap`) for flavor. Coordinates are hand-picked and fixed, same "no level-design
+tooling yet" reasoning S3.1 used for the Haven rectangles — not randomized, so the layout stays
+exactly reproducible.
+
+**Corrected against the real asset pack, not the roadmap's literal text:** the session prompt
+names "beige vs. gray vs. dark buildings" as the Buildings-side zone variant, but no such 3-way
+building-shell tint actually exists in the pack (confirmed by searching the full asset tree).
+Substituted the real per-zone-tinted asset that does exist instead —
+`HVAC_Overgrown_{Green,Bleak-Yellow}` — the same "correct provisional/imprecise roadmap text
+against the real asset shape" pattern S2.1 already established for `pixel_scale`/`ignore_globs`.
+
+**Verified headlessly** (throwaway script, deleted after use): exactly 10 dressing entries, none
+colliding with either Haven's footprint or the player/enemy start coordinates, no duplicate
+coordinates, every prop's chosen art genuinely matches what `_zone_for_coord()` computes for its
+coordinate (checked programmatically, not just by hand-arithmetic), no dressing tile's
+`TileResource` flags were touched, and the existing loot-avoids-walls behavior (S3.1) still holds
+as a regression check. Then did a real-GPU screenshot capture (same technique as S3.1/PixelPipe's
+D.2) and confirmed by eye: the green-zone and bleak-zone props are clearly, correctly distinct in
+color at actual render scale, and the scrap-car wreck (initially looked like a rock pile at a
+glance) is a real, correctly-rendered crushed-metal design once zoomed in, not a broken sprite.
+
+**Stubbed / deferred:** exactly the 10 props above, no procedural/random dressing generation
+(would need real level-design tooling, out of scope for a fixed 10x8 gray-box grid). Vehicles
+only ship in their single kept color (Blue) per S2.1's Asset Audit deprioritization of the full
+recolor matrix — no color-based zone signal from vehicles, only from Nature/Buildings props.
+
+**Next:** Phase 4 (Deck / Hand / Play-Drop Systems), starting S4.1, per the roadmap.
 
 ### S3.1 — Haven placement & wall/entrance tiles
 

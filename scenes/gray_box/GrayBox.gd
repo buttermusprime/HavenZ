@@ -129,6 +129,41 @@ const WALL_SCENE_BOTTOM_RIGHT := WALL_DIR + "Wooden-wall_Right-side_Left&Up-conn
 const HOME_HAVEN_ENTRANCE_SCENE := "res://art/Objects/Buildings/Enterance_Green.tscn"
 const OTHER_HAVEN_ENTRANCE_SCENE := "res://art/Objects/Buildings/Enterance_Bleak-Yellow.tscn"
 
+## Session 3.2 -- non-functional world set-dressing from Nature/Buildings/Vehicles, purely
+## visual per the session's own explicit scope (no TileResource flags touched, nothing here
+## blocks movement/noise). Uses a diagonal split (Home Haven top-right, the other Haven
+## bottom-left) rather than real per-tile distance math -- x-y's sign alone already reads as
+## "which corner a tile is nearer," and this session's own prompt notes the split can later
+## double as a cheap way to signal Supply Request difficulty tiers by region (Phase 6), so it's
+## kept as a real, reusable function rather than only implicit in a hardcoded coordinate list.
+## The roadmap's own text names "beige vs. gray vs. dark buildings" as the Buildings-side
+## variant, but the actual pack has no such 3-way building-shell tint -- substituted the real
+## per-zone-tinted asset that does exist (HVAC_Overgrown_Green/Bleak-Yellow/Dark-Green), the
+## same "correct provisional text against the real asset shape" pattern S2.1 already used.
+enum Zone { GREEN, BLEAK_YELLOW }
+
+func _zone_for_coord(coord: Vector2i) -> Zone:
+	return Zone.GREEN if (coord.x - coord.y) >= 0 else Zone.BLEAK_YELLOW
+
+## Hand-picked, fixed coordinates -- same "no level-design tooling yet" reasoning as the Haven
+## rectangles, not randomized, so this stays exactly reproducible for verification/spot-checks.
+## Every coordinate here is confirmed clear of both Haven footprints, the player start (5,4),
+## and the enemy spawn (0,0), and each entry's own zone-appropriate art was picked to match what
+## _zone_for_coord() would say about that coordinate (double-checked headlessly, not just by
+## hand -- see the session's own verification script).
+const WORLD_DRESSING: Array[Dictionary] = [
+	{"coord": Vector2i(5, 0), "scene": "res://art/Objects/Nature/Green/Tree_2_Spruce-Sparse_Green.tscn"},
+	{"coord": Vector2i(5, 1), "scene": "res://art/Objects/Buildings/HVAC_Overgrown_Green.tscn"},
+	{"coord": Vector2i(4, 3), "scene": "res://art/Objects/Nature/Green/Bush_1_Green.tscn"},
+	{"coord": Vector2i(9, 4), "scene": "res://art/Objects/Nature/Green/Grass_3_Green.tscn"},
+	{"coord": Vector2i(8, 4), "scene": "res://art/Objects/Vehicles/Normal/Car_9_Motorcycle/Car_9_Blue_Motorcycle_Side.tscn"},
+	{"coord": Vector2i(0, 1), "scene": "res://art/Objects/Nature/Bleak-Yellow/Tree_2_Spruce-Sparse_Bleak-Yellow.tscn"},
+	{"coord": Vector2i(1, 3), "scene": "res://art/Objects/Buildings/HVAC_Overgrown_Bleak-Yellow.tscn"},
+	{"coord": Vector2i(4, 6), "scene": "res://art/Objects/Nature/Bleak-Yellow/Bush_1_Bleak-Yellow.tscn"},
+	{"coord": Vector2i(0, 4), "scene": "res://art/Objects/Nature/Bleak-Yellow/Grass_3_Bleak-Yellow.tscn"},
+	{"coord": Vector2i(6, 7), "scene": "res://art/Objects/Vehicles/Normal/Car_6_Scrap/Car_6_Blue_Scrap.tscn"},
+]
+
 const FIXED_CARD_POOL_PATHS: Array[String] = [
 	"res://data/gray_box_cards/attack.tres",
 	"res://data/gray_box_cards/loot.tres",
@@ -185,6 +220,7 @@ func _ready() -> void:
 	_build_terrain()
 	_build_grid()
 	_build_havens()
+	_build_world_dressing()
 	_place_loot_tiles()
 	_render_visual_positions()
 	# Purely visual (idling in place) -- build_scene() selects the sheet's only real tag/
@@ -345,6 +381,15 @@ func _place_object_sprite(scene_path: String, coord: Vector2i) -> void:
 	var sprite: Node2D = load(scene_path).instantiate()
 	sprite.position = Vector2(coord) * TILE_SIZE
 	grid_visual.add_child(sprite)
+
+## Session 3.2 -- scatters WORLD_DRESSING's fixed props on top of the grid. Purely visual: no
+## TileResource field is touched, so none of these props affect movement, noise, or loot
+## placement -- a decorative tree sitting on an otherwise-normal walkable tile still shows its
+## real (possibly nonzero) heat label underneath it, unlike a Haven wall's permanently-blank
+## label, since this tile's heat can genuinely change during play.
+func _build_world_dressing() -> void:
+	for entry in WORLD_DRESSING:
+		_place_object_sprite(entry["scene"], entry["coord"])
 
 func _place_loot_tiles() -> void:
 	var needed := LOOT_TILE_COUNT - loot_tiles.size()

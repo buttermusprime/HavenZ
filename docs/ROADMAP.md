@@ -41,7 +41,7 @@ Godot 4.6 · GDScript | Tile-tactics deckbuilder | Single dev + Claude Code | Ta
 
 > **What changed in v18.** The v17 card-synergy brainstorm now has a real home in the GDD, not just this document: a new "Open Design Question — Card Synergy" note appended to Design Pillars (§3) lists the three directions from that discussion (a flat same-category chain discount, a three-way Quiet→Aggressive→Loud posture cycle, and a minimal two-node version of it) as things to actually try, not committed design. Session 1.2's gray-box checkpoint now points at it directly — if an iteration attempt is close but not landing, trying a synergy rule against the abstract gray-box categories is explicitly cheaper than waiting until Phase 4's real card logic exists to find out it doesn't help. No session count change (61, 1 tentative) — this is content inside an existing checkpoint, not a new one.
 
-> **What changed in v19.** Real development started 2026-08-25 — this revision syncs against the actual build for the first time via a new Session Status & Progress table below, the same convention PixelPipe and Sheepshead's own roadmaps already use. No session prompts were rewritten to match final implementation details — `docs/SESSION_LOG.md` remains the full narrative of what actually shipped and every deviation/bug found along the way; this table is a status layer on top, not a replacement. Current state: **Phase 0-2 complete** (12 of 61 pre-ship sessions), with one exception — **S2.4 is Deferred, not Done** (no real rendered art existed yet to tune against). S1.1 took 6 real sittings against direct playtest feedback before S1.2 passed on the first attempt. **Next: S3.2 (world set-dressing & biome zones).**
+> **What changed in v19.** Real development started 2026-08-25 — this revision syncs against the actual build for the first time via a new Session Status & Progress table below, the same convention PixelPipe and Sheepshead's own roadmaps already use. No session prompts were rewritten to match final implementation details — `docs/SESSION_LOG.md` remains the full narrative of what actually shipped and every deviation/bug found along the way; this table is a status layer on top, not a replacement. Current state: **Phase 0-2 complete** (12 of 61 pre-ship sessions), with one exception — **S2.4 is Deferred, not Done** (no real rendered art existed yet to tune against). S1.1 took 6 real sittings against direct playtest feedback before S1.2 passed on the first attempt. **Next: S4.1 (deck / hand / draw-pile data), starting Phase 4.**
 
 ## START.00 — Session Status & Progress
 
@@ -63,7 +63,7 @@ _Real build status, synced 2026-08-29 from `docs/SESSION_LOG.md` and the repo's 
 | 2.5 | Reskin the validated gray-box | Done | 2026-08-29 | Heat decay extended into real ring-based propagation. |
 | 2.6 | Colorblind accessibility check | Done | 2026-08-29 | Named groups clean; two forward-looking findings flagged. |
 | 3.1 | Haven placement & wall/entrance tiles | Done | 2026-08-29 | Found/fixed a real heat-bleed-through-wall bug (only the final target's flag was ever checked, not tiles in between); player movement and zombie pathing both now enforce walls too. |
-| 3.2 | World set-dressing & biome zones | Not Started | — | — |
+| 3.2 | World set-dressing & biome zones | Done | 2026-08-29 | Substituted the real HVAC_Overgrown_Green/Bleak-Yellow tint for the roadmap's imprecise "beige/gray/dark buildings" text — no such 3-way shell tint exists in the pack. |
 | 4.1 | Deck / hand / draw-pile data | Not Started | — | — |
 | 4.2 | Gamepad virtual cursor system | Not Started | — | — |
 | 4.3 | Hand UI | Not Started | — | — |
@@ -111,7 +111,7 @@ _Real build status, synced 2026-08-29 from `docs/SESSION_LOG.md` and the repo's 
 | 14.4 | Retrospective & metrics rollup | Not Started | — | — |
 | POST.1 | Extract the UI Shell | Not Started | — | Post-launch, not counted in the 61. |
 
-**13 of 61 pre-ship sessions done, 1 deferred, 47 not started** (plus POST.1). Real elapsed time: 5 active calendar days (2026-08-25 through 2026-08-29), 25 commits, 18 real working sittings against those 13 sessions.
+**14 of 61 pre-ship sessions done, 1 deferred, 46 not started** (plus POST.1). Real elapsed time: 5 active calendar days (2026-08-25 through 2026-08-29), 26 commits, 19 real working sittings against those 14 sessions.
 
 ## START.01 — Lifecycle Lessons Applied
 

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Window_13_Broken_Beige" type="Node2D" unique_id=1101791908]
+[node name="Window_13_Broken_Beige" type="Node2D" unique_id=1789741548]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=843585989]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=680346268]
 material = ExtResource("1_weebq")
 sprite_frames = SubResource("SpriteFrames_rm6w7")
 centered = false

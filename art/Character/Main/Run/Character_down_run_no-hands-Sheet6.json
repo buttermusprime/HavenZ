@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Character_down_run_no-hands-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 66, "h": 17 },
+    "filename": "Character_down_run_no-hands-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 11, "h": 17 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 66, "h": 17 },
-    "sourceSize": { "w": 66, "h": 17 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 17 },
+    "sourceSize": { "w": 11, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_down_run_no-hands-Sheet6 1.aseprite",
+    "frame": { "x": 11, "y": 0, "w": 11, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 17 },
+    "sourceSize": { "w": 11, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_down_run_no-hands-Sheet6 2.aseprite",
+    "frame": { "x": 22, "y": 0, "w": 11, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 17 },
+    "sourceSize": { "w": 11, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_down_run_no-hands-Sheet6 3.aseprite",
+    "frame": { "x": 33, "y": 0, "w": 11, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 17 },
+    "sourceSize": { "w": 11, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_down_run_no-hands-Sheet6 4.aseprite",
+    "frame": { "x": 44, "y": 0, "w": 11, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 17 },
+    "sourceSize": { "w": 11, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_down_run_no-hands-Sheet6 5.aseprite",
+    "frame": { "x": 55, "y": 0, "w": 11, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 17 },
+    "sourceSize": { "w": 11, "h": 17 },
     "duration": 100
    }
  ],

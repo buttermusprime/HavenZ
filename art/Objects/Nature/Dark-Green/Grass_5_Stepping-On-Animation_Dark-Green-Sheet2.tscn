@@ -5,22 +5,29 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yknj"]
 atlas = ExtResource("2_opj7l")
-region = Rect2(0, 0, 32, 14)
+region = Rect2(0, 0, 16, 14)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3xfpl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xfpl"]
+atlas = ExtResource("2_opj7l")
+region = Rect2(16, 0, 16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cqos"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_5yknj")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_3xfpl")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Grass_5_Stepping-On-Animation_Dark-Green-Sheet2" type="Node2D" unique_id=1740460924]
+[node name="Grass_5_Stepping-On-Animation_Dark-Green-Sheet2" type="Node2D" unique_id=397912731]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1619713]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=807767429]
 material = ExtResource("1_gfesh")
-sprite_frames = SubResource("SpriteFrames_3xfpl")
+sprite_frames = SubResource("SpriteFrames_2cqos")
 centered = false

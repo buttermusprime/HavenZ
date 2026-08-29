@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Bench_5_up" type="Node2D" unique_id=1723974538]
+[node name="Bench_5_up" type="Node2D" unique_id=107167252]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=682557579]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1637392538]
 material = ExtResource("1_6t875")
 sprite_frames = SubResource("SpriteFrames_sopql")
 centered = false

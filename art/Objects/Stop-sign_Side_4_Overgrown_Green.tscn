@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Stop-sign_Side_4_Overgrown_Green" type="Node2D" unique_id=344394535]
+[node name="Stop-sign_Side_4_Overgrown_Green" type="Node2D" unique_id=937367065]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=128406369]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1041013483]
 material = ExtResource("1_5ix0f")
 sprite_frames = SubResource("SpriteFrames_ajoxh")
 centered = false

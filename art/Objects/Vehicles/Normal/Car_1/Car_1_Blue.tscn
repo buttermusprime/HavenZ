@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Car_1_Blue" type="Node2D" unique_id=1173106964]
+[node name="Car_1_Blue" type="Node2D" unique_id=1926023066]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1398919872]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1223205403]
 material = ExtResource("1_38sqe")
 sprite_frames = SubResource("SpriteFrames_e5x6s")
 centered = false

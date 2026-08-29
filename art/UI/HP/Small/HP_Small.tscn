@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="HP_Small" type="Node2D" unique_id=1043591548]
+[node name="HP_Small" type="Node2D" unique_id=492306240]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=794416920]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=760191623]
 material = ExtResource("1_xwixd")
 sprite_frames = SubResource("SpriteFrames_antui")
 centered = false

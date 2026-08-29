@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Character_side_death2-Sheet6" type="Node2D" unique_id=1131677290]
+[node name="Character_side_death2-Sheet6" type="Node2D" unique_id=1372051860]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1244351532]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1576042325]
 material = ExtResource("1_7mvj5")
 sprite_frames = SubResource("SpriteFrames_jokia")
 centered = false

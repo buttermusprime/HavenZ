@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Moss-On-Top_Bleak-Yellow_1" type="Node2D" unique_id=458684581]
+[node name="Moss-On-Top_Bleak-Yellow_1" type="Node2D" unique_id=746792870]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1847687927]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1629628879]
 material = ExtResource("1_prata")
 sprite_frames = SubResource("SpriteFrames_ycjou")
 centered = false

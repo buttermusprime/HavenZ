@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Crafting_1_1" type="Node2D" unique_id=2136175231]
+[node name="Crafting_1_1" type="Node2D" unique_id=439272932]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=453967063]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=417355798]
 material = ExtResource("1_h7me3")
 sprite_frames = SubResource("SpriteFrames_rgcxi")
 centered = false

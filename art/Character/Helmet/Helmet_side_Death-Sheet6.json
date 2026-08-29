@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Helmet_side_Death-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 126, "h": 18 },
+    "filename": "Helmet_side_Death-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 21, "h": 18 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 126, "h": 18 },
-    "sourceSize": { "w": 126, "h": 18 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 18 },
+    "sourceSize": { "w": 21, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Helmet_side_Death-Sheet6 1.aseprite",
+    "frame": { "x": 21, "y": 0, "w": 21, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 18 },
+    "sourceSize": { "w": 21, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Helmet_side_Death-Sheet6 2.aseprite",
+    "frame": { "x": 42, "y": 0, "w": 21, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 18 },
+    "sourceSize": { "w": 21, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Helmet_side_Death-Sheet6 3.aseprite",
+    "frame": { "x": 63, "y": 0, "w": 21, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 18 },
+    "sourceSize": { "w": 21, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Helmet_side_Death-Sheet6 4.aseprite",
+    "frame": { "x": 84, "y": 0, "w": 21, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 18 },
+    "sourceSize": { "w": 21, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Helmet_side_Death-Sheet6 5.aseprite",
+    "frame": { "x": 105, "y": 0, "w": 21, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 18 },
+    "sourceSize": { "w": 21, "h": 18 },
     "duration": 100
    }
  ],

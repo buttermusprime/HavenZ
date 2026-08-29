@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Icon_Bullet-crate_Blue" type="Node2D" unique_id=18192182]
+[node name="Icon_Bullet-crate_Blue" type="Node2D" unique_id=680287039]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=131628180]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1173969550]
 material = ExtResource("1_3v3bv")
 sprite_frames = SubResource("SpriteFrames_k6bar")
 centered = false

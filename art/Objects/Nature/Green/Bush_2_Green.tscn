@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Bush_2_Green" type="Node2D" unique_id=742191142]
+[node name="Bush_2_Green" type="Node2D" unique_id=1964767281]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=958239397]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=278417139]
 material = ExtResource("1_1rdpw")
 sprite_frames = SubResource("SpriteFrames_wymly")
 centered = false

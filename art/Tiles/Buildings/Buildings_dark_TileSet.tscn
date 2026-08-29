@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Buildings_dark_TileSet" type="Node2D" unique_id=843780958]
+[node name="Buildings_dark_TileSet" type="Node2D" unique_id=1463524811]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1272400945]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=365949369]
 material = ExtResource("1_hiur8")
 sprite_frames = SubResource("SpriteFrames_f7pwd")
 centered = false

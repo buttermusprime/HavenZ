@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Helmet_side_Idle-and-Run_Sprite" type="Node2D" unique_id=42299643]
+[node name="Helmet_side_Idle-and-Run_Sprite" type="Node2D" unique_id=1964407449]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1390224839]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=182429886]
 material = ExtResource("1_t8ovk")
 sprite_frames = SubResource("SpriteFrames_ya4kk")
 centered = false

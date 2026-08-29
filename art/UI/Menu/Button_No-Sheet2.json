@@ -1,11 +1,20 @@
 { "frames": [
    {
-    "filename": "Button_No-Sheet2.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 18, "h": 9 },
+    "filename": "Button_No-Sheet2 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 9, "h": 9 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 9 },
-    "sourceSize": { "w": 18, "h": 9 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 9, "h": 9 },
+    "sourceSize": { "w": 9, "h": 9 },
+    "duration": 100
+   },
+   {
+    "filename": "Button_No-Sheet2 1.aseprite",
+    "frame": { "x": 9, "y": 0, "w": 9, "h": 9 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 9, "h": 9 },
+    "sourceSize": { "w": 9, "h": 9 },
     "duration": 100
    }
  ],

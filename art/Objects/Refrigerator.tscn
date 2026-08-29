@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Refrigerator" type="Node2D" unique_id=663951773]
+[node name="Refrigerator" type="Node2D" unique_id=1609751486]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1739092844]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=308386441]
 material = ExtResource("1_u5rax")
 sprite_frames = SubResource("SpriteFrames_mm2g5")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Destroyed-wall_corner" type="Node2D" unique_id=891655059]
+[node name="Destroyed-wall_corner" type="Node2D" unique_id=2038683712]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1375207052]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=861915328]
 material = ExtResource("1_py8ol")
 sprite_frames = SubResource("SpriteFrames_23upf")
 centered = false

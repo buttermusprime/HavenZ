@@ -5,22 +5,78 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jf732"]
 atlas = ExtResource("2_17il7")
-region = Rect2(0, 0, 126, 24)
+region = Rect2(0, 0, 14, 24)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5xcfs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xcfs"]
+atlas = ExtResource("2_17il7")
+region = Rect2(14, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_827t6"]
+atlas = ExtResource("2_17il7")
+region = Rect2(28, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk7av"]
+atlas = ExtResource("2_17il7")
+region = Rect2(42, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s83fe"]
+atlas = ExtResource("2_17il7")
+region = Rect2(56, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51b84"]
+atlas = ExtResource("2_17il7")
+region = Rect2(70, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lfwh"]
+atlas = ExtResource("2_17il7")
+region = Rect2(84, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgw3w"]
+atlas = ExtResource("2_17il7")
+region = Rect2(98, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s83n"]
+atlas = ExtResource("2_17il7")
+region = Rect2(112, 0, 14, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twylo"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_jf732")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_5xcfs")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_827t6")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_wk7av")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_s83fe")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_51b84")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_5lfwh")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_fgw3w")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_4s83n")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Zombie_Axe_Up_Second-Attack-Sheet9" type="Node2D" unique_id=1931750866]
+[node name="Zombie_Axe_Up_Second-Attack-Sheet9" type="Node2D" unique_id=1092498954]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=991600616]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2056630749]
 material = ExtResource("1_14pqa")
-sprite_frames = SubResource("SpriteFrames_5xcfs")
+sprite_frames = SubResource("SpriteFrames_twylo")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Gun" type="Node2D" unique_id=611102917]
+[node name="Gun" type="Node2D" unique_id=1610907737]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=708907182]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=9786002]
 material = ExtResource("1_adccm")
 sprite_frames = SubResource("SpriteFrames_or5t7")
 centered = false

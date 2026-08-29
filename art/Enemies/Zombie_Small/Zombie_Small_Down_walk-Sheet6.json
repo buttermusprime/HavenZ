@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Zombie_Small_Down_walk-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 72, "h": 16 },
+    "filename": "Zombie_Small_Down_walk-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 12, "h": 16 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 16 },
-    "sourceSize": { "w": 72, "h": 16 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 16 },
+    "sourceSize": { "w": 12, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_walk-Sheet6 1.aseprite",
+    "frame": { "x": 12, "y": 0, "w": 12, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 16 },
+    "sourceSize": { "w": 12, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_walk-Sheet6 2.aseprite",
+    "frame": { "x": 24, "y": 0, "w": 12, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 16 },
+    "sourceSize": { "w": 12, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_walk-Sheet6 3.aseprite",
+    "frame": { "x": 36, "y": 0, "w": 12, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 16 },
+    "sourceSize": { "w": 12, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_walk-Sheet6 4.aseprite",
+    "frame": { "x": 48, "y": 0, "w": 12, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 16 },
+    "sourceSize": { "w": 12, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_walk-Sheet6 5.aseprite",
+    "frame": { "x": 60, "y": 0, "w": 12, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 16 },
+    "sourceSize": { "w": 12, "h": 16 },
     "duration": 100
    }
  ],

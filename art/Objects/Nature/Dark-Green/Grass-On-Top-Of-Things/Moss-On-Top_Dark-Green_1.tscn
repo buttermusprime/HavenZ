@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Moss-On-Top_Dark-Green_1" type="Node2D" unique_id=1595248184]
+[node name="Moss-On-Top_Dark-Green_1" type="Node2D" unique_id=703566929]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1399004409]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1195880170]
 material = ExtResource("1_bs5le")
 sprite_frames = SubResource("SpriteFrames_n5rw5")
 centered = false

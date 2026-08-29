@@ -1,11 +1,20 @@
 { "frames": [
    {
-    "filename": "Inventory_Close-Sheet2.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 14, "h": 7 },
+    "filename": "Inventory_Close-Sheet2 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 7, "h": 7 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 7 },
-    "sourceSize": { "w": 14, "h": 7 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 7 },
+    "sourceSize": { "w": 7, "h": 7 },
+    "duration": 100
+   },
+   {
+    "filename": "Inventory_Close-Sheet2 1.aseprite",
+    "frame": { "x": 7, "y": 0, "w": 7, "h": 7 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 7 },
+    "sourceSize": { "w": 7, "h": 7 },
     "duration": 100
    }
  ],

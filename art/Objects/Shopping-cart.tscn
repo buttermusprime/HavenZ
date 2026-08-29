@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Shopping-cart" type="Node2D" unique_id=1004120134]
+[node name="Shopping-cart" type="Node2D" unique_id=2058648882]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=192518058]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=150798820]
 material = ExtResource("1_xyoiq")
 sprite_frames = SubResource("SpriteFrames_g5brn")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Traffic-cone" type="Node2D" unique_id=1989550983]
+[node name="Traffic-cone" type="Node2D" unique_id=80423402]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2134544252]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=834067463]
 material = ExtResource("1_3cafs")
 sprite_frames = SubResource("SpriteFrames_c6ivo")
 centered = false

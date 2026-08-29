@@ -1,11 +1,74 @@
 { "frames": [
    {
-    "filename": "Zombie_Axe_Side-left_Walk-Sheet8.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 168, "h": 19 },
+    "filename": "Zombie_Axe_Side-left_Walk-Sheet8 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 21, "h": 19 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 168, "h": 19 },
-    "sourceSize": { "w": 168, "h": 19 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 19 },
+    "sourceSize": { "w": 21, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Walk-Sheet8 1.aseprite",
+    "frame": { "x": 21, "y": 0, "w": 21, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 19 },
+    "sourceSize": { "w": 21, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Walk-Sheet8 2.aseprite",
+    "frame": { "x": 42, "y": 0, "w": 21, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 19 },
+    "sourceSize": { "w": 21, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Walk-Sheet8 3.aseprite",
+    "frame": { "x": 63, "y": 0, "w": 21, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 19 },
+    "sourceSize": { "w": 21, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Walk-Sheet8 4.aseprite",
+    "frame": { "x": 84, "y": 0, "w": 21, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 19 },
+    "sourceSize": { "w": 21, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Walk-Sheet8 5.aseprite",
+    "frame": { "x": 105, "y": 0, "w": 21, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 19 },
+    "sourceSize": { "w": 21, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Walk-Sheet8 6.aseprite",
+    "frame": { "x": 126, "y": 0, "w": 21, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 19 },
+    "sourceSize": { "w": 21, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Walk-Sheet8 7.aseprite",
+    "frame": { "x": 147, "y": 0, "w": 21, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 19 },
+    "sourceSize": { "w": 21, "h": 19 },
     "duration": 100
    }
  ],

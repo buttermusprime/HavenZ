@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Zombie_Small_Down_Idle-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 78, "h": 16 },
+    "filename": "Zombie_Small_Down_Idle-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 13, "h": 16 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 78, "h": 16 },
-    "sourceSize": { "w": 78, "h": 16 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_Idle-Sheet6 1.aseprite",
+    "frame": { "x": 13, "y": 0, "w": 13, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_Idle-Sheet6 2.aseprite",
+    "frame": { "x": 26, "y": 0, "w": 13, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_Idle-Sheet6 3.aseprite",
+    "frame": { "x": 39, "y": 0, "w": 13, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_Idle-Sheet6 4.aseprite",
+    "frame": { "x": 52, "y": 0, "w": 13, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Down_Idle-Sheet6 5.aseprite",
+    "frame": { "x": 65, "y": 0, "w": 13, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
     "duration": 100
    }
  ],

@@ -1,11 +1,38 @@
 { "frames": [
    {
-    "filename": "Zombie_Small_Side_First-Attack-Sheet4.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 44, "h": 14 },
+    "filename": "Zombie_Small_Side_First-Attack-Sheet4 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 11, "h": 14 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 44, "h": 14 },
-    "sourceSize": { "w": 44, "h": 14 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 14 },
+    "sourceSize": { "w": 11, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Side_First-Attack-Sheet4 1.aseprite",
+    "frame": { "x": 11, "y": 0, "w": 11, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 14 },
+    "sourceSize": { "w": 11, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Side_First-Attack-Sheet4 2.aseprite",
+    "frame": { "x": 22, "y": 0, "w": 11, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 14 },
+    "sourceSize": { "w": 11, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Small_Side_First-Attack-Sheet4 3.aseprite",
+    "frame": { "x": 33, "y": 0, "w": 11, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 14 },
+    "sourceSize": { "w": 11, "h": 14 },
     "duration": 100
    }
  ],

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Street-Light_4_Side_Overgrown_Green" type="Node2D" unique_id=1362967536]
+[node name="Street-Light_4_Side_Overgrown_Green" type="Node2D" unique_id=800163182]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=275727502]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1851413647]
 material = ExtResource("1_hxpaw")
 sprite_frames = SubResource("SpriteFrames_ns574")
 centered = false

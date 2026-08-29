@@ -1,11 +1,29 @@
 { "frames": [
    {
-    "filename": "Gun_down_shoot-Sheet3.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 15, "h": 17 },
+    "filename": "Gun_down_shoot-Sheet3 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 5, "h": 17 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 15, "h": 17 },
-    "sourceSize": { "w": 15, "h": 17 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 17 },
+    "sourceSize": { "w": 5, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_down_shoot-Sheet3 1.aseprite",
+    "frame": { "x": 5, "y": 0, "w": 5, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 17 },
+    "sourceSize": { "w": 5, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_down_shoot-Sheet3 2.aseprite",
+    "frame": { "x": 10, "y": 0, "w": 5, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 17 },
+    "sourceSize": { "w": 5, "h": 17 },
     "duration": 100
    }
  ],

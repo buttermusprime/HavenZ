@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Icon_Canned-soup" type="Node2D" unique_id=810022018]
+[node name="Icon_Canned-soup" type="Node2D" unique_id=396883798]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=260787667]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=551613487]
 material = ExtResource("1_qunwm")
 sprite_frames = SubResource("SpriteFrames_16g7j")
 centered = false

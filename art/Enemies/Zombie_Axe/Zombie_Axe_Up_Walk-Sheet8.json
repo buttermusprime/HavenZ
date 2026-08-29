@@ -1,11 +1,74 @@
 { "frames": [
    {
-    "filename": "Zombie_Axe_Up_Walk-Sheet8.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 96, "h": 23 },
+    "filename": "Zombie_Axe_Up_Walk-Sheet8 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 12, "h": 23 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 96, "h": 23 },
-    "sourceSize": { "w": 96, "h": 23 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 23 },
+    "sourceSize": { "w": 12, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Up_Walk-Sheet8 1.aseprite",
+    "frame": { "x": 12, "y": 0, "w": 12, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 23 },
+    "sourceSize": { "w": 12, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Up_Walk-Sheet8 2.aseprite",
+    "frame": { "x": 24, "y": 0, "w": 12, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 23 },
+    "sourceSize": { "w": 12, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Up_Walk-Sheet8 3.aseprite",
+    "frame": { "x": 36, "y": 0, "w": 12, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 23 },
+    "sourceSize": { "w": 12, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Up_Walk-Sheet8 4.aseprite",
+    "frame": { "x": 48, "y": 0, "w": 12, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 23 },
+    "sourceSize": { "w": 12, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Up_Walk-Sheet8 5.aseprite",
+    "frame": { "x": 60, "y": 0, "w": 12, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 23 },
+    "sourceSize": { "w": 12, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Up_Walk-Sheet8 6.aseprite",
+    "frame": { "x": 72, "y": 0, "w": 12, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 23 },
+    "sourceSize": { "w": 12, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Up_Walk-Sheet8 7.aseprite",
+    "frame": { "x": 84, "y": 0, "w": 12, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 23 },
+    "sourceSize": { "w": 12, "h": 23 },
     "duration": 100
    }
  ],

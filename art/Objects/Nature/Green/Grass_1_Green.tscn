@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Grass_1_Green" type="Node2D" unique_id=1857051577]
+[node name="Grass_1_Green" type="Node2D" unique_id=658634468]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=533117230]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1309191822]
 material = ExtResource("1_ng2ot")
 sprite_frames = SubResource("SpriteFrames_hh730")
 centered = false

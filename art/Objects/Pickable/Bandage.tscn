@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Bandage" type="Node2D" unique_id=122434635]
+[node name="Bandage" type="Node2D" unique_id=552216695]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226416858]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2133875669]
 material = ExtResource("1_gfpve")
 sprite_frames = SubResource("SpriteFrames_0scdd")
 centered = false

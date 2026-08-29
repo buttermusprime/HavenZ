@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Tree_9_Small-oak_Red" type="Node2D" unique_id=531381871]
+[node name="Tree_9_Small-oak_Red" type="Node2D" unique_id=1176032901]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=932240670]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1319769738]
 material = ExtResource("1_pgg33")
 sprite_frames = SubResource("SpriteFrames_pvlah")
 centered = false

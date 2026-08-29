@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Character_side_death2_NoHands-Sheet6" type="Node2D" unique_id=1770143827]
+[node name="Character_side_death2_NoHands-Sheet6" type="Node2D" unique_id=1518601767]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=535349947]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=636922231]
 material = ExtResource("1_eqy3s")
 sprite_frames = SubResource("SpriteFrames_bomp1")
 centered = false

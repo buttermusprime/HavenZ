@@ -1,11 +1,65 @@
 { "frames": [
    {
-    "filename": "Zombie_Axe_Side-left_Second-Death-Sheet7.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 189, "h": 20 },
+    "filename": "Zombie_Axe_Side-left_Second-Death-Sheet7 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 27, "h": 20 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 189, "h": 20 },
-    "sourceSize": { "w": 189, "h": 20 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 20 },
+    "sourceSize": { "w": 27, "h": 20 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Second-Death-Sheet7 1.aseprite",
+    "frame": { "x": 27, "y": 0, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 20 },
+    "sourceSize": { "w": 27, "h": 20 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Second-Death-Sheet7 2.aseprite",
+    "frame": { "x": 54, "y": 0, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 20 },
+    "sourceSize": { "w": 27, "h": 20 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Second-Death-Sheet7 3.aseprite",
+    "frame": { "x": 81, "y": 0, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 20 },
+    "sourceSize": { "w": 27, "h": 20 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Second-Death-Sheet7 4.aseprite",
+    "frame": { "x": 108, "y": 0, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 20 },
+    "sourceSize": { "w": 27, "h": 20 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Second-Death-Sheet7 5.aseprite",
+    "frame": { "x": 135, "y": 0, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 20 },
+    "sourceSize": { "w": 27, "h": 20 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_Second-Death-Sheet7 6.aseprite",
+    "frame": { "x": 162, "y": 0, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 20 },
+    "sourceSize": { "w": 27, "h": 20 },
     "duration": 100
    }
  ],

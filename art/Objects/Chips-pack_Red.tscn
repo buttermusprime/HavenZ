@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Chips-pack_Red" type="Node2D" unique_id=1668658928]
+[node name="Chips-pack_Red" type="Node2D" unique_id=926182241]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=105585297]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1424163865]
 material = ExtResource("1_7xk24")
 sprite_frames = SubResource("SpriteFrames_dndml")
 centered = false

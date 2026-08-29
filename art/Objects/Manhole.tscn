@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Manhole" type="Node2D" unique_id=605406114]
+[node name="Manhole" type="Node2D" unique_id=322889722]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1173667610]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2039390989]
 material = ExtResource("1_3swlv")
 sprite_frames = SubResource("SpriteFrames_34okt")
 centered = false

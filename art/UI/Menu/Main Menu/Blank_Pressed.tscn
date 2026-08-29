@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Blank_Pressed" type="Node2D" unique_id=370485574]
+[node name="Blank_Pressed" type="Node2D" unique_id=385375173]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=514366946]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=225544693]
 material = ExtResource("1_uvb0q")
 sprite_frames = SubResource("SpriteFrames_8fle0")
 centered = false

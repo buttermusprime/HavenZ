@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Inventory_Scrollbox_1" type="Node2D" unique_id=1777972321]
+[node name="Inventory_Scrollbox_1" type="Node2D" unique_id=1654657679]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1860010368]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=553854306]
 material = ExtResource("1_cky8i")
 sprite_frames = SubResource("SpriteFrames_uria0")
 centered = false

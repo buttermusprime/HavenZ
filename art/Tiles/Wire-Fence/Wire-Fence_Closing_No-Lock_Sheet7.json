@@ -1,11 +1,65 @@
 { "frames": [
    {
-    "filename": "Wire-Fence_Closing_No-Lock_Sheet7.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 147, "h": 22 },
+    "filename": "Wire-Fence_Closing_No-Lock_Sheet7 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 21, "h": 22 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 147, "h": 22 },
-    "sourceSize": { "w": 147, "h": 22 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "sourceSize": { "w": 21, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Closing_No-Lock_Sheet7 1.aseprite",
+    "frame": { "x": 21, "y": 0, "w": 21, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "sourceSize": { "w": 21, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Closing_No-Lock_Sheet7 2.aseprite",
+    "frame": { "x": 42, "y": 0, "w": 21, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "sourceSize": { "w": 21, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Closing_No-Lock_Sheet7 3.aseprite",
+    "frame": { "x": 63, "y": 0, "w": 21, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "sourceSize": { "w": 21, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Closing_No-Lock_Sheet7 4.aseprite",
+    "frame": { "x": 84, "y": 0, "w": 21, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "sourceSize": { "w": 21, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Closing_No-Lock_Sheet7 5.aseprite",
+    "frame": { "x": 105, "y": 0, "w": 21, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "sourceSize": { "w": 21, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Closing_No-Lock_Sheet7 6.aseprite",
+    "frame": { "x": 126, "y": 0, "w": 21, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "sourceSize": { "w": 21, "h": 22 },
     "duration": 100
    }
  ],

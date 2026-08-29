@@ -1,11 +1,29 @@
 { "frames": [
    {
-    "filename": "Zombie_Axe_No-axe_Up_Taking-Axe-Sheet3.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 39, "h": 21 },
+    "filename": "Zombie_Axe_No-axe_Up_Taking-Axe-Sheet3 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 13, "h": 21 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 21 },
-    "sourceSize": { "w": 39, "h": 21 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 21 },
+    "sourceSize": { "w": 13, "h": 21 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_No-axe_Up_Taking-Axe-Sheet3 1.aseprite",
+    "frame": { "x": 13, "y": 0, "w": 13, "h": 21 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 21 },
+    "sourceSize": { "w": 13, "h": 21 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_No-axe_Up_Taking-Axe-Sheet3 2.aseprite",
+    "frame": { "x": 26, "y": 0, "w": 13, "h": 21 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 21 },
+    "sourceSize": { "w": 13, "h": 21 },
     "duration": 100
    }
  ],

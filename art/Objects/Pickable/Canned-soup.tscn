@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Canned-soup" type="Node2D" unique_id=1231992397]
+[node name="Canned-soup" type="Node2D" unique_id=545783863]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1974009740]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206688890]
 material = ExtResource("1_4rd24")
 sprite_frames = SubResource("SpriteFrames_ogwks")
 centered = false

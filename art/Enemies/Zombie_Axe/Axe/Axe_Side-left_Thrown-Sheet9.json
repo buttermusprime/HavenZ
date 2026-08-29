@@ -1,11 +1,83 @@
 { "frames": [
    {
-    "filename": "Axe_Side-left_Thrown-Sheet9.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 126, "h": 14 },
+    "filename": "Axe_Side-left_Thrown-Sheet9 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 14, "h": 14 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 126, "h": 14 },
-    "sourceSize": { "w": 126, "h": 14 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Side-left_Thrown-Sheet9 1.aseprite",
+    "frame": { "x": 14, "y": 0, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Side-left_Thrown-Sheet9 2.aseprite",
+    "frame": { "x": 28, "y": 0, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Side-left_Thrown-Sheet9 3.aseprite",
+    "frame": { "x": 42, "y": 0, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Side-left_Thrown-Sheet9 4.aseprite",
+    "frame": { "x": 56, "y": 0, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Side-left_Thrown-Sheet9 5.aseprite",
+    "frame": { "x": 70, "y": 0, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Side-left_Thrown-Sheet9 6.aseprite",
+    "frame": { "x": 84, "y": 0, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Side-left_Thrown-Sheet9 7.aseprite",
+    "frame": { "x": 98, "y": 0, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Side-left_Thrown-Sheet9 8.aseprite",
+    "frame": { "x": 112, "y": 0, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 14 },
+    "sourceSize": { "w": 14, "h": 14 },
     "duration": 100
    }
  ],

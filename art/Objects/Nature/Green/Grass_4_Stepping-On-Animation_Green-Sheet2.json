@@ -1,11 +1,20 @@
 { "frames": [
    {
-    "filename": "Grass_4_Stepping-On-Animation_Green-Sheet2.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 32, "h": 11 },
+    "filename": "Grass_4_Stepping-On-Animation_Green-Sheet2 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 16, "h": 11 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 11 },
-    "sourceSize": { "w": 32, "h": 11 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 11 },
+    "sourceSize": { "w": 16, "h": 11 },
+    "duration": 100
+   },
+   {
+    "filename": "Grass_4_Stepping-On-Animation_Green-Sheet2 1.aseprite",
+    "frame": { "x": 16, "y": 0, "w": 16, "h": 11 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 11 },
+    "sourceSize": { "w": 16, "h": 11 },
     "duration": 100
    }
  ],

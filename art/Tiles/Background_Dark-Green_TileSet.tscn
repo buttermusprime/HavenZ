@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Background_Dark-Green_TileSet" type="Node2D" unique_id=73311784]
+[node name="Background_Dark-Green_TileSet" type="Node2D" unique_id=1134739993]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1552428476]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=269715250]
 material = ExtResource("1_7goos")
 sprite_frames = SubResource("SpriteFrames_q83tx")
 centered = false

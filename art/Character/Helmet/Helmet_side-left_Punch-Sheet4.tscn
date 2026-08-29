@@ -5,22 +5,43 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1iaxd"]
 atlas = ExtResource("2_rj4lb")
-region = Rect2(0, 0, 52, 8)
+region = Rect2(0, 0, 13, 8)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_73aj6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_73aj6"]
+atlas = ExtResource("2_rj4lb")
+region = Rect2(13, 0, 13, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cyi2"]
+atlas = ExtResource("2_rj4lb")
+region = Rect2(26, 0, 13, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihbwy"]
+atlas = ExtResource("2_rj4lb")
+region = Rect2(39, 0, 13, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d6uem"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_1iaxd")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_73aj6")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_1cyi2")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ihbwy")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Helmet_side-left_Punch-Sheet4" type="Node2D" unique_id=54981696]
+[node name="Helmet_side-left_Punch-Sheet4" type="Node2D" unique_id=1057635663]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1622522283]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1999338754]
 material = ExtResource("1_ma7bw")
-sprite_frames = SubResource("SpriteFrames_73aj6")
+sprite_frames = SubResource("SpriteFrames_d6uem")
 centered = false

@@ -5,22 +5,78 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3i6n"]
 atlas = ExtResource("2_mnij6")
-region = Rect2(0, 0, 243, 27)
+region = Rect2(0, 0, 27, 27)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gar3i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gar3i"]
+atlas = ExtResource("2_mnij6")
+region = Rect2(27, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnum2"]
+atlas = ExtResource("2_mnij6")
+region = Rect2(54, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fje2r"]
+atlas = ExtResource("2_mnij6")
+region = Rect2(81, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqn48"]
+atlas = ExtResource("2_mnij6")
+region = Rect2(108, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo5lr"]
+atlas = ExtResource("2_mnij6")
+region = Rect2(135, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46qdw"]
+atlas = ExtResource("2_mnij6")
+region = Rect2(162, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wehie"]
+atlas = ExtResource("2_mnij6")
+region = Rect2(189, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pomm1"]
+atlas = ExtResource("2_mnij6")
+region = Rect2(216, 0, 27, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drfdy"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_c3i6n")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_gar3i")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_wnum2")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_fje2r")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_jqn48")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_jo5lr")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_46qdw")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_wehie")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_pomm1")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Zombie_Axe_Side-left_Second-Attack-Sheet9" type="Node2D" unique_id=2016558965]
+[node name="Zombie_Axe_Side-left_Second-Attack-Sheet9" type="Node2D" unique_id=156029736]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1397369485]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=834259003]
 material = ExtResource("1_e25q4")
-sprite_frames = SubResource("SpriteFrames_gar3i")
+sprite_frames = SubResource("SpriteFrames_drfdy")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Icon_Bat" type="Node2D" unique_id=764931730]
+[node name="Icon_Bat" type="Node2D" unique_id=1923902733]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=890633636]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1280618573]
 material = ExtResource("1_gxf2r")
 sprite_frames = SubResource("SpriteFrames_xe4gg")
 centered = false

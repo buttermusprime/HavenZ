@@ -1,11 +1,65 @@
 { "frames": [
    {
-    "filename": "Zombie_Axe_Side-left_First-Attack-Sheet7.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 175, "h": 19 },
+    "filename": "Zombie_Axe_Side-left_First-Attack-Sheet7 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 25, "h": 19 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 175, "h": 19 },
-    "sourceSize": { "w": 175, "h": 19 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 19 },
+    "sourceSize": { "w": 25, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Attack-Sheet7 1.aseprite",
+    "frame": { "x": 25, "y": 0, "w": 25, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 19 },
+    "sourceSize": { "w": 25, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Attack-Sheet7 2.aseprite",
+    "frame": { "x": 50, "y": 0, "w": 25, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 19 },
+    "sourceSize": { "w": 25, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Attack-Sheet7 3.aseprite",
+    "frame": { "x": 75, "y": 0, "w": 25, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 19 },
+    "sourceSize": { "w": 25, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Attack-Sheet7 4.aseprite",
+    "frame": { "x": 100, "y": 0, "w": 25, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 19 },
+    "sourceSize": { "w": 25, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Attack-Sheet7 5.aseprite",
+    "frame": { "x": 125, "y": 0, "w": 25, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 19 },
+    "sourceSize": { "w": 25, "h": 19 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Attack-Sheet7 6.aseprite",
+    "frame": { "x": 150, "y": 0, "w": 25, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 19 },
+    "sourceSize": { "w": 25, "h": 19 },
     "duration": 100
    }
  ],

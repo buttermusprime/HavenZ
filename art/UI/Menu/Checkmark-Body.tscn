@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Checkmark-Body" type="Node2D" unique_id=1155552079]
+[node name="Checkmark-Body" type="Node2D" unique_id=2032738767]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1435038960]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=950503190]
 material = ExtResource("1_3vkaw")
 sprite_frames = SubResource("SpriteFrames_ro81u")
 centered = false

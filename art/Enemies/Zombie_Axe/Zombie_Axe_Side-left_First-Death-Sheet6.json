@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Zombie_Axe_Side-left_First-Death-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 162, "h": 18 },
+    "filename": "Zombie_Axe_Side-left_First-Death-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 27, "h": 18 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 162, "h": 18 },
-    "sourceSize": { "w": 162, "h": 18 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 18 },
+    "sourceSize": { "w": 27, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Death-Sheet6 1.aseprite",
+    "frame": { "x": 27, "y": 0, "w": 27, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 18 },
+    "sourceSize": { "w": 27, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Death-Sheet6 2.aseprite",
+    "frame": { "x": 54, "y": 0, "w": 27, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 18 },
+    "sourceSize": { "w": 27, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Death-Sheet6 3.aseprite",
+    "frame": { "x": 81, "y": 0, "w": 27, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 18 },
+    "sourceSize": { "w": 27, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Death-Sheet6 4.aseprite",
+    "frame": { "x": 108, "y": 0, "w": 27, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 18 },
+    "sourceSize": { "w": 27, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Side-left_First-Death-Sheet6 5.aseprite",
+    "frame": { "x": 135, "y": 0, "w": 27, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 18 },
+    "sourceSize": { "w": 27, "h": 18 },
     "duration": 100
    }
  ],

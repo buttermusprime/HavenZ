@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Reinforced_wooden-wall_Horizontal" type="Node2D" unique_id=876548933]
+[node name="Reinforced_wooden-wall_Horizontal" type="Node2D" unique_id=1834254553]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=291892972]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485466375]
 material = ExtResource("1_gdgms")
 sprite_frames = SubResource("SpriteFrames_3fn7i")
 centered = false

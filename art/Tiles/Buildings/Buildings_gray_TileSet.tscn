@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Buildings_gray_TileSet" type="Node2D" unique_id=1127643785]
+[node name="Buildings_gray_TileSet" type="Node2D" unique_id=1182150289]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1554366823]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=943256736]
 material = ExtResource("1_pmp0x")
 sprite_frames = SubResource("SpriteFrames_pp0fp")
 centered = false

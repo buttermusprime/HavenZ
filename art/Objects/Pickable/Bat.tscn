@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Bat" type="Node2D" unique_id=2010865037]
+[node name="Bat" type="Node2D" unique_id=16561706]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=556549388]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1388864722]
 material = ExtResource("1_gyneq")
 sprite_frames = SubResource("SpriteFrames_pavqk")
 centered = false

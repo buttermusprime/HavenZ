@@ -1,11 +1,74 @@
 { "frames": [
    {
-    "filename": "Wire-Fence_Opening_No-Lock_Sheet8.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 144, "h": 22 },
+    "filename": "Wire-Fence_Opening_No-Lock_Sheet8 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 18, "h": 22 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 22 },
-    "sourceSize": { "w": 144, "h": 22 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 22 },
+    "sourceSize": { "w": 18, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Opening_No-Lock_Sheet8 1.aseprite",
+    "frame": { "x": 18, "y": 0, "w": 18, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 22 },
+    "sourceSize": { "w": 18, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Opening_No-Lock_Sheet8 2.aseprite",
+    "frame": { "x": 36, "y": 0, "w": 18, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 22 },
+    "sourceSize": { "w": 18, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Opening_No-Lock_Sheet8 3.aseprite",
+    "frame": { "x": 54, "y": 0, "w": 18, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 22 },
+    "sourceSize": { "w": 18, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Opening_No-Lock_Sheet8 4.aseprite",
+    "frame": { "x": 72, "y": 0, "w": 18, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 22 },
+    "sourceSize": { "w": 18, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Opening_No-Lock_Sheet8 5.aseprite",
+    "frame": { "x": 90, "y": 0, "w": 18, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 22 },
+    "sourceSize": { "w": 18, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Opening_No-Lock_Sheet8 6.aseprite",
+    "frame": { "x": 108, "y": 0, "w": 18, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 22 },
+    "sourceSize": { "w": 18, "h": 22 },
+    "duration": 100
+   },
+   {
+    "filename": "Wire-Fence_Opening_No-Lock_Sheet8 7.aseprite",
+    "frame": { "x": 126, "y": 0, "w": 18, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 22 },
+    "sourceSize": { "w": 18, "h": 22 },
     "duration": 100
    }
  ],

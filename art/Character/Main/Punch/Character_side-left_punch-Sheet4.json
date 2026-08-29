@@ -1,11 +1,38 @@
 { "frames": [
    {
-    "filename": "Character_side-left_punch-Sheet4.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 80, "h": 18 },
+    "filename": "Character_side-left_punch-Sheet4 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 20, "h": 18 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 18 },
-    "sourceSize": { "w": 80, "h": 18 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 20, "h": 18 },
+    "sourceSize": { "w": 20, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side-left_punch-Sheet4 1.aseprite",
+    "frame": { "x": 20, "y": 0, "w": 20, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 20, "h": 18 },
+    "sourceSize": { "w": 20, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side-left_punch-Sheet4 2.aseprite",
+    "frame": { "x": 40, "y": 0, "w": 20, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 20, "h": 18 },
+    "sourceSize": { "w": 20, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side-left_punch-Sheet4 3.aseprite",
+    "frame": { "x": 60, "y": 0, "w": 20, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 20, "h": 18 },
+    "sourceSize": { "w": 20, "h": 18 },
     "duration": 100
    }
  ],

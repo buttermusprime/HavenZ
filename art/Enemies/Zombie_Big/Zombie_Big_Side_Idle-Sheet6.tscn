@@ -5,22 +5,57 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkwr4"]
 atlas = ExtResource("2_03bvi")
-region = Rect2(0, 0, 96, 22)
+region = Rect2(0, 0, 16, 22)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1hpo4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hpo4"]
+atlas = ExtResource("2_03bvi")
+region = Rect2(16, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ymje"]
+atlas = ExtResource("2_03bvi")
+region = Rect2(32, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlmmv"]
+atlas = ExtResource("2_03bvi")
+region = Rect2(48, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uda6h"]
+atlas = ExtResource("2_03bvi")
+region = Rect2(64, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gngjq"]
+atlas = ExtResource("2_03bvi")
+region = Rect2(80, 0, 16, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjwmg"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_wkwr4")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_1hpo4")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_0ymje")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_dlmmv")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_uda6h")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_gngjq")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Zombie_Big_Side_Idle-Sheet6" type="Node2D" unique_id=2119232269]
+[node name="Zombie_Big_Side_Idle-Sheet6" type="Node2D" unique_id=1396810831]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1723383174]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=502587822]
 material = ExtResource("1_m1fum")
-sprite_frames = SubResource("SpriteFrames_1hpo4")
+sprite_frames = SubResource("SpriteFrames_vjwmg")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Heart_Full" type="Node2D" unique_id=801649361]
+[node name="Heart_Full" type="Node2D" unique_id=2029230178]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=982290172]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=822999107]
 material = ExtResource("1_j2tgn")
 sprite_frames = SubResource("SpriteFrames_acknr")
 centered = false

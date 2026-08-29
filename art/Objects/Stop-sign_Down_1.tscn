@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Stop-sign_Down_1" type="Node2D" unique_id=1221800435]
+[node name="Stop-sign_Down_1" type="Node2D" unique_id=1625237564]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1892039309]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=703239395]
 material = ExtResource("1_ane8r")
 sprite_frames = SubResource("SpriteFrames_w2y3w")
 centered = false

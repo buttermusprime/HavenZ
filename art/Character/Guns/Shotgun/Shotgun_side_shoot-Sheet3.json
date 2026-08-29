@@ -1,11 +1,29 @@
 { "frames": [
    {
-    "filename": "Shotgun_side_shoot-Sheet3.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 54, "h": 8 },
+    "filename": "Shotgun_side_shoot-Sheet3 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 18, "h": 8 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 8 },
-    "sourceSize": { "w": 54, "h": 8 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 8 },
+    "sourceSize": { "w": 18, "h": 8 },
+    "duration": 100
+   },
+   {
+    "filename": "Shotgun_side_shoot-Sheet3 1.aseprite",
+    "frame": { "x": 18, "y": 0, "w": 18, "h": 8 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 8 },
+    "sourceSize": { "w": 18, "h": 8 },
+    "duration": 100
+   },
+   {
+    "filename": "Shotgun_side_shoot-Sheet3 2.aseprite",
+    "frame": { "x": 36, "y": 0, "w": 18, "h": 8 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 8 },
+    "sourceSize": { "w": 18, "h": 8 },
     "duration": 100
    }
  ],

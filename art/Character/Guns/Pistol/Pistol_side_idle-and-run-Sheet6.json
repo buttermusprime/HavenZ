@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Pistol_side_idle-and-run-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 48, "h": 9 },
+    "filename": "Pistol_side_idle-and-run-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 8, "h": 9 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 9 },
-    "sourceSize": { "w": 48, "h": 9 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 9 },
+    "sourceSize": { "w": 8, "h": 9 },
+    "duration": 100
+   },
+   {
+    "filename": "Pistol_side_idle-and-run-Sheet6 1.aseprite",
+    "frame": { "x": 8, "y": 0, "w": 8, "h": 9 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 9 },
+    "sourceSize": { "w": 8, "h": 9 },
+    "duration": 100
+   },
+   {
+    "filename": "Pistol_side_idle-and-run-Sheet6 2.aseprite",
+    "frame": { "x": 16, "y": 0, "w": 8, "h": 9 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 9 },
+    "sourceSize": { "w": 8, "h": 9 },
+    "duration": 100
+   },
+   {
+    "filename": "Pistol_side_idle-and-run-Sheet6 3.aseprite",
+    "frame": { "x": 24, "y": 0, "w": 8, "h": 9 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 9 },
+    "sourceSize": { "w": 8, "h": 9 },
+    "duration": 100
+   },
+   {
+    "filename": "Pistol_side_idle-and-run-Sheet6 4.aseprite",
+    "frame": { "x": 32, "y": 0, "w": 8, "h": 9 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 9 },
+    "sourceSize": { "w": 8, "h": 9 },
+    "duration": 100
+   },
+   {
+    "filename": "Pistol_side_idle-and-run-Sheet6 5.aseprite",
+    "frame": { "x": 40, "y": 0, "w": 8, "h": 9 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 9 },
+    "sourceSize": { "w": 8, "h": 9 },
     "duration": 100
    }
  ],

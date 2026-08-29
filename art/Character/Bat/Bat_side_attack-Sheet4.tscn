@@ -5,22 +5,43 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y41qg"]
 atlas = ExtResource("2_fki2r")
-region = Rect2(0, 0, 112, 16)
+region = Rect2(0, 0, 28, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_t2118"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2118"]
+atlas = ExtResource("2_fki2r")
+region = Rect2(28, 0, 28, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfle0"]
+atlas = ExtResource("2_fki2r")
+region = Rect2(56, 0, 28, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i00my"]
+atlas = ExtResource("2_fki2r")
+region = Rect2(84, 0, 28, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5c40m"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_y41qg")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_t2118")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_tfle0")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_i00my")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Bat_side_attack-Sheet4" type="Node2D" unique_id=879112682]
+[node name="Bat_side_attack-Sheet4" type="Node2D" unique_id=237982016]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=66537465]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=563761328]
 material = ExtResource("1_8g3oe")
-sprite_frames = SubResource("SpriteFrames_t2118")
+sprite_frames = SubResource("SpriteFrames_5c40m")
 centered = false

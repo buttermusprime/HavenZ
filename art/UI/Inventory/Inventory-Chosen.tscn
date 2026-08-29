@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Inventory-Chosen" type="Node2D" unique_id=1616874700]
+[node name="Inventory-Chosen" type="Node2D" unique_id=1312971996]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1113557258]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=961801745]
 material = ExtResource("1_l3rn6")
 sprite_frames = SubResource("SpriteFrames_x3b6s")
 centered = false

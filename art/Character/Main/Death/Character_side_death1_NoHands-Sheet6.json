@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Character_side_death1_NoHands-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 126, "h": 16 },
+    "filename": "Character_side_death1_NoHands-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 21, "h": 16 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 126, "h": 16 },
-    "sourceSize": { "w": 126, "h": 16 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 16 },
+    "sourceSize": { "w": 21, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side_death1_NoHands-Sheet6 1.aseprite",
+    "frame": { "x": 21, "y": 0, "w": 21, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 16 },
+    "sourceSize": { "w": 21, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side_death1_NoHands-Sheet6 2.aseprite",
+    "frame": { "x": 42, "y": 0, "w": 21, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 16 },
+    "sourceSize": { "w": 21, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side_death1_NoHands-Sheet6 3.aseprite",
+    "frame": { "x": 63, "y": 0, "w": 21, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 16 },
+    "sourceSize": { "w": 21, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side_death1_NoHands-Sheet6 4.aseprite",
+    "frame": { "x": 84, "y": 0, "w": 21, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 16 },
+    "sourceSize": { "w": 21, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side_death1_NoHands-Sheet6 5.aseprite",
+    "frame": { "x": 105, "y": 0, "w": 21, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 16 },
+    "sourceSize": { "w": 21, "h": 16 },
     "duration": 100
    }
  ],

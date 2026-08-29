@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Gun_side-left_Death-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 108, "h": 10 },
+    "filename": "Gun_side-left_Death-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 18, "h": 10 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 108, "h": 10 },
-    "sourceSize": { "w": 108, "h": 10 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_side-left_Death-Sheet6 1.aseprite",
+    "frame": { "x": 18, "y": 0, "w": 18, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_side-left_Death-Sheet6 2.aseprite",
+    "frame": { "x": 36, "y": 0, "w": 18, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_side-left_Death-Sheet6 3.aseprite",
+    "frame": { "x": 54, "y": 0, "w": 18, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_side-left_Death-Sheet6 4.aseprite",
+    "frame": { "x": 72, "y": 0, "w": 18, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_side-left_Death-Sheet6 5.aseprite",
+    "frame": { "x": 90, "y": 0, "w": 18, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
     "duration": 100
    }
  ],

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Cursor" type="Node2D" unique_id=845511560]
+[node name="Cursor" type="Node2D" unique_id=1248297905]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1481993121]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=504084270]
 material = ExtResource("1_hnm7f")
 sprite_frames = SubResource("SpriteFrames_qh22c")
 centered = false

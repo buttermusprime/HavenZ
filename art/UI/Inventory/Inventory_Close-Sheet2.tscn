@@ -5,22 +5,29 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5dcuh"]
 atlas = ExtResource("2_o6h5f")
-region = Rect2(0, 0, 14, 7)
+region = Rect2(0, 0, 7, 7)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_662dr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_662dr"]
+atlas = ExtResource("2_o6h5f")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pvgkt"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_5dcuh")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_662dr")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Inventory_Close-Sheet2" type="Node2D" unique_id=972224654]
+[node name="Inventory_Close-Sheet2" type="Node2D" unique_id=718487285]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=924139758]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=952367629]
 material = ExtResource("1_lciw8")
-sprite_frames = SubResource("SpriteFrames_662dr")
+sprite_frames = SubResource("SpriteFrames_pvgkt")
 centered = false

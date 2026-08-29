@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Mushrooms_2_Red" type="Node2D" unique_id=2116288224]
+[node name="Mushrooms_2_Red" type="Node2D" unique_id=1727911115]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=876171286]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1001343872]
 material = ExtResource("1_phvv3")
 sprite_frames = SubResource("SpriteFrames_pjcf5")
 centered = false

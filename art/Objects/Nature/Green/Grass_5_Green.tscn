@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Grass_5_Green" type="Node2D" unique_id=423435219]
+[node name="Grass_5_Green" type="Node2D" unique_id=1355127057]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1333466524]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=357531382]
 material = ExtResource("1_cv4jx")
 sprite_frames = SubResource("SpriteFrames_pov61")
 centered = false

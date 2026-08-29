@@ -1,11 +1,74 @@
 { "frames": [
    {
-    "filename": "Zombie_Big_Side_First-Attack-Sheet8.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 184, "h": 23 },
+    "filename": "Zombie_Big_Side_First-Attack-Sheet8 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 23, "h": 23 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 184, "h": 23 },
-    "sourceSize": { "w": 184, "h": 23 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 23, "h": 23 },
+    "sourceSize": { "w": 23, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side_First-Attack-Sheet8 1.aseprite",
+    "frame": { "x": 23, "y": 0, "w": 23, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 23, "h": 23 },
+    "sourceSize": { "w": 23, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side_First-Attack-Sheet8 2.aseprite",
+    "frame": { "x": 46, "y": 0, "w": 23, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 23, "h": 23 },
+    "sourceSize": { "w": 23, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side_First-Attack-Sheet8 3.aseprite",
+    "frame": { "x": 69, "y": 0, "w": 23, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 23, "h": 23 },
+    "sourceSize": { "w": 23, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side_First-Attack-Sheet8 4.aseprite",
+    "frame": { "x": 92, "y": 0, "w": 23, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 23, "h": 23 },
+    "sourceSize": { "w": 23, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side_First-Attack-Sheet8 5.aseprite",
+    "frame": { "x": 115, "y": 0, "w": 23, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 23, "h": 23 },
+    "sourceSize": { "w": 23, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side_First-Attack-Sheet8 6.aseprite",
+    "frame": { "x": 138, "y": 0, "w": 23, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 23, "h": 23 },
+    "sourceSize": { "w": 23, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side_First-Attack-Sheet8 7.aseprite",
+    "frame": { "x": 161, "y": 0, "w": 23, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 23, "h": 23 },
+    "sourceSize": { "w": 23, "h": 23 },
     "duration": 100
    }
  ],

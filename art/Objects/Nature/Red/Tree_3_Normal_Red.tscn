@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Tree_3_Normal_Red" type="Node2D" unique_id=505945938]
+[node name="Tree_3_Normal_Red" type="Node2D" unique_id=1584739260]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=308709882]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1240141348]
 material = ExtResource("1_udcjs")
 sprite_frames = SubResource("SpriteFrames_y5r6t")
 centered = false

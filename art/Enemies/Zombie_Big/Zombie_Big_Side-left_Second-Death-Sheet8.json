@@ -1,11 +1,74 @@
 { "frames": [
    {
-    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 232, "h": 24 },
+    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 29, "h": 24 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 232, "h": 24 },
-    "sourceSize": { "w": 232, "h": 24 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 24 },
+    "sourceSize": { "w": 29, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8 1.aseprite",
+    "frame": { "x": 29, "y": 0, "w": 29, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 24 },
+    "sourceSize": { "w": 29, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8 2.aseprite",
+    "frame": { "x": 58, "y": 0, "w": 29, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 24 },
+    "sourceSize": { "w": 29, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8 3.aseprite",
+    "frame": { "x": 87, "y": 0, "w": 29, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 24 },
+    "sourceSize": { "w": 29, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8 4.aseprite",
+    "frame": { "x": 116, "y": 0, "w": 29, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 24 },
+    "sourceSize": { "w": 29, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8 5.aseprite",
+    "frame": { "x": 145, "y": 0, "w": 29, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 24 },
+    "sourceSize": { "w": 29, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8 6.aseprite",
+    "frame": { "x": 174, "y": 0, "w": 29, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 24 },
+    "sourceSize": { "w": 29, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Side-left_Second-Death-Sheet8 7.aseprite",
+    "frame": { "x": 203, "y": 0, "w": 29, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 24 },
+    "sourceSize": { "w": 29, "h": 24 },
     "duration": 100
    }
  ],

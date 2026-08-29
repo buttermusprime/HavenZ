@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Vending-machine_Red_Overgrown_Bleak-Yellow" type="Node2D" unique_id=340935443]
+[node name="Vending-machine_Red_Overgrown_Bleak-Yellow" type="Node2D" unique_id=1598492833]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=514100191]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2126264621]
 material = ExtResource("1_54exv")
 sprite_frames = SubResource("SpriteFrames_i6yen")
 centered = false

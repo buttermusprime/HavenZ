@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Ammo-crate_Green" type="Node2D" unique_id=1684851590]
+[node name="Ammo-crate_Green" type="Node2D" unique_id=212052954]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1099539380]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1242638341]
 material = ExtResource("1_uhab2")
 sprite_frames = SubResource("SpriteFrames_y5nxu")
 centered = false

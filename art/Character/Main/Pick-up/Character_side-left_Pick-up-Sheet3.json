@@ -1,11 +1,29 @@
 { "frames": [
    {
-    "filename": "Character_side-left_Pick-up-Sheet3.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 33, "h": 16 },
+    "filename": "Character_side-left_Pick-up-Sheet3 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 11, "h": 16 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 33, "h": 16 },
-    "sourceSize": { "w": 33, "h": 16 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 16 },
+    "sourceSize": { "w": 11, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side-left_Pick-up-Sheet3 1.aseprite",
+    "frame": { "x": 11, "y": 0, "w": 11, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 16 },
+    "sourceSize": { "w": 11, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side-left_Pick-up-Sheet3 2.aseprite",
+    "frame": { "x": 22, "y": 0, "w": 11, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 11, "h": 16 },
+    "sourceSize": { "w": 11, "h": 16 },
     "duration": 100
    }
  ],

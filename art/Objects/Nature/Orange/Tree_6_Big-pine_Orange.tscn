@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Tree_6_Big-pine_Orange" type="Node2D" unique_id=277166846]
+[node name="Tree_6_Big-pine_Orange" type="Node2D" unique_id=1120311541]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=382934112]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1590325597]
 material = ExtResource("1_j1hhh")
 sprite_frames = SubResource("SpriteFrames_7241w")
 centered = false

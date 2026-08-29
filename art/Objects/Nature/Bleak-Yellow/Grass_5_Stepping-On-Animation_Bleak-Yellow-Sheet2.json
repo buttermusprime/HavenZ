@@ -1,11 +1,20 @@
 { "frames": [
    {
-    "filename": "Grass_5_Stepping-On-Animation_Bleak-Yellow-Sheet2.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 32, "h": 14 },
+    "filename": "Grass_5_Stepping-On-Animation_Bleak-Yellow-Sheet2 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 16, "h": 14 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 14 },
-    "sourceSize": { "w": 32, "h": 14 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 14 },
+    "sourceSize": { "w": 16, "h": 14 },
+    "duration": 100
+   },
+   {
+    "filename": "Grass_5_Stepping-On-Animation_Bleak-Yellow-Sheet2 1.aseprite",
+    "frame": { "x": 16, "y": 0, "w": 16, "h": 14 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 14 },
+    "sourceSize": { "w": 16, "h": 14 },
     "duration": 100
    }
  ],

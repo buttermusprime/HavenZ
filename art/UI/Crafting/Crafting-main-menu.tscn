@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Crafting-main-menu" type="Node2D" unique_id=454979313]
+[node name="Crafting-main-menu" type="Node2D" unique_id=613705455]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=628844175]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1500833067]
 material = ExtResource("1_mbjv8")
 sprite_frames = SubResource("SpriteFrames_t7m1y")
 centered = false

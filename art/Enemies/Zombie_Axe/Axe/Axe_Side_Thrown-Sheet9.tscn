@@ -5,22 +5,78 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixnx0"]
 atlas = ExtResource("2_rtmy5")
-region = Rect2(0, 0, 126, 14)
+region = Rect2(0, 0, 14, 14)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rs78v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs78v"]
+atlas = ExtResource("2_rtmy5")
+region = Rect2(14, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ngqo"]
+atlas = ExtResource("2_rtmy5")
+region = Rect2(28, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx1t6"]
+atlas = ExtResource("2_rtmy5")
+region = Rect2(42, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5ml8"]
+atlas = ExtResource("2_rtmy5")
+region = Rect2(56, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55ka4"]
+atlas = ExtResource("2_rtmy5")
+region = Rect2(70, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qjy2"]
+atlas = ExtResource("2_rtmy5")
+region = Rect2(84, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qvmb"]
+atlas = ExtResource("2_rtmy5")
+region = Rect2(98, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5gyb"]
+atlas = ExtResource("2_rtmy5")
+region = Rect2(112, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0tgh8"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_ixnx0")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_rs78v")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_7ngqo")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_wx1t6")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_t5ml8")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_55ka4")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_5qjy2")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_6qvmb")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_p5gyb")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Axe_Side_Thrown-Sheet9" type="Node2D" unique_id=1844359995]
+[node name="Axe_Side_Thrown-Sheet9" type="Node2D" unique_id=1464074569]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1531938884]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=523476959]
 material = ExtResource("1_jxu3g")
-sprite_frames = SubResource("SpriteFrames_rs78v")
+sprite_frames = SubResource("SpriteFrames_0tgh8")
 centered = false

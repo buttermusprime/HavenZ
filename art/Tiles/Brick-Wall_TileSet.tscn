@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Brick-Wall_TileSet" type="Node2D" unique_id=1816988248]
+[node name="Brick-Wall_TileSet" type="Node2D" unique_id=554781675]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=837048156]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1598078067]
 material = ExtResource("1_xpf5i")
 sprite_frames = SubResource("SpriteFrames_has8o")
 centered = false

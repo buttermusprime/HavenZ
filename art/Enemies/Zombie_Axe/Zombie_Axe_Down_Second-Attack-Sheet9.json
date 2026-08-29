@@ -1,11 +1,83 @@
 { "frames": [
    {
-    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 144, "h": 23 },
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 16, "h": 23 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 23 },
-    "sourceSize": { "w": 144, "h": 23 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 1.aseprite",
+    "frame": { "x": 16, "y": 0, "w": 16, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 2.aseprite",
+    "frame": { "x": 32, "y": 0, "w": 16, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 3.aseprite",
+    "frame": { "x": 48, "y": 0, "w": 16, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 4.aseprite",
+    "frame": { "x": 64, "y": 0, "w": 16, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 5.aseprite",
+    "frame": { "x": 80, "y": 0, "w": 16, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 6.aseprite",
+    "frame": { "x": 96, "y": 0, "w": 16, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 7.aseprite",
+    "frame": { "x": 112, "y": 0, "w": 16, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_Down_Second-Attack-Sheet9 8.aseprite",
+    "frame": { "x": 128, "y": 0, "w": 16, "h": 23 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 23 },
+    "sourceSize": { "w": 16, "h": 23 },
     "duration": 100
    }
  ],

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Wooden-wall_Left-side_Right&Up-connect" type="Node2D" unique_id=1846034349]
+[node name="Wooden-wall_Left-side_Right&Up-connect" type="Node2D" unique_id=341943381]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1911045641]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1395346953]
 material = ExtResource("1_2xynp")
 sprite_frames = SubResource("SpriteFrames_3vgxq")
 centered = false

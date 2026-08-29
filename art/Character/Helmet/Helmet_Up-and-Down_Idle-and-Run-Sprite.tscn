@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Helmet_Up-and-Down_Idle-and-Run-Sprite" type="Node2D" unique_id=460402267]
+[node name="Helmet_Up-and-Down_Idle-and-Run-Sprite" type="Node2D" unique_id=1925615576]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1829789498]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=692911268]
 material = ExtResource("1_4cisj")
 sprite_frames = SubResource("SpriteFrames_mbsvg")
 centered = false

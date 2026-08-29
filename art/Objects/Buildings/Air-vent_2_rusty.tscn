@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Air-vent_2_rusty" type="Node2D" unique_id=2052937394]
+[node name="Air-vent_2_rusty" type="Node2D" unique_id=775754954]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1812948010]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1816367389]
 material = ExtResource("1_thwb2")
 sprite_frames = SubResource("SpriteFrames_yih62")
 centered = false

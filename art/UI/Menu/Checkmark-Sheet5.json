@@ -1,11 +1,47 @@
 { "frames": [
    {
-    "filename": "Checkmark-Sheet5.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 35, "h": 5 },
+    "filename": "Checkmark-Sheet5 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 7, "h": 5 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 35, "h": 5 },
-    "sourceSize": { "w": 35, "h": 5 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 5 },
+    "sourceSize": { "w": 7, "h": 5 },
+    "duration": 100
+   },
+   {
+    "filename": "Checkmark-Sheet5 1.aseprite",
+    "frame": { "x": 7, "y": 0, "w": 7, "h": 5 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 5 },
+    "sourceSize": { "w": 7, "h": 5 },
+    "duration": 100
+   },
+   {
+    "filename": "Checkmark-Sheet5 2.aseprite",
+    "frame": { "x": 14, "y": 0, "w": 7, "h": 5 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 5 },
+    "sourceSize": { "w": 7, "h": 5 },
+    "duration": 100
+   },
+   {
+    "filename": "Checkmark-Sheet5 3.aseprite",
+    "frame": { "x": 21, "y": 0, "w": 7, "h": 5 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 5 },
+    "sourceSize": { "w": 7, "h": 5 },
+    "duration": 100
+   },
+   {
+    "filename": "Checkmark-Sheet5 4.aseprite",
+    "frame": { "x": 28, "y": 0, "w": 7, "h": 5 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 5 },
+    "sourceSize": { "w": 7, "h": 5 },
     "duration": 100
    }
  ],

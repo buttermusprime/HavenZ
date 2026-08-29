@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Container_7_Red_Horizontal" type="Node2D" unique_id=2026097042]
+[node name="Container_7_Red_Horizontal" type="Node2D" unique_id=1762855695]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1458078377]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1023569318]
 material = ExtResource("1_eb683")
 sprite_frames = SubResource("SpriteFrames_khrrp")
 centered = false

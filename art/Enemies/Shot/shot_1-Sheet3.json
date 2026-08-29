@@ -1,11 +1,29 @@
 { "frames": [
    {
-    "filename": "shot_1-Sheet3.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 21, "h": 6 },
+    "filename": "shot_1-Sheet3 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 7, "h": 6 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 6 },
-    "sourceSize": { "w": 21, "h": 6 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 7, "h": 6 },
+    "duration": 100
+   },
+   {
+    "filename": "shot_1-Sheet3 1.aseprite",
+    "frame": { "x": 7, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 7, "h": 6 },
+    "duration": 100
+   },
+   {
+    "filename": "shot_1-Sheet3 2.aseprite",
+    "frame": { "x": 14, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 7, "h": 6 },
     "duration": 100
    }
  ],

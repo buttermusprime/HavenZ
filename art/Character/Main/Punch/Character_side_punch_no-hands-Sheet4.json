@@ -1,11 +1,38 @@
 { "frames": [
    {
-    "filename": "Character_side_punch_no-hands-Sheet4.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 52, "h": 16 },
+    "filename": "Character_side_punch_no-hands-Sheet4 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 13, "h": 16 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 52, "h": 16 },
-    "sourceSize": { "w": 52, "h": 16 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side_punch_no-hands-Sheet4 1.aseprite",
+    "frame": { "x": 13, "y": 0, "w": 13, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side_punch_no-hands-Sheet4 2.aseprite",
+    "frame": { "x": 26, "y": 0, "w": 13, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_side_punch_no-hands-Sheet4 3.aseprite",
+    "frame": { "x": 39, "y": 0, "w": 13, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 16 },
+    "sourceSize": { "w": 13, "h": 16 },
     "duration": 100
    }
  ],

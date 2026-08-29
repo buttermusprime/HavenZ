@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Blank_Not-Pressed" type="Node2D" unique_id=1789745785]
+[node name="Blank_Not-Pressed" type="Node2D" unique_id=318677332]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1968155716]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=168786151]
 material = ExtResource("1_3pr06")
 sprite_frames = SubResource("SpriteFrames_pbcup")
 centered = false

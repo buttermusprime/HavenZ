@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Hands_Side_run-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 84, "h": 17 },
+    "filename": "Hands_Side_run-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 14, "h": 17 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 84, "h": 17 },
-    "sourceSize": { "w": 84, "h": 17 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 17 },
+    "sourceSize": { "w": 14, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Hands_Side_run-Sheet6 1.aseprite",
+    "frame": { "x": 14, "y": 0, "w": 14, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 17 },
+    "sourceSize": { "w": 14, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Hands_Side_run-Sheet6 2.aseprite",
+    "frame": { "x": 28, "y": 0, "w": 14, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 17 },
+    "sourceSize": { "w": 14, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Hands_Side_run-Sheet6 3.aseprite",
+    "frame": { "x": 42, "y": 0, "w": 14, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 17 },
+    "sourceSize": { "w": 14, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Hands_Side_run-Sheet6 4.aseprite",
+    "frame": { "x": 56, "y": 0, "w": 14, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 17 },
+    "sourceSize": { "w": 14, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Hands_Side_run-Sheet6 5.aseprite",
+    "frame": { "x": 70, "y": 0, "w": 14, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 17 },
+    "sourceSize": { "w": 14, "h": 17 },
     "duration": 100
    }
  ],

@@ -1,11 +1,47 @@
 { "frames": [
    {
-    "filename": "Axe_Up_Landing-Sheet5.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 65, "h": 15 },
+    "filename": "Axe_Up_Landing-Sheet5 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 13, "h": 15 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 15 },
-    "sourceSize": { "w": 65, "h": 15 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 15 },
+    "sourceSize": { "w": 13, "h": 15 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Up_Landing-Sheet5 1.aseprite",
+    "frame": { "x": 13, "y": 0, "w": 13, "h": 15 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 15 },
+    "sourceSize": { "w": 13, "h": 15 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Up_Landing-Sheet5 2.aseprite",
+    "frame": { "x": 26, "y": 0, "w": 13, "h": 15 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 15 },
+    "sourceSize": { "w": 13, "h": 15 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Up_Landing-Sheet5 3.aseprite",
+    "frame": { "x": 39, "y": 0, "w": 13, "h": 15 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 15 },
+    "sourceSize": { "w": 13, "h": 15 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Up_Landing-Sheet5 4.aseprite",
+    "frame": { "x": 52, "y": 0, "w": 13, "h": 15 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 13, "h": 15 },
+    "sourceSize": { "w": 13, "h": 15 },
     "duration": 100
    }
  ],

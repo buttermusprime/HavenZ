@@ -5,22 +5,57 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqovm"]
 atlas = ExtResource("2_wwcan")
-region = Rect2(0, 0, 48, 9)
+region = Rect2(0, 0, 8, 9)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_18icx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_18icx"]
+atlas = ExtResource("2_wwcan")
+region = Rect2(8, 0, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64ycs"]
+atlas = ExtResource("2_wwcan")
+region = Rect2(16, 0, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gfeh"]
+atlas = ExtResource("2_wwcan")
+region = Rect2(24, 0, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25yvd"]
+atlas = ExtResource("2_wwcan")
+region = Rect2(32, 0, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1vhn"]
+atlas = ExtResource("2_wwcan")
+region = Rect2(40, 0, 8, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vgy7c"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_nqovm")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_18icx")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_64ycs")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_3gfeh")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_25yvd")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_q1vhn")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Pistol_side_idle-and-run-Sheet6" type="Node2D" unique_id=913774559]
+[node name="Pistol_side_idle-and-run-Sheet6" type="Node2D" unique_id=232767201]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2079182201]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1062623729]
 material = ExtResource("1_epw6f")
-sprite_frames = SubResource("SpriteFrames_18icx")
+sprite_frames = SubResource("SpriteFrames_vgy7c")
 centered = false

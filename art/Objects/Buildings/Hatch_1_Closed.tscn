@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Hatch_1_Closed" type="Node2D" unique_id=2128501707]
+[node name="Hatch_1_Closed" type="Node2D" unique_id=169229705]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=589082424]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=537830437]
 material = ExtResource("1_pd5rl")
 sprite_frames = SubResource("SpriteFrames_t3dme")
 centered = false

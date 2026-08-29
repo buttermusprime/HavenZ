@@ -1,11 +1,38 @@
 { "frames": [
    {
-    "filename": "Character_up_punch-Sheet4.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 48, "h": 17 },
+    "filename": "Character_up_punch-Sheet4 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 12, "h": 17 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 17 },
-    "sourceSize": { "w": 48, "h": 17 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 17 },
+    "sourceSize": { "w": 12, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_up_punch-Sheet4 1.aseprite",
+    "frame": { "x": 12, "y": 0, "w": 12, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 17 },
+    "sourceSize": { "w": 12, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_up_punch-Sheet4 2.aseprite",
+    "frame": { "x": 24, "y": 0, "w": 12, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 17 },
+    "sourceSize": { "w": 12, "h": 17 },
+    "duration": 100
+   },
+   {
+    "filename": "Character_up_punch-Sheet4 3.aseprite",
+    "frame": { "x": 36, "y": 0, "w": 12, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 17 },
+    "sourceSize": { "w": 12, "h": 17 },
     "duration": 100
    }
  ],

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Buildings_white_TileSet" type="Node2D" unique_id=1870678698]
+[node name="Buildings_white_TileSet" type="Node2D" unique_id=880913287]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2140326434]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1409869277]
 material = ExtResource("1_hksfx")
 sprite_frames = SubResource("SpriteFrames_aw6lj")
 centered = false

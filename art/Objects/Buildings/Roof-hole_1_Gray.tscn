@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Roof-hole_1_Gray" type="Node2D" unique_id=614171864]
+[node name="Roof-hole_1_Gray" type="Node2D" unique_id=1734618622]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1642084210]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=739234211]
 material = ExtResource("1_41th4")
 sprite_frames = SubResource("SpriteFrames_85na8")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Canned-food" type="Node2D" unique_id=356629577]
+[node name="Canned-food" type="Node2D" unique_id=109190604]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2069550730]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1848503447]
 material = ExtResource("1_f3dm4")
 sprite_frames = SubResource("SpriteFrames_jseo8")
 centered = false

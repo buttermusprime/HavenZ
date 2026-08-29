@@ -5,22 +5,36 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ha3fq"]
 atlas = ExtResource("2_t7vhe")
-region = Rect2(0, 0, 15, 11)
+region = Rect2(0, 0, 5, 11)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_iyb0k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyb0k"]
+atlas = ExtResource("2_t7vhe")
+region = Rect2(5, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7utp"]
+atlas = ExtResource("2_t7vhe")
+region = Rect2(10, 0, 5, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8afd4"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_ha3fq")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_iyb0k")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_d7utp")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Pistol_up_shoot-Sheet3" type="Node2D" unique_id=403550815]
+[node name="Pistol_up_shoot-Sheet3" type="Node2D" unique_id=385750310]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=662759343]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1978202640]
 material = ExtResource("1_386l3")
-sprite_frames = SubResource("SpriteFrames_iyb0k")
+sprite_frames = SubResource("SpriteFrames_8afd4")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Scrollbar_Scrollbox_1" type="Node2D" unique_id=82825108]
+[node name="Scrollbar_Scrollbox_1" type="Node2D" unique_id=1477378835]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=550090089]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1933264153]
 material = ExtResource("1_4vo2q")
 sprite_frames = SubResource("SpriteFrames_wc1ox")
 centered = false

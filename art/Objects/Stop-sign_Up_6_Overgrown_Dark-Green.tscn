@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Stop-sign_Up_6_Overgrown_Dark-Green" type="Node2D" unique_id=580149244]
+[node name="Stop-sign_Up_6_Overgrown_Dark-Green" type="Node2D" unique_id=951574309]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2085733233]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1944227049]
 material = ExtResource("1_53i7v")
 sprite_frames = SubResource("SpriteFrames_icq3r")
 centered = false

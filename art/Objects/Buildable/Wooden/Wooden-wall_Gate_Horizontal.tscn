@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Wooden-wall_Gate_Horizontal" type="Node2D" unique_id=250141984]
+[node name="Wooden-wall_Gate_Horizontal" type="Node2D" unique_id=339908596]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1933356937]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=57709097]
 material = ExtResource("1_ham2d")
 sprite_frames = SubResource("SpriteFrames_gug5g")
 centered = false

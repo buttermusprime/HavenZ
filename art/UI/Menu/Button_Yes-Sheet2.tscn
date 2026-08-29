@@ -5,22 +5,29 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1sbf"]
 atlas = ExtResource("2_nvgpo")
-region = Rect2(0, 0, 20, 9)
+region = Rect2(0, 0, 10, 9)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hlvkc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlvkc"]
+atlas = ExtResource("2_nvgpo")
+region = Rect2(10, 0, 10, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0phxp"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_w1sbf")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_hlvkc")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Button_Yes-Sheet2" type="Node2D" unique_id=361043135]
+[node name="Button_Yes-Sheet2" type="Node2D" unique_id=840180889]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1933114172]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1898018827]
 material = ExtResource("1_4d388")
-sprite_frames = SubResource("SpriteFrames_hlvkc")
+sprite_frames = SubResource("SpriteFrames_0phxp")
 centered = false

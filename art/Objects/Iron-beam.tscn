@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Iron-beam" type="Node2D" unique_id=1588906919]
+[node name="Iron-beam" type="Node2D" unique_id=1565633604]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=397730305]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=134343122]
 material = ExtResource("1_ntatl")
 sprite_frames = SubResource("SpriteFrames_3m6ti")
 centered = false

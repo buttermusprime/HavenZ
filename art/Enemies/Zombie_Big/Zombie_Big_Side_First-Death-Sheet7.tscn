@@ -5,22 +5,64 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6egt2"]
 atlas = ExtResource("2_k4opq")
-region = Rect2(0, 0, 203, 23)
+region = Rect2(0, 0, 29, 23)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xgu2k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgu2k"]
+atlas = ExtResource("2_k4opq")
+region = Rect2(29, 0, 29, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glg4e"]
+atlas = ExtResource("2_k4opq")
+region = Rect2(58, 0, 29, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xehq4"]
+atlas = ExtResource("2_k4opq")
+region = Rect2(87, 0, 29, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q667t"]
+atlas = ExtResource("2_k4opq")
+region = Rect2(116, 0, 29, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ngy8"]
+atlas = ExtResource("2_k4opq")
+region = Rect2(145, 0, 29, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okxuo"]
+atlas = ExtResource("2_k4opq")
+region = Rect2(174, 0, 29, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51ywj"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_6egt2")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_xgu2k")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_glg4e")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_xehq4")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_q667t")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_2ngy8")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_okxuo")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Zombie_Big_Side_First-Death-Sheet7" type="Node2D" unique_id=1298551402]
+[node name="Zombie_Big_Side_First-Death-Sheet7" type="Node2D" unique_id=1972706303]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1097531042]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=819128964]
 material = ExtResource("1_oj46e")
-sprite_frames = SubResource("SpriteFrames_xgu2k")
+sprite_frames = SubResource("SpriteFrames_51ywj")
 centered = false

@@ -1,11 +1,38 @@
 { "frames": [
    {
-    "filename": "Hands_side-left_punch-Sheet4.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 72, "h": 10 },
+    "filename": "Hands_side-left_punch-Sheet4 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 18, "h": 10 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 10 },
-    "sourceSize": { "w": 72, "h": 10 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
+    "duration": 100
+   },
+   {
+    "filename": "Hands_side-left_punch-Sheet4 1.aseprite",
+    "frame": { "x": 18, "y": 0, "w": 18, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
+    "duration": 100
+   },
+   {
+    "filename": "Hands_side-left_punch-Sheet4 2.aseprite",
+    "frame": { "x": 36, "y": 0, "w": 18, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
+    "duration": 100
+   },
+   {
+    "filename": "Hands_side-left_punch-Sheet4 3.aseprite",
+    "frame": { "x": 54, "y": 0, "w": 18, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 18, "h": 10 },
+    "sourceSize": { "w": 18, "h": 10 },
     "duration": 100
    }
  ],

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Icon_First-Aid-Kit_White" type="Node2D" unique_id=542673928]
+[node name="Icon_First-Aid-Kit_White" type="Node2D" unique_id=1530594484]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=798131802]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=527661492]
 material = ExtResource("1_qykvf")
 sprite_frames = SubResource("SpriteFrames_rg3s5")
 centered = false

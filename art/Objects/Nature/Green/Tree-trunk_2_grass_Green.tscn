@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Tree-trunk_2_grass_Green" type="Node2D" unique_id=595547777]
+[node name="Tree-trunk_2_grass_Green" type="Node2D" unique_id=510767112]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=823467682]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=700253671]
 material = ExtResource("1_sfvxe")
 sprite_frames = SubResource("SpriteFrames_eduvm")
 centered = false

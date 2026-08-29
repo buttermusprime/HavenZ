@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Container_6_Red_Vertical_Overgrown_Green" type="Node2D" unique_id=1528968974]
+[node name="Container_6_Red_Vertical_Overgrown_Green" type="Node2D" unique_id=1199163110]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=886436330]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=589133500]
 material = ExtResource("1_d0h12")
 sprite_frames = SubResource("SpriteFrames_d1nto")
 centered = false

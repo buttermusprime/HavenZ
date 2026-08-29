@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Gun_down_idle-and-run-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 30, "h": 16 },
+    "filename": "Gun_down_idle-and-run-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 5, "h": 16 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 16 },
-    "sourceSize": { "w": 30, "h": 16 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 16 },
+    "sourceSize": { "w": 5, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_down_idle-and-run-Sheet6 1.aseprite",
+    "frame": { "x": 5, "y": 0, "w": 5, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 16 },
+    "sourceSize": { "w": 5, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_down_idle-and-run-Sheet6 2.aseprite",
+    "frame": { "x": 10, "y": 0, "w": 5, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 16 },
+    "sourceSize": { "w": 5, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_down_idle-and-run-Sheet6 3.aseprite",
+    "frame": { "x": 15, "y": 0, "w": 5, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 16 },
+    "sourceSize": { "w": 5, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_down_idle-and-run-Sheet6 4.aseprite",
+    "frame": { "x": 20, "y": 0, "w": 5, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 16 },
+    "sourceSize": { "w": 5, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Gun_down_idle-and-run-Sheet6 5.aseprite",
+    "frame": { "x": 25, "y": 0, "w": 5, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 16 },
+    "sourceSize": { "w": 5, "h": 16 },
     "duration": 100
    }
  ],

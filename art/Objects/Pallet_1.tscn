@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Pallet_1" type="Node2D" unique_id=713222935]
+[node name="Pallet_1" type="Node2D" unique_id=344000243]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1477263654]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1432589898]
 material = ExtResource("1_timwc")
 sprite_frames = SubResource("SpriteFrames_ligls")
 centered = false

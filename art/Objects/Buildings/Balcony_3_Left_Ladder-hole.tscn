@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Balcony_3_Left_Ladder-hole" type="Node2D" unique_id=1882625159]
+[node name="Balcony_3_Left_Ladder-hole" type="Node2D" unique_id=1486839958]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=592886122]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=367576155]
 material = ExtResource("1_f8g3t")
 sprite_frames = SubResource("SpriteFrames_3ptvv")
 centered = false

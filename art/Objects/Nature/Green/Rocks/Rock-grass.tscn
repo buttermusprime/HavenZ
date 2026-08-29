@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Rock-grass" type="Node2D" unique_id=796393567]
+[node name="Rock-grass" type="Node2D" unique_id=205757931]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=985041485]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130011566]
 material = ExtResource("1_iydfs")
 sprite_frames = SubResource("SpriteFrames_qeqom")
 centered = false

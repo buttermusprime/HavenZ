@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Street-Light_6_Down_Overgrown_Bleak-Yellow" type="Node2D" unique_id=1879038072]
+[node name="Street-Light_6_Down_Overgrown_Bleak-Yellow" type="Node2D" unique_id=1192722658]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2133842266]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=654531717]
 material = ExtResource("1_s52ne")
 sprite_frames = SubResource("SpriteFrames_6xxso")
 centered = false

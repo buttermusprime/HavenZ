@@ -1,11 +1,137 @@
 { "frames": [
    {
-    "filename": "Zombie_Big_Up_Second-Attack-Sheet15.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 405, "h": 24 },
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 27, "h": 24 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 405, "h": 24 },
-    "sourceSize": { "w": 405, "h": 24 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 1.aseprite",
+    "frame": { "x": 27, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 2.aseprite",
+    "frame": { "x": 54, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 3.aseprite",
+    "frame": { "x": 81, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 4.aseprite",
+    "frame": { "x": 108, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 5.aseprite",
+    "frame": { "x": 135, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 6.aseprite",
+    "frame": { "x": 162, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 7.aseprite",
+    "frame": { "x": 189, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 8.aseprite",
+    "frame": { "x": 216, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 9.aseprite",
+    "frame": { "x": 243, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 10.aseprite",
+    "frame": { "x": 270, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 11.aseprite",
+    "frame": { "x": 297, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 12.aseprite",
+    "frame": { "x": 324, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 13.aseprite",
+    "frame": { "x": 351, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Big_Up_Second-Attack-Sheet15 14.aseprite",
+    "frame": { "x": 378, "y": 0, "w": 27, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 24 },
+    "sourceSize": { "w": 27, "h": 24 },
     "duration": 100
    }
  ],

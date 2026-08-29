@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Duct_1_side" type="Node2D" unique_id=1378248155]
+[node name="Duct_1_side" type="Node2D" unique_id=1561375932]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=237549743]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=125892384]
 material = ExtResource("1_tflul")
 sprite_frames = SubResource("SpriteFrames_wlm0b")
 centered = false

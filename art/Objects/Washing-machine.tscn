@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Washing-machine" type="Node2D" unique_id=1157801724]
+[node name="Washing-machine" type="Node2D" unique_id=984491179]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2070503335]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=798062506]
 material = ExtResource("1_kbbj0")
 sprite_frames = SubResource("SpriteFrames_iafgk")
 centered = false

@@ -5,22 +5,57 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6odaq"]
 atlas = ExtResource("2_1ucff")
-region = Rect2(0, 0, 126, 16)
+region = Rect2(0, 0, 21, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_goo7u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_goo7u"]
+atlas = ExtResource("2_1ucff")
+region = Rect2(21, 0, 21, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpjej"]
+atlas = ExtResource("2_1ucff")
+region = Rect2(42, 0, 21, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wm6v"]
+atlas = ExtResource("2_1ucff")
+region = Rect2(63, 0, 21, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1jcp"]
+atlas = ExtResource("2_1ucff")
+region = Rect2(84, 0, 21, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucv6g"]
+atlas = ExtResource("2_1ucff")
+region = Rect2(105, 0, 21, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8xhi3"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_6odaq")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_goo7u")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_rpjej")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_7wm6v")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_c1jcp")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ucv6g")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Character_side_death1_NoHands-Sheet6" type="Node2D" unique_id=227688642]
+[node name="Character_side_death1_NoHands-Sheet6" type="Node2D" unique_id=1062660373]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=375521021]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1912248098]
 material = ExtResource("1_0ik2p")
-sprite_frames = SubResource("SpriteFrames_goo7u")
+sprite_frames = SubResource("SpriteFrames_8xhi3")
 centered = false

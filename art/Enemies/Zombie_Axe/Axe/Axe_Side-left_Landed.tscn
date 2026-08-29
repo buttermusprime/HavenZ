@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Axe_Side-left_Landed" type="Node2D" unique_id=1294403950]
+[node name="Axe_Side-left_Landed" type="Node2D" unique_id=1414780963]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1913199086]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1582539474]
 material = ExtResource("1_l1yfm")
 sprite_frames = SubResource("SpriteFrames_sth66")
 centered = false

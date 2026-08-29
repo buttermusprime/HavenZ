@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Tree_1_Spruce_Orange" type="Node2D" unique_id=1373725426]
+[node name="Tree_1_Spruce_Orange" type="Node2D" unique_id=1980065239]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=423630710]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=727387412]
 material = ExtResource("1_hiutm")
 sprite_frames = SubResource("SpriteFrames_ely33")
 centered = false

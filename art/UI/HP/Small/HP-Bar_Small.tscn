@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="HP-Bar_Small" type="Node2D" unique_id=579027897]
+[node name="HP-Bar_Small" type="Node2D" unique_id=1636265823]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=414695517]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1024763242]
 material = ExtResource("1_fdpeu")
 sprite_frames = SubResource("SpriteFrames_df6po")
 centered = false

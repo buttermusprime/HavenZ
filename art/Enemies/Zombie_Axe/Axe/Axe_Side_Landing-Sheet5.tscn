@@ -5,22 +5,50 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wcqet"]
 atlas = ExtResource("2_vdx8j")
-region = Rect2(0, 0, 95, 16)
+region = Rect2(0, 0, 19, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dhggi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhggi"]
+atlas = ExtResource("2_vdx8j")
+region = Rect2(19, 0, 19, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51e6n"]
+atlas = ExtResource("2_vdx8j")
+region = Rect2(38, 0, 19, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c01u3"]
+atlas = ExtResource("2_vdx8j")
+region = Rect2(57, 0, 19, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f364i"]
+atlas = ExtResource("2_vdx8j")
+region = Rect2(76, 0, 19, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2yrh"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_wcqet")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_dhggi")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_51e6n")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_c01u3")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_f364i")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Axe_Side_Landing-Sheet5" type="Node2D" unique_id=16284531]
+[node name="Axe_Side_Landing-Sheet5" type="Node2D" unique_id=425849621]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=446192444]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1916094222]
 material = ExtResource("1_mpjue")
-sprite_frames = SubResource("SpriteFrames_dhggi")
+sprite_frames = SubResource("SpriteFrames_q2yrh")
 centered = false

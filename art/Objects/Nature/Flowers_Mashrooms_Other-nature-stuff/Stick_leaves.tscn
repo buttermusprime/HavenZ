@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Stick_leaves" type="Node2D" unique_id=936569746]
+[node name="Stick_leaves" type="Node2D" unique_id=1178762928]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=32259133]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1761699800]
 material = ExtResource("1_xec6w")
 sprite_frames = SubResource("SpriteFrames_yj3om")
 centered = false

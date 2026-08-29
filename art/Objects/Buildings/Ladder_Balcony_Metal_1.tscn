@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Ladder_Balcony_Metal_1" type="Node2D" unique_id=1533099363]
+[node name="Ladder_Balcony_Metal_1" type="Node2D" unique_id=1570574420]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1143454380]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=240938761]
 material = ExtResource("1_dayce")
 sprite_frames = SubResource("SpriteFrames_4s686")
 centered = false

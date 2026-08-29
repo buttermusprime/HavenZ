@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Rock_3" type="Node2D" unique_id=1256172427]
+[node name="Rock_3" type="Node2D" unique_id=7387278]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=368150749]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=49820668]
 material = ExtResource("1_bt2ft")
 sprite_frames = SubResource("SpriteFrames_2krxd")
 centered = false

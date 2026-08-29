@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Bench_6_up_Overgrown_Green" type="Node2D" unique_id=742701]
+[node name="Bench_6_up_Overgrown_Green" type="Node2D" unique_id=385495285]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1258379239]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1268753531]
 material = ExtResource("1_yru8b")
 sprite_frames = SubResource("SpriteFrames_g7neb")
 centered = false

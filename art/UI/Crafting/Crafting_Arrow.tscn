@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Crafting_Arrow" type="Node2D" unique_id=460331958]
+[node name="Crafting_Arrow" type="Node2D" unique_id=1563420112]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=74107763]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=14397009]
 material = ExtResource("1_k6sy6")
 sprite_frames = SubResource("SpriteFrames_e0a8a")
 centered = false

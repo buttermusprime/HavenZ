@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="HVAC_Overgrown_Dark-Green" type="Node2D" unique_id=1673184699]
+[node name="HVAC_Overgrown_Dark-Green" type="Node2D" unique_id=872933122]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=489689040]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=709090101]
 material = ExtResource("1_2imut")
 sprite_frames = SubResource("SpriteFrames_c4d2s")
 centered = false

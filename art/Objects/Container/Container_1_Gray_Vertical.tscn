@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Container_1_Gray_Vertical" type="Node2D" unique_id=345868497]
+[node name="Container_1_Gray_Vertical" type="Node2D" unique_id=1941956747]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=822009293]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=291841501]
 material = ExtResource("1_fybr7")
 sprite_frames = SubResource("SpriteFrames_pv3up")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Door_1_Beige" type="Node2D" unique_id=383714348]
+[node name="Door_1_Beige" type="Node2D" unique_id=371709543]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=472433156]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=425846624]
 material = ExtResource("1_cwrkw")
 sprite_frames = SubResource("SpriteFrames_xrpok")
 centered = false

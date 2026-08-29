@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Duct_3_up" type="Node2D" unique_id=662511816]
+[node name="Duct_3_up" type="Node2D" unique_id=1912680077]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=742899968]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=116069427]
 material = ExtResource("1_ihrfg")
 sprite_frames = SubResource("SpriteFrames_xgdbg")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Metal-Plates" type="Node2D" unique_id=1958549275]
+[node name="Metal-Plates" type="Node2D" unique_id=902597778]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=659012132]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=177586720]
 material = ExtResource("1_u57m7")
 sprite_frames = SubResource("SpriteFrames_yykm7")
 centered = false

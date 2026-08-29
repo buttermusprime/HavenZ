@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Tire_1" type="Node2D" unique_id=875546748]
+[node name="Tire_1" type="Node2D" unique_id=1735628398]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=58536930]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=951395732]
 material = ExtResource("1_dow3t")
 sprite_frames = SubResource("SpriteFrames_deh5e")
 centered = false

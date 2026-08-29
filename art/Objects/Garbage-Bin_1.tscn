@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Garbage-Bin_1" type="Node2D" unique_id=960892156]
+[node name="Garbage-Bin_1" type="Node2D" unique_id=1600428190]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=509478398]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1870641957]
 material = ExtResource("1_7fgcd")
 sprite_frames = SubResource("SpriteFrames_iu0a0")
 centered = false

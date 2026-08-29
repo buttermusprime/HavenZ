@@ -1,11 +1,65 @@
 { "frames": [
    {
-    "filename": "Reinforced-wooden-wall_Gates-closingH_openingV-Sheet7.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 112, "h": 25 },
+    "filename": "Reinforced-wooden-wall_Gates-closingH_openingV-Sheet7 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 16, "h": 25 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 112, "h": 25 },
-    "sourceSize": { "w": 112, "h": 25 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 25 },
+    "sourceSize": { "w": 16, "h": 25 },
+    "duration": 100
+   },
+   {
+    "filename": "Reinforced-wooden-wall_Gates-closingH_openingV-Sheet7 1.aseprite",
+    "frame": { "x": 16, "y": 0, "w": 16, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 25 },
+    "sourceSize": { "w": 16, "h": 25 },
+    "duration": 100
+   },
+   {
+    "filename": "Reinforced-wooden-wall_Gates-closingH_openingV-Sheet7 2.aseprite",
+    "frame": { "x": 32, "y": 0, "w": 16, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 25 },
+    "sourceSize": { "w": 16, "h": 25 },
+    "duration": 100
+   },
+   {
+    "filename": "Reinforced-wooden-wall_Gates-closingH_openingV-Sheet7 3.aseprite",
+    "frame": { "x": 48, "y": 0, "w": 16, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 25 },
+    "sourceSize": { "w": 16, "h": 25 },
+    "duration": 100
+   },
+   {
+    "filename": "Reinforced-wooden-wall_Gates-closingH_openingV-Sheet7 4.aseprite",
+    "frame": { "x": 64, "y": 0, "w": 16, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 25 },
+    "sourceSize": { "w": 16, "h": 25 },
+    "duration": 100
+   },
+   {
+    "filename": "Reinforced-wooden-wall_Gates-closingH_openingV-Sheet7 5.aseprite",
+    "frame": { "x": 80, "y": 0, "w": 16, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 25 },
+    "sourceSize": { "w": 16, "h": 25 },
+    "duration": 100
+   },
+   {
+    "filename": "Reinforced-wooden-wall_Gates-closingH_openingV-Sheet7 6.aseprite",
+    "frame": { "x": 96, "y": 0, "w": 16, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 25 },
+    "sourceSize": { "w": 16, "h": 25 },
     "duration": 100
    }
  ],

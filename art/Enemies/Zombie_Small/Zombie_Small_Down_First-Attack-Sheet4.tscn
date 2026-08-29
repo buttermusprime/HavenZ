@@ -5,22 +5,43 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_406q6"]
 atlas = ExtResource("2_ufud8")
-region = Rect2(0, 0, 52, 16)
+region = Rect2(0, 0, 13, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fu7g1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu7g1"]
+atlas = ExtResource("2_ufud8")
+region = Rect2(13, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3bhu"]
+atlas = ExtResource("2_ufud8")
+region = Rect2(26, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22jh4"]
+atlas = ExtResource("2_ufud8")
+region = Rect2(39, 0, 13, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4vrqy"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_406q6")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_fu7g1")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_x3bhu")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_22jh4")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Zombie_Small_Down_First-Attack-Sheet4" type="Node2D" unique_id=1170901266]
+[node name="Zombie_Small_Down_First-Attack-Sheet4" type="Node2D" unique_id=853605211]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1187962449]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=394039446]
 material = ExtResource("1_wavig")
-sprite_frames = SubResource("SpriteFrames_fu7g1")
+sprite_frames = SubResource("SpriteFrames_4vrqy")
 centered = false

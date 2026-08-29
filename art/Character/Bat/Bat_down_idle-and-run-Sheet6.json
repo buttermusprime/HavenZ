@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Bat_down_idle-and-run-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 102, "h": 11 },
+    "filename": "Bat_down_idle-and-run-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 17, "h": 11 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 102, "h": 11 },
-    "sourceSize": { "w": 102, "h": 11 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 11 },
+    "sourceSize": { "w": 17, "h": 11 },
+    "duration": 100
+   },
+   {
+    "filename": "Bat_down_idle-and-run-Sheet6 1.aseprite",
+    "frame": { "x": 17, "y": 0, "w": 17, "h": 11 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 11 },
+    "sourceSize": { "w": 17, "h": 11 },
+    "duration": 100
+   },
+   {
+    "filename": "Bat_down_idle-and-run-Sheet6 2.aseprite",
+    "frame": { "x": 34, "y": 0, "w": 17, "h": 11 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 11 },
+    "sourceSize": { "w": 17, "h": 11 },
+    "duration": 100
+   },
+   {
+    "filename": "Bat_down_idle-and-run-Sheet6 3.aseprite",
+    "frame": { "x": 51, "y": 0, "w": 17, "h": 11 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 11 },
+    "sourceSize": { "w": 17, "h": 11 },
+    "duration": 100
+   },
+   {
+    "filename": "Bat_down_idle-and-run-Sheet6 4.aseprite",
+    "frame": { "x": 68, "y": 0, "w": 17, "h": 11 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 11 },
+    "sourceSize": { "w": 17, "h": 11 },
+    "duration": 100
+   },
+   {
+    "filename": "Bat_down_idle-and-run-Sheet6 5.aseprite",
+    "frame": { "x": 85, "y": 0, "w": 17, "h": 11 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 11 },
+    "sourceSize": { "w": 17, "h": 11 },
     "duration": 100
    }
  ],

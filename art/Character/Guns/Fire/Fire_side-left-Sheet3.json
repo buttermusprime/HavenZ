@@ -1,11 +1,29 @@
 { "frames": [
    {
-    "filename": "Fire_side-left-Sheet3.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 30, "h": 7 },
+    "filename": "Fire_side-left-Sheet3 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 10, "h": 7 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 7 },
-    "sourceSize": { "w": 30, "h": 7 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 7 },
+    "sourceSize": { "w": 10, "h": 7 },
+    "duration": 100
+   },
+   {
+    "filename": "Fire_side-left-Sheet3 1.aseprite",
+    "frame": { "x": 10, "y": 0, "w": 10, "h": 7 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 7 },
+    "sourceSize": { "w": 10, "h": 7 },
+    "duration": 100
+   },
+   {
+    "filename": "Fire_side-left-Sheet3 2.aseprite",
+    "frame": { "x": 20, "y": 0, "w": 10, "h": 7 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 7 },
+    "sourceSize": { "w": 10, "h": 7 },
     "duration": 100
    }
  ],

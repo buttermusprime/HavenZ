@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Iron-Fence_TileSet" type="Node2D" unique_id=417501169]
+[node name="Iron-Fence_TileSet" type="Node2D" unique_id=1995790574]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1925211772]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=337122514]
 material = ExtResource("1_fug3r")
 sprite_frames = SubResource("SpriteFrames_7x8y6")
 centered = false

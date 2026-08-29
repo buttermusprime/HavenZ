@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Flowers_1_blue" type="Node2D" unique_id=1257392547]
+[node name="Flowers_1_blue" type="Node2D" unique_id=510017634]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1173282200]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1442345655]
 material = ExtResource("1_6ogla")
 sprite_frames = SubResource("SpriteFrames_4xbsm")
 centered = false

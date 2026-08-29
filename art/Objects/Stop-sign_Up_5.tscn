@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Stop-sign_Up_5" type="Node2D" unique_id=1876288216]
+[node name="Stop-sign_Up_5" type="Node2D" unique_id=644426672]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2120311901]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=326336438]
 material = ExtResource("1_btliq")
 sprite_frames = SubResource("SpriteFrames_nhdoo")
 centered = false

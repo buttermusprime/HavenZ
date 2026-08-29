@@ -1,11 +1,83 @@
 { "frames": [
    {
-    "filename": "Axe_Vertical_Thrown-Sheet9.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 27, "h": 16 },
+    "filename": "Axe_Vertical_Thrown-Sheet9 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 3, "h": 16 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 16 },
-    "sourceSize": { "w": 27, "h": 16 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Vertical_Thrown-Sheet9 1.aseprite",
+    "frame": { "x": 3, "y": 0, "w": 3, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Vertical_Thrown-Sheet9 2.aseprite",
+    "frame": { "x": 6, "y": 0, "w": 3, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Vertical_Thrown-Sheet9 3.aseprite",
+    "frame": { "x": 9, "y": 0, "w": 3, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Vertical_Thrown-Sheet9 4.aseprite",
+    "frame": { "x": 12, "y": 0, "w": 3, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Vertical_Thrown-Sheet9 5.aseprite",
+    "frame": { "x": 15, "y": 0, "w": 3, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Vertical_Thrown-Sheet9 6.aseprite",
+    "frame": { "x": 18, "y": 0, "w": 3, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Vertical_Thrown-Sheet9 7.aseprite",
+    "frame": { "x": 21, "y": 0, "w": 3, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "Axe_Vertical_Thrown-Sheet9 8.aseprite",
+    "frame": { "x": 24, "y": 0, "w": 3, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 3, "h": 16 },
+    "sourceSize": { "w": 3, "h": 16 },
     "duration": 100
    }
  ],

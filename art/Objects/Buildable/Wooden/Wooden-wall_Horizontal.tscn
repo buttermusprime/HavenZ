@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Wooden-wall_Horizontal" type="Node2D" unique_id=409115949]
+[node name="Wooden-wall_Horizontal" type="Node2D" unique_id=50770504]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=586847612]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1204933213]
 material = ExtResource("1_kbsxp")
 sprite_frames = SubResource("SpriteFrames_akpjs")
 centered = false

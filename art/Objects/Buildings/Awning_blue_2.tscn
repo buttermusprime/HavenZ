@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Awning_blue_2" type="Node2D" unique_id=1841446462]
+[node name="Awning_blue_2" type="Node2D" unique_id=964681413]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=317022723]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=961440954]
 material = ExtResource("1_h5uka")
 sprite_frames = SubResource("SpriteFrames_o01td")
 centered = false

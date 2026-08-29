@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Stop-sign_Down_2_Overgrown_Bleak-Yellow" type="Node2D" unique_id=340007443]
+[node name="Stop-sign_Down_2_Overgrown_Bleak-Yellow" type="Node2D" unique_id=568325430]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=27381134]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1337616340]
 material = ExtResource("1_1k4bh")
 sprite_frames = SubResource("SpriteFrames_y6gq3")
 centered = false

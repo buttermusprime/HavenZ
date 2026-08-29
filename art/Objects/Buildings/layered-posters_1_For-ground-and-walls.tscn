@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="layered-posters_1_For-ground-and-walls" type="Node2D" unique_id=1760670905]
+[node name="layered-posters_1_For-ground-and-walls" type="Node2D" unique_id=1270063648]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=98844657]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=294497975]
 material = ExtResource("1_8slsh")
 sprite_frames = SubResource("SpriteFrames_ioepd")
 centered = false

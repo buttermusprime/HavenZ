@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Load_Not-Pressed" type="Node2D" unique_id=849847496]
+[node name="Load_Not-Pressed" type="Node2D" unique_id=1262529476]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=431382411]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=973203863]
 material = ExtResource("1_cocvu")
 sprite_frames = SubResource("SpriteFrames_6yh4q")
 centered = false

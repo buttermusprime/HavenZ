@@ -5,22 +5,36 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tg77h"]
 atlas = ExtResource("2_kntou")
-region = Rect2(0, 0, 36, 16)
+region = Rect2(0, 0, 12, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vymus"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vymus"]
+atlas = ExtResource("2_kntou")
+region = Rect2(12, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uge5b"]
+atlas = ExtResource("2_kntou")
+region = Rect2(24, 0, 12, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gevlp"]
 animations = [{
 "frames": [{
 "duration": 0.1,
 "texture": SubResource("AtlasTexture_tg77h")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_vymus")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_uge5b")
 }],
 "loop": true,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Hands_down_Pick-up-Sheet3" type="Node2D" unique_id=1670545050]
+[node name="Hands_down_Pick-up-Sheet3" type="Node2D" unique_id=1632758584]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1753004644]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=3458990]
 material = ExtResource("1_26wfi")
-sprite_frames = SubResource("SpriteFrames_vymus")
+sprite_frames = SubResource("SpriteFrames_gevlp")
 centered = false

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Brick-wall_2_Lying" type="Node2D" unique_id=1241226507]
+[node name="Brick-wall_2_Lying" type="Node2D" unique_id=210937149]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=432425964]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1269965079]
 material = ExtResource("1_g4s5l")
 sprite_frames = SubResource("SpriteFrames_1dxl6")
 centered = false

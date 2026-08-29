@@ -1,11 +1,56 @@
 { "frames": [
    {
-    "filename": "Zombie_Axe_No-axe_Side_First-Death-Sheet6.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 132, "h": 18 },
+    "filename": "Zombie_Axe_No-axe_Side_First-Death-Sheet6 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 22, "h": 18 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 132, "h": 18 },
-    "sourceSize": { "w": 132, "h": 18 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 18 },
+    "sourceSize": { "w": 22, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_No-axe_Side_First-Death-Sheet6 1.aseprite",
+    "frame": { "x": 22, "y": 0, "w": 22, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 18 },
+    "sourceSize": { "w": 22, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_No-axe_Side_First-Death-Sheet6 2.aseprite",
+    "frame": { "x": 44, "y": 0, "w": 22, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 18 },
+    "sourceSize": { "w": 22, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_No-axe_Side_First-Death-Sheet6 3.aseprite",
+    "frame": { "x": 66, "y": 0, "w": 22, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 18 },
+    "sourceSize": { "w": 22, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_No-axe_Side_First-Death-Sheet6 4.aseprite",
+    "frame": { "x": 88, "y": 0, "w": 22, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 18 },
+    "sourceSize": { "w": 22, "h": 18 },
+    "duration": 100
+   },
+   {
+    "filename": "Zombie_Axe_No-axe_Side_First-Death-Sheet6 5.aseprite",
+    "frame": { "x": 110, "y": 0, "w": 22, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 18 },
+    "sourceSize": { "w": 22, "h": 18 },
     "duration": 100
    }
  ],

@@ -18,9 +18,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Bullet-box_1_Red" type="Node2D" unique_id=1686255092]
+[node name="Bullet-box_1_Red" type="Node2D" unique_id=1093681578]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=75767752]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=477972603]
 material = ExtResource("1_bjcbp")
 sprite_frames = SubResource("SpriteFrames_8myfg")
 centered = false

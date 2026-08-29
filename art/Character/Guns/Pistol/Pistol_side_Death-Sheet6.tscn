@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_wgpy7"]
+[ext_resource type="Texture2D" path="res://art/Character/Guns/Pistol/Pistol_side_Death-Sheet6.png" id="2_5aakp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cuqe"]
+atlas = ExtResource("2_5aakp")
+region = Rect2(0, 0, 78, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uqvke"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_0cuqe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Pistol_side_Death-Sheet6" type="Node2D" unique_id=1279622030]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1334606556]
+material = ExtResource("1_wgpy7")
+sprite_frames = SubResource("SpriteFrames_uqvke")
+centered = false

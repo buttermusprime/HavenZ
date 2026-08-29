@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_wdp35"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildings/Air-vent_3.png" id="2_sabw5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pew45"]
+atlas = ExtResource("2_sabw5")
+region = Rect2(0, 0, 9, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5lhjr"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_pew45")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Air-vent_3" type="Node2D" unique_id=1728727188]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=322952800]
+material = ExtResource("1_wdp35")
+sprite_frames = SubResource("SpriteFrames_5lhjr")
+centered = false

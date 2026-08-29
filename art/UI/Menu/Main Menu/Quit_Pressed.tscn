@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_k61pa"]
+[ext_resource type="Texture2D" path="res://art/UI/Menu/Main Menu/Quit_Pressed.png" id="2_vg6ki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu2b6"]
+atlas = ExtResource("2_vg6ki")
+region = Rect2(0, 0, 76, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ce1rv"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_vu2b6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Quit_Pressed" type="Node2D" unique_id=1057579649]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1874568411]
+material = ExtResource("1_k61pa")
+sprite_frames = SubResource("SpriteFrames_ce1rv")
+centered = false

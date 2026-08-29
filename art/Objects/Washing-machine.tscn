@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_kbbj0"]
+[ext_resource type="Texture2D" path="res://art/Objects/Washing-machine.png" id="2_af2vn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfyrx"]
+atlas = ExtResource("2_af2vn")
+region = Rect2(0, 0, 14, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iafgk"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_kfyrx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Washing-machine" type="Node2D" unique_id=1157801724]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2070503335]
+material = ExtResource("1_kbbj0")
+sprite_frames = SubResource("SpriteFrames_iafgk")
+centered = false

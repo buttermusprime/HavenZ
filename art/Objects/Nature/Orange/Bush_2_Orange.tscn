@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_r8rk5"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Orange/Bush_2_Orange.png" id="2_76dyj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftvm5"]
+atlas = ExtResource("2_76dyj")
+region = Rect2(0, 0, 28, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxrwn"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ftvm5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Bush_2_Orange" type="Node2D" unique_id=1524721930]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=349823194]
+material = ExtResource("1_r8rk5")
+sprite_frames = SubResource("SpriteFrames_uxrwn")
+centered = false

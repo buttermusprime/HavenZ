@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_gdtuf"]
+[ext_resource type="Texture2D" path="res://art/Objects/Stop-sign_Side_4_Overgrown_Dark-Green.png" id="2_rcklc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at1yi"]
+atlas = ExtResource("2_rcklc")
+region = Rect2(0, 0, 9, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4w2j"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_at1yi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Stop-sign_Side_4_Overgrown_Dark-Green" type="Node2D" unique_id=2127280343]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=451550127]
+material = ExtResource("1_gdtuf")
+sprite_frames = SubResource("SpriteFrames_g4w2j")
+centered = false

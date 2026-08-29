@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ov1il"]
+[ext_resource type="Texture2D" path="res://art/UI/Inventory/Objects/Icon_Gun.png" id="2_n58yt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nii80"]
+atlas = ExtResource("2_n58yt")
+region = Rect2(0, 0, 15, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wvb2s"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_nii80")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Icon_Gun" type="Node2D" unique_id=1377235923]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1320637286]
+material = ExtResource("1_ov1il")
+sprite_frames = SubResource("SpriteFrames_wvb2s")
+centered = false

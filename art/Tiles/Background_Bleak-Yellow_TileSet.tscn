@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_qbpt1"]
+[ext_resource type="Texture2D" path="res://art/Tiles/Background_Bleak-Yellow_TileSet.png" id="2_ly4ib"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xpo1"]
+atlas = ExtResource("2_ly4ib")
+region = Rect2(0, 0, 384, 272)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwwqy"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_4xpo1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Background_Bleak-Yellow_TileSet" type="Node2D" unique_id=444124811]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1467903227]
+material = ExtResource("1_qbpt1")
+sprite_frames = SubResource("SpriteFrames_xwwqy")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_41o5m"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Red/Tree_5_Big_Red.png" id="2_46qiw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr7nv"]
+atlas = ExtResource("2_46qiw")
+region = Rect2(0, 0, 34, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7a44"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_cr7nv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Tree_5_Big_Red" type="Node2D" unique_id=1410267727]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=128404709]
+material = ExtResource("1_41o5m")
+sprite_frames = SubResource("SpriteFrames_q7a44")
+centered = false

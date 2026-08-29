@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_btliq"]
+[ext_resource type="Texture2D" path="res://art/Objects/Stop-sign_Up_5.png" id="2_nicmt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s21a"]
+atlas = ExtResource("2_nicmt")
+region = Rect2(0, 0, 15, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhdoo"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_7s21a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Stop-sign_Up_5" type="Node2D" unique_id=1876288216]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2120311901]
+material = ExtResource("1_btliq")
+sprite_frames = SubResource("SpriteFrames_nhdoo")
+centered = false

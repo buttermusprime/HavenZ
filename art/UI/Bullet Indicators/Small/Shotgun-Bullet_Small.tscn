@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_54oeo"]
+[ext_resource type="Texture2D" path="res://art/UI/Bullet Indicators/Small/Shotgun-Bullet_Small.png" id="2_liaf7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6o5o"]
+atlas = ExtResource("2_liaf7")
+region = Rect2(0, 0, 8, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7auu6"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_r6o5o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Shotgun-Bullet_Small" type="Node2D" unique_id=1808680450]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1483283225]
+material = ExtResource("1_54oeo")
+sprite_frames = SubResource("SpriteFrames_7auu6")
+centered = false

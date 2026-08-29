@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_lcwgw"]
+[ext_resource type="Texture2D" path="res://art/Character/Main/Pick-up/Character_side-left_Pick-up_NoHands-Sheet3.png" id="2_anhkp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qskux"]
+atlas = ExtResource("2_anhkp")
+region = Rect2(0, 0, 30, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sq2m3"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_qskux")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Character_side-left_Pick-up_NoHands-Sheet3" type="Node2D" unique_id=299215040]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1673428014]
+material = ExtResource("1_lcwgw")
+sprite_frames = SubResource("SpriteFrames_sq2m3")
+centered = false

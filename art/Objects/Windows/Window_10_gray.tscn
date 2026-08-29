@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_s38pp"]
+[ext_resource type="Texture2D" path="res://art/Objects/Windows/Window_10_gray.png" id="2_blyat"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6apek"]
+atlas = ExtResource("2_blyat")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eo4iv"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_6apek")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Window_10_gray" type="Node2D" unique_id=95200027]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1702757662]
+material = ExtResource("1_s38pp")
+sprite_frames = SubResource("SpriteFrames_eo4iv")
+centered = false

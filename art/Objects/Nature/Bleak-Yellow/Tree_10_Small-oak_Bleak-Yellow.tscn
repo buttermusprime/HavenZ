@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_6660o"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Bleak-Yellow/Tree_10_Small-oak_Bleak-Yellow.png" id="2_8qhnv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcvmx"]
+atlas = ExtResource("2_8qhnv")
+region = Rect2(0, 0, 24, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfo51"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_rcvmx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Tree_10_Small-oak_Bleak-Yellow" type="Node2D" unique_id=182949055]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1266660602]
+material = ExtResource("1_6660o")
+sprite_frames = SubResource("SpriteFrames_jfo51")
+centered = false

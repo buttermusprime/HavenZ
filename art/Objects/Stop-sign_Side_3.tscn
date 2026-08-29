@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_w5v7j"]
+[ext_resource type="Texture2D" path="res://art/Objects/Stop-sign_Side_3.png" id="2_kjuvh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voch4"]
+atlas = ExtResource("2_kjuvh")
+region = Rect2(0, 0, 7, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adoc2"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_voch4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Stop-sign_Side_3" type="Node2D" unique_id=317796017]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1938047817]
+material = ExtResource("1_w5v7j")
+sprite_frames = SubResource("SpriteFrames_adoc2")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_6p3jh"]
+[ext_resource type="Texture2D" path="res://art/Objects/Barrel_rust_blue_2.png" id="2_etjja"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed8i3"]
+atlas = ExtResource("2_etjja")
+region = Rect2(0, 0, 15, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_buajc"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ed8i3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Barrel_rust_blue_2" type="Node2D" unique_id=1084766711]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1070684941]
+material = ExtResource("1_6p3jh")
+sprite_frames = SubResource("SpriteFrames_buajc")
+centered = false

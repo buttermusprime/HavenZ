@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_sbbex"]
+[ext_resource type="Texture2D" path="res://art/Character/Guns/Shotgun/Shotgun_up_idle-and-run-Sheet6.png" id="2_6re7k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prudq"]
+atlas = ExtResource("2_6re7k")
+region = Rect2(0, 0, 36, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3joll"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_prudq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Shotgun_up_idle-and-run-Sheet6" type="Node2D" unique_id=615095356]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1101892060]
+material = ExtResource("1_sbbex")
+sprite_frames = SubResource("SpriteFrames_3joll")
+centered = false

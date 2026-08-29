@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_c36s0"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Bleak-Yellow/Rocks/Rock-grass_Bleak-Yellow.png" id="2_t2jjo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mn2l2"]
+atlas = ExtResource("2_t2jjo")
+region = Rect2(0, 0, 13, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2018d"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_mn2l2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Rock-grass_Bleak-Yellow" type="Node2D" unique_id=168208247]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=383618154]
+material = ExtResource("1_c36s0")
+sprite_frames = SubResource("SpriteFrames_2018d")
+centered = false

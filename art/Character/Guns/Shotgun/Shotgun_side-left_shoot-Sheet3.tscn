@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_5yxsv"]
+[ext_resource type="Texture2D" path="res://art/Character/Guns/Shotgun/Shotgun_side-left_shoot-Sheet3.png" id="2_efobt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fipj8"]
+atlas = ExtResource("2_efobt")
+region = Rect2(0, 0, 54, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hkgl0"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_fipj8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Shotgun_side-left_shoot-Sheet3" type="Node2D" unique_id=1543486944]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1144614872]
+material = ExtResource("1_5yxsv")
+sprite_frames = SubResource("SpriteFrames_hkgl0")
+centered = false

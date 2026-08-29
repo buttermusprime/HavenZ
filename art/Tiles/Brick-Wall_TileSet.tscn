@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_xpf5i"]
+[ext_resource type="Texture2D" path="res://art/Tiles/Brick-Wall_TileSet.png" id="2_t4b1x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amdlg"]
+atlas = ExtResource("2_t4b1x")
+region = Rect2(0, 0, 96, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_has8o"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_amdlg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Brick-Wall_TileSet" type="Node2D" unique_id=1816988248]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=837048156]
+material = ExtResource("1_xpf5i")
+sprite_frames = SubResource("SpriteFrames_has8o")
+centered = false

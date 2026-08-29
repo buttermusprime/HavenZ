@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ham2d"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildable/Wooden/Wooden-wall_Gate_Horizontal.png" id="2_coi86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dns8d"]
+atlas = ExtResource("2_coi86")
+region = Rect2(0, 0, 16, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gug5g"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_dns8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Wooden-wall_Gate_Horizontal" type="Node2D" unique_id=250141984]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1933356937]
+material = ExtResource("1_ham2d")
+sprite_frames = SubResource("SpriteFrames_gug5g")
+centered = false

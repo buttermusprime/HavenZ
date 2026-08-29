@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_sk7m1"]
+[ext_resource type="Texture2D" path="res://art/Objects/Bench_1_down.png" id="2_jn87h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaerb"]
+atlas = ExtResource("2_jn87h")
+region = Rect2(0, 0, 32, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2gno"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_qaerb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Bench_1_down" type="Node2D" unique_id=1746326857]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1301615107]
+material = ExtResource("1_sk7m1")
+sprite_frames = SubResource("SpriteFrames_d2gno")
+centered = false

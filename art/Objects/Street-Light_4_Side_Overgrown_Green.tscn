@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_hxpaw"]
+[ext_resource type="Texture2D" path="res://art/Objects/Street-Light_4_Side_Overgrown_Green.png" id="2_yqdda"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mc8o"]
+atlas = ExtResource("2_yqdda")
+region = Rect2(0, 0, 26, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ns574"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_4mc8o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Street-Light_4_Side_Overgrown_Green" type="Node2D" unique_id=1362967536]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=275727502]
+material = ExtResource("1_hxpaw")
+sprite_frames = SubResource("SpriteFrames_ns574")
+centered = false

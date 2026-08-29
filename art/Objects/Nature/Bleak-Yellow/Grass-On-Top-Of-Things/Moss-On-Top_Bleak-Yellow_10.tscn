@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_hjq4f"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Bleak-Yellow/Grass-On-Top-Of-Things/Moss-On-Top_Bleak-Yellow_10.png" id="2_x4a55"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w07sv"]
+atlas = ExtResource("2_x4a55")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kxj6b"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_w07sv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Moss-On-Top_Bleak-Yellow_10" type="Node2D" unique_id=1705788865]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=679096522]
+material = ExtResource("1_hjq4f")
+sprite_frames = SubResource("SpriteFrames_kxj6b")
+centered = false

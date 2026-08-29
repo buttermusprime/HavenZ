@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_j4paj"]
+[ext_resource type="Texture2D" path="res://art/Objects/Street-Light_5_Up_Overgrown_Bleak-Yellow.png" id="2_2lp48"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ius34"]
+atlas = ExtResource("2_2lp48")
+region = Rect2(0, 0, 11, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c7s6t"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ius34")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Street-Light_5_Up_Overgrown_Bleak-Yellow" type="Node2D" unique_id=495315201]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1906036160]
+material = ExtResource("1_j4paj")
+sprite_frames = SubResource("SpriteFrames_c7s6t")
+centered = false

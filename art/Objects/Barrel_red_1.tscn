@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_vuh64"]
+[ext_resource type="Texture2D" path="res://art/Objects/Barrel_red_1.png" id="2_1kltl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eon6m"]
+atlas = ExtResource("2_1kltl")
+region = Rect2(0, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hdtp4"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_eon6m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Barrel_red_1" type="Node2D" unique_id=859318731]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1153935452]
+material = ExtResource("1_vuh64")
+sprite_frames = SubResource("SpriteFrames_hdtp4")
+centered = false

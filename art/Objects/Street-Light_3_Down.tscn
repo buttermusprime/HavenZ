@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_cxfib"]
+[ext_resource type="Texture2D" path="res://art/Objects/Street-Light_3_Down.png" id="2_2ilvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cu1h"]
+atlas = ExtResource("2_2ilvs")
+region = Rect2(0, 0, 6, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gm854"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_6cu1h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Street-Light_3_Down" type="Node2D" unique_id=103626319]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=533283184]
+material = ExtResource("1_cxfib")
+sprite_frames = SubResource("SpriteFrames_gm854")
+centered = false

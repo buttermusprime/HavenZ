@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_4emt7"]
+[ext_resource type="Texture2D" path="res://art/Enemies/Zombie_Axe/No-Axe/Zombie_Axe_No-axe_Side_First-Death-Sheet6.png" id="2_r72ao"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbrtk"]
+atlas = ExtResource("2_r72ao")
+region = Rect2(0, 0, 132, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axass"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_lbrtk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Zombie_Axe_No-axe_Side_First-Death-Sheet6" type="Node2D" unique_id=1817293140]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1454793449]
+material = ExtResource("1_4emt7")
+sprite_frames = SubResource("SpriteFrames_axass")
+centered = false

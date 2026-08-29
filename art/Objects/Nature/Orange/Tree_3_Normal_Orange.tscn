@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_n0ddu"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Orange/Tree_3_Normal_Orange.png" id="2_ono71"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlw3w"]
+atlas = ExtResource("2_ono71")
+region = Rect2(0, 0, 21, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nn7uc"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_dlw3w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Tree_3_Normal_Orange" type="Node2D" unique_id=2023637861]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=915758688]
+material = ExtResource("1_n0ddu")
+sprite_frames = SubResource("SpriteFrames_nn7uc")
+centered = false

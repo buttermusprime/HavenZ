@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_lciw8"]
+[ext_resource type="Texture2D" path="res://art/UI/Inventory/Inventory_Close-Sheet2.png" id="2_o6h5f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dcuh"]
+atlas = ExtResource("2_o6h5f")
+region = Rect2(0, 0, 14, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_662dr"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_5dcuh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Inventory_Close-Sheet2" type="Node2D" unique_id=972224654]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=924139758]
+material = ExtResource("1_lciw8")
+sprite_frames = SubResource("SpriteFrames_662dr")
+centered = false

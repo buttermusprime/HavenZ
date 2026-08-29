@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ntatl"]
+[ext_resource type="Texture2D" path="res://art/Objects/Iron-beam.png" id="2_0ypod"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xf23"]
+atlas = ExtResource("2_0ypod")
+region = Rect2(0, 0, 15, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3m6ti"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_7xf23")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Iron-beam" type="Node2D" unique_id=1588906919]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=397730305]
+material = ExtResource("1_ntatl")
+sprite_frames = SubResource("SpriteFrames_3m6ti")
+centered = false

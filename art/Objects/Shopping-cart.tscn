@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_xyoiq"]
+[ext_resource type="Texture2D" path="res://art/Objects/Shopping-cart.png" id="2_d0g5g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20a2m"]
+atlas = ExtResource("2_d0g5g")
+region = Rect2(0, 0, 12, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g5brn"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_20a2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Shopping-cart" type="Node2D" unique_id=1004120134]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=192518058]
+material = ExtResource("1_xyoiq")
+sprite_frames = SubResource("SpriteFrames_g5brn")
+centered = false

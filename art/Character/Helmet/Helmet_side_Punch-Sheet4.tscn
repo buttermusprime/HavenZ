@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_cu3ja"]
+[ext_resource type="Texture2D" path="res://art/Character/Helmet/Helmet_side_Punch-Sheet4.png" id="2_gax3d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rya30"]
+atlas = ExtResource("2_gax3d")
+region = Rect2(0, 0, 52, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6omc"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_rya30")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Helmet_side_Punch-Sheet4" type="Node2D" unique_id=199833636]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=406811210]
+material = ExtResource("1_cu3ja")
+sprite_frames = SubResource("SpriteFrames_l6omc")
+centered = false

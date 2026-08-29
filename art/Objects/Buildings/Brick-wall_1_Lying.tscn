@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_jdovx"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildings/Brick-wall_1_Lying.png" id="2_82ot0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm5b2"]
+atlas = ExtResource("2_82ot0")
+region = Rect2(0, 0, 13, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yx452"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_rm5b2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Brick-wall_1_Lying" type="Node2D" unique_id=403705860]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=957868412]
+material = ExtResource("1_jdovx")
+sprite_frames = SubResource("SpriteFrames_yx452")
+centered = false

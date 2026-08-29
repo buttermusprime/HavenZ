@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_po0h8"]
+[ext_resource type="Texture2D" path="res://art/Character/Main/Punch/Character_up_punch_no-hands-Sheet4.png" id="2_3udww"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dis8"]
+atlas = ExtResource("2_3udww")
+region = Rect2(0, 0, 44, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d25hm"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_8dis8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Character_up_punch_no-hands-Sheet4" type="Node2D" unique_id=689010644]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=472044882]
+material = ExtResource("1_po0h8")
+sprite_frames = SubResource("SpriteFrames_d25hm")
+centered = false

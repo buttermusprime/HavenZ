@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_2hehg"]
+[ext_resource type="Texture2D" path="res://art/Character/Bat/Bat_side-left_idle-and-run-Sheet6.png" id="2_v8kt3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lelw"]
+atlas = ExtResource("2_v8kt3")
+region = Rect2(0, 0, 96, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvq1n"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_3lelw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Bat_side-left_idle-and-run-Sheet6" type="Node2D" unique_id=1245084817]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1913334555]
+material = ExtResource("1_2hehg")
+sprite_frames = SubResource("SpriteFrames_gvq1n")
+centered = false

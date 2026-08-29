@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_g1wy4"]
+[ext_resource type="Texture2D" path="res://art/Objects/Windows/Window_21_open_Boarded-up.png" id="2_45e16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlgpa"]
+atlas = ExtResource("2_45e16")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x0l3m"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_dlgpa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Window_21_open_Boarded-up" type="Node2D" unique_id=852174191]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=384670924]
+material = ExtResource("1_g1wy4")
+sprite_frames = SubResource("SpriteFrames_x0l3m")
+centered = false

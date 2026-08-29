@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_y30sf"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildings/Awning_orange_2.png" id="2_bc615"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mxv6"]
+atlas = ExtResource("2_bc615")
+region = Rect2(0, 0, 96, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3m1o"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_7mxv6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Awning_orange_2" type="Node2D" unique_id=2027156584]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=317647786]
+material = ExtResource("1_y30sf")
+sprite_frames = SubResource("SpriteFrames_p3m1o")
+centered = false

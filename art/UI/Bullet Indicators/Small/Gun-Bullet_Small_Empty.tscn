@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_52nns"]
+[ext_resource type="Texture2D" path="res://art/UI/Bullet Indicators/Small/Gun-Bullet_Small_Empty.png" id="2_rmuad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s6qq"]
+atlas = ExtResource("2_rmuad")
+region = Rect2(0, 0, 5, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sry1s"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_8s6qq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Gun-Bullet_Small_Empty" type="Node2D" unique_id=1768158951]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=776306903]
+material = ExtResource("1_52nns")
+sprite_frames = SubResource("SpriteFrames_sry1s")
+centered = false

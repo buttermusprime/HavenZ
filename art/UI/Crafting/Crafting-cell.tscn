@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_kqihs"]
+[ext_resource type="Texture2D" path="res://art/UI/Crafting/Crafting-cell.png" id="2_gm4ft"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wrwu"]
+atlas = ExtResource("2_gm4ft")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bum1h"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_6wrwu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Crafting-cell" type="Node2D" unique_id=1371848745]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1684525181]
+material = ExtResource("1_kqihs")
+sprite_frames = SubResource("SpriteFrames_bum1h")
+centered = false

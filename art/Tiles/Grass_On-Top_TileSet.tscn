@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ewffq"]
+[ext_resource type="Texture2D" path="res://art/Tiles/Grass_On-Top_TileSet.png" id="2_f835d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcarx"]
+atlas = ExtResource("2_f835d")
+region = Rect2(0, 0, 128, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ua22b"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_fcarx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Grass_On-Top_TileSet" type="Node2D" unique_id=51808107]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1944008469]
+material = ExtResource("1_ewffq")
+sprite_frames = SubResource("SpriteFrames_ua22b")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_2hmes"]
+[ext_resource type="Texture2D" path="res://art/Enemies/Zombie_Axe/Axe/Axe_Down_Landed.png" id="2_gumms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxi8n"]
+atlas = ExtResource("2_gumms")
+region = Rect2(0, 0, 3, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ot6ms"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_qxi8n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Axe_Down_Landed" type="Node2D" unique_id=283534262]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1458907679]
+material = ExtResource("1_2hmes")
+sprite_frames = SubResource("SpriteFrames_ot6ms")
+centered = false

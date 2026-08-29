@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_5ajt1"]
+[ext_resource type="Texture2D" path="res://art/Objects/Stop-sign_Down_2_Overgrown_Green.png" id="2_pyp65"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4mwx"]
+atlas = ExtResource("2_pyp65")
+region = Rect2(0, 0, 14, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hm8vf"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_j4mwx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Stop-sign_Down_2_Overgrown_Green" type="Node2D" unique_id=377782131]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=713682118]
+material = ExtResource("1_5ajt1")
+sprite_frames = SubResource("SpriteFrames_hm8vf")
+centered = false

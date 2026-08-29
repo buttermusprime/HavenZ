@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_xni5s"]
+[ext_resource type="Texture2D" path="res://art/UI/Menu/Button_Yes_Not-Pressed.png" id="2_sos31"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfi2n"]
+atlas = ExtResource("2_sos31")
+region = Rect2(0, 0, 10, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j7g5j"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_qfi2n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Button_Yes_Not-Pressed" type="Node2D" unique_id=1100499764]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2104980300]
+material = ExtResource("1_xni5s")
+sprite_frames = SubResource("SpriteFrames_j7g5j")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ka788"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Red/Tree_7_Birch_Red.png" id="2_t17in"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7qpf"]
+atlas = ExtResource("2_t17in")
+region = Rect2(0, 0, 39, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3uapr"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_h7qpf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Tree_7_Birch_Red" type="Node2D" unique_id=1327870754]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=477825881]
+material = ExtResource("1_ka788")
+sprite_frames = SubResource("SpriteFrames_3uapr")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_hksfx"]
+[ext_resource type="Texture2D" path="res://art/Tiles/Buildings/Buildings_white_TileSet.png" id="2_ejot2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkpae"]
+atlas = ExtResource("2_ejot2")
+region = Rect2(0, 0, 208, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aw6lj"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_rkpae")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Buildings_white_TileSet" type="Node2D" unique_id=1870678698]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2140326434]
+material = ExtResource("1_hksfx")
+sprite_frames = SubResource("SpriteFrames_aw6lj")
+centered = false

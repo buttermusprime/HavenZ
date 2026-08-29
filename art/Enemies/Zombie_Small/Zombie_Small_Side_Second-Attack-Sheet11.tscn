@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ex3ly"]
+[ext_resource type="Texture2D" path="res://art/Enemies/Zombie_Small/Zombie_Small_Side_Second-Attack-Sheet11.png" id="2_fi2mt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dhsm"]
+atlas = ExtResource("2_fi2mt")
+region = Rect2(0, 0, 682, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2ao1"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_0dhsm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Zombie_Small_Side_Second-Attack-Sheet11" type="Node2D" unique_id=1969857324]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1500170621]
+material = ExtResource("1_ex3ly")
+sprite_frames = SubResource("SpriteFrames_f2ao1")
+centered = false

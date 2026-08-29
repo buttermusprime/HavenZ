@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_4htr2"]
+[ext_resource type="Texture2D" path="res://art/Tiles/Wire-Fence/Wire-Fence_Opening_No-Lock_Sheet8.png" id="2_kkukx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d3ca"]
+atlas = ExtResource("2_kkukx")
+region = Rect2(0, 0, 144, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_flk6n"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_0d3ca")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Wire-Fence_Opening_No-Lock_Sheet8" type="Node2D" unique_id=629405318]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=618975462]
+material = ExtResource("1_4htr2")
+sprite_frames = SubResource("SpriteFrames_flk6n")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_y17sa"]
+[ext_resource type="Texture2D" path="res://art/UI/HP/Small/Heart_Small_Empty.png" id="2_07lvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iixvt"]
+atlas = ExtResource("2_07lvl")
+region = Rect2(0, 0, 11, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ncw2"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_iixvt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Heart_Small_Empty" type="Node2D" unique_id=310917455]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=129605143]
+material = ExtResource("1_y17sa")
+sprite_frames = SubResource("SpriteFrames_2ncw2")
+centered = false

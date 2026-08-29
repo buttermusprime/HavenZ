@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_e41ly"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildings/Hatch_1_Open.png" id="2_kpfwv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88cw7"]
+atlas = ExtResource("2_kpfwv")
+region = Rect2(0, 0, 13, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d6vn6"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_88cw7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Hatch_1_Open" type="Node2D" unique_id=2137390239]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=195324085]
+material = ExtResource("1_e41ly")
+sprite_frames = SubResource("SpriteFrames_d6vn6")
+centered = false

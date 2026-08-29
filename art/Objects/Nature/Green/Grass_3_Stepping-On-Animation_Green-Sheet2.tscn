@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_eixah"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Green/Grass_3_Stepping-On-Animation_Green-Sheet2.png" id="2_2i5l4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xodka"]
+atlas = ExtResource("2_2i5l4")
+region = Rect2(0, 0, 32, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wq47v"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_xodka")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Grass_3_Stepping-On-Animation_Green-Sheet2" type="Node2D" unique_id=1606360006]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1587075560]
+material = ExtResource("1_eixah")
+sprite_frames = SubResource("SpriteFrames_wq47v")
+centered = false

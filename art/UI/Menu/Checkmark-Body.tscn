@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_3vkaw"]
+[ext_resource type="Texture2D" path="res://art/UI/Menu/Checkmark-Body.png" id="2_4cfsl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c08hl"]
+atlas = ExtResource("2_4cfsl")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ro81u"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_c08hl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Checkmark-Body" type="Node2D" unique_id=1155552079]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1435038960]
+material = ExtResource("1_3vkaw")
+sprite_frames = SubResource("SpriteFrames_ro81u")
+centered = false

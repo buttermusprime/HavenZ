@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_gdgms"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildable/Reinforced/Reinforced_wooden-wall_Horizontal.png" id="2_h24qq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owrdd"]
+atlas = ExtResource("2_h24qq")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fn7i"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_owrdd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Reinforced_wooden-wall_Horizontal" type="Node2D" unique_id=876548933]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=291892972]
+material = ExtResource("1_gdgms")
+sprite_frames = SubResource("SpriteFrames_3fn7i")
+centered = false

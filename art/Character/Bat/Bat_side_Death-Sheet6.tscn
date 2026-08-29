@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_wtgq3"]
+[ext_resource type="Texture2D" path="res://art/Character/Bat/Bat_side_Death-Sheet6.png" id="2_exp8c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w21o"]
+atlas = ExtResource("2_exp8c")
+region = Rect2(0, 0, 108, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mggl6"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_1w21o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Bat_side_Death-Sheet6" type="Node2D" unique_id=640694728]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1284722910]
+material = ExtResource("1_wtgq3")
+sprite_frames = SubResource("SpriteFrames_mggl6")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_kablt"]
+[ext_resource type="Texture2D" path="res://art/Character/Guns/Gun/Gun_side_shoot-Sheet3.png" id="2_wmrmb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sgvt"]
+atlas = ExtResource("2_wmrmb")
+region = Rect2(0, 0, 54, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7i4iu"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_5sgvt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Gun_side_shoot-Sheet3" type="Node2D" unique_id=708905085]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2091377926]
+material = ExtResource("1_kablt")
+sprite_frames = SubResource("SpriteFrames_7i4iu")
+centered = false

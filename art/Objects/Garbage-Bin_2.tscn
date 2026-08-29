@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_enlrn"]
+[ext_resource type="Texture2D" path="res://art/Objects/Garbage-Bin_2.png" id="2_cnqtk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ypfu"]
+atlas = ExtResource("2_cnqtk")
+region = Rect2(0, 0, 27, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqhby"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_6ypfu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Garbage-Bin_2" type="Node2D" unique_id=1009572000]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2145602918]
+material = ExtResource("1_enlrn")
+sprite_frames = SubResource("SpriteFrames_sqhby")
+centered = false

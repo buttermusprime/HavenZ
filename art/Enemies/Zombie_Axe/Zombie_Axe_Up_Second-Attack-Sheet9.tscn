@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_14pqa"]
+[ext_resource type="Texture2D" path="res://art/Enemies/Zombie_Axe/Zombie_Axe_Up_Second-Attack-Sheet9.png" id="2_17il7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf732"]
+atlas = ExtResource("2_17il7")
+region = Rect2(0, 0, 126, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5xcfs"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_jf732")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Zombie_Axe_Up_Second-Attack-Sheet9" type="Node2D" unique_id=1931750866]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=991600616]
+material = ExtResource("1_14pqa")
+sprite_frames = SubResource("SpriteFrames_5xcfs")
+centered = false

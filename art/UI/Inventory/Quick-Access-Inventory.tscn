@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_t3qq3"]
+[ext_resource type="Texture2D" path="res://art/UI/Inventory/Quick-Access-Inventory.png" id="2_qj1n0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m52q1"]
+atlas = ExtResource("2_qj1n0")
+region = Rect2(0, 0, 124, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wqon"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_m52q1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Quick-Access-Inventory" type="Node2D" unique_id=2142919351]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1162382653]
+material = ExtResource("1_t3qq3")
+sprite_frames = SubResource("SpriteFrames_1wqon")
+centered = false

@@ -20,6 +20,47 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 
 ## Entries
 
+### S2.4 assessed, deferred — and a real capability unlock found while investigating why
+
+S2.4 ("apply it live and iterate visually in the running game") has no running game with real
+art in it yet — the gray-box still renders `ColorRect`s, and nothing had imported any of S2.3's
+new art into a scene. Checked for objectively "weird" colors anyway (saturation outliers against
+the pack's established muted family): the top candidates all traced to legitimate, intentional
+content — fire/muzzle-flash frames and "Red"/"Orange" autumn-toned nature variants (no matching
+named biome in the GDD yet, a content-scope question, not a color-mistake one) — nothing read as
+an actual error. User chose to defer S2.4 rather than force a decision without real rendered art
+to look at.
+
+**While investigating that blocker, found a real capability unlock in PixelPipe itself:** D.1's
+long-standing finding ("`EditorScript` can't run outside a live interactive editor, no CLI path
+exists") turned out to have been over-applied — that's true of the *wrapper* file
+(`import_sprite_frames.gd`), but the actual `SpriteFrames`-building logic lived in a separate
+`RefCounted` class with zero editor-only API calls. Extracted the shared logic and added
+`import_sprite_frames_headless.gd` (plain `SceneTree`, `godot --headless --script`) in PixelPipe's
+repo — confirmed for real against HavenZ's own synced art, not just PixelPipe's synthetic
+fixtures. **Ran it for real: all 761 of S2.3's exported assets now have a real `SpriteFrames`-backed
+`.tscn` scene under `res://art/`, built with zero live-editor time.** This removes what S2.3 had
+flagged as an open, editor-time-gated item. Logged as a general Godot lesson in the shared
+`PENDING_LESSONS.md`, not just here — it applies to any project that assumed an `EditorScript`'s
+restriction extends to logic it merely happens to contain.
+
+**Real, more significant gap surfaced by actually building all 761 scenes and checking their
+content, not just their existence:** every single one of the 761 exported assets has exactly 1
+frame — confirmed concretely on `Character_down_idle-Sheet6.png` (78×16, cleanly 6 frames at
+13px each) that the pipeline has **no grid-slicing step anywhere** — Phase C.2's conversion and
+Phase C.3's export both treat every source PNG as one whole static frame, sheet-suffix filename
+or not. An `AnimatedSprite2D` built from an "idle-and-run-Sheet6" source today would show all 6
+walk-cycle poses squashed side-by-side into one static frame, not a real animation. Non-animated
+single-pose assets (icons, tiles, static objects) are unaffected. **Not fixed this session** — this
+is a real, undecided pipeline design question (how should frame count/dimensions be determined:
+filename convention, explicit metadata, Aseprite's own spritesheet-import grid-slice feature?),
+not a quick patch, and needs a decision before S2.5 can use any multi-pose Character sheet for
+real animation. Flagged to the user rather than guessed at.
+
+**Next:** resolve the sheet-slicing design question (likely a new PixelPipe session, since this is
+pipeline-level, not HavenZ-specific), then S2.5 (reskin the gray-box) can proceed for real —
+single-pose assets (a lot of Objects/Tiles content) are already usable as-is in the meantime.
+
 ### S2.3 — Real pack conversion & sync
 
 Ran PixelPipe's real Aseprite-CLI batch conversion against the full real pack, using S2.2's

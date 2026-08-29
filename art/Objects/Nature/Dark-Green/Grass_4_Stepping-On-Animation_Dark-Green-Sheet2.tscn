@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_8yv2j"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Dark-Green/Grass_4_Stepping-On-Animation_Dark-Green-Sheet2.png" id="2_dt51v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iosf"]
+atlas = ExtResource("2_dt51v")
+region = Rect2(0, 0, 32, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fi0m1"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_0iosf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Grass_4_Stepping-On-Animation_Dark-Green-Sheet2" type="Node2D" unique_id=1017042142]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1322638607]
+material = ExtResource("1_8yv2j")
+sprite_frames = SubResource("SpriteFrames_fi0m1")
+centered = false

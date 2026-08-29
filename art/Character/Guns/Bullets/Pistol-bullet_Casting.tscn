@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_b1ntg"]
+[ext_resource type="Texture2D" path="res://art/Character/Guns/Bullets/Pistol-bullet_Casting.png" id="2_5x1ie"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2oh4"]
+atlas = ExtResource("2_5x1ie")
+region = Rect2(0, 0, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ue3i4"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_k2oh4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Pistol-bullet_Casting" type="Node2D" unique_id=1128390172]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=565523424]
+material = ExtResource("1_b1ntg")
+sprite_frames = SubResource("SpriteFrames_ue3i4")
+centered = false

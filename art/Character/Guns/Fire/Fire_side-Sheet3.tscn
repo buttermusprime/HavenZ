@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ws3se"]
+[ext_resource type="Texture2D" path="res://art/Character/Guns/Fire/Fire_side-Sheet3.png" id="2_dxh0s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hqns"]
+atlas = ExtResource("2_dxh0s")
+region = Rect2(0, 0, 30, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xir6g"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_6hqns")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Fire_side-Sheet3" type="Node2D" unique_id=1600572143]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1054124436]
+material = ExtResource("1_ws3se")
+sprite_frames = SubResource("SpriteFrames_xir6g")
+centered = false

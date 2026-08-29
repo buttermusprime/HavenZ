@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_386l3"]
+[ext_resource type="Texture2D" path="res://art/Character/Guns/Pistol/Pistol_up_shoot-Sheet3.png" id="2_t7vhe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha3fq"]
+atlas = ExtResource("2_t7vhe")
+region = Rect2(0, 0, 15, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iyb0k"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ha3fq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Pistol_up_shoot-Sheet3" type="Node2D" unique_id=403550815]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=662759343]
+material = ExtResource("1_386l3")
+sprite_frames = SubResource("SpriteFrames_iyb0k")
+centered = false

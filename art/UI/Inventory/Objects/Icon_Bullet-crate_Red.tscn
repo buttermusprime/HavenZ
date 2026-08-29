@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_dlyww"]
+[ext_resource type="Texture2D" path="res://art/UI/Inventory/Objects/Icon_Bullet-crate_Red.png" id="2_wab6y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3xao"]
+atlas = ExtResource("2_wab6y")
+region = Rect2(0, 0, 15, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjqln"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_g3xao")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Icon_Bullet-crate_Red" type="Node2D" unique_id=335338228]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=686650000]
+material = ExtResource("1_dlyww")
+sprite_frames = SubResource("SpriteFrames_wjqln")
+centered = false

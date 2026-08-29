@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_kl6bp"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Orange/Tree_8_Birch_Orange.png" id="2_eyhb5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prpb2"]
+atlas = ExtResource("2_eyhb5")
+region = Rect2(0, 0, 24, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sm6nd"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_prpb2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Tree_8_Birch_Orange" type="Node2D" unique_id=532410873]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=595568164]
+material = ExtResource("1_kl6bp")
+sprite_frames = SubResource("SpriteFrames_sm6nd")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_vuirj"]
+[ext_resource type="Texture2D" path="res://art/Character/Main/Run/Character_down_run_no-hands-Sheet6.png" id="2_6yi27"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo03t"]
+atlas = ExtResource("2_6yi27")
+region = Rect2(0, 0, 66, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1spwi"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_xo03t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Character_down_run_no-hands-Sheet6" type="Node2D" unique_id=1103911765]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1581808658]
+material = ExtResource("1_vuirj")
+sprite_frames = SubResource("SpriteFrames_1spwi")
+centered = false

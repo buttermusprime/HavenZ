@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ahras"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Bleak-Yellow/Grass_4_Stepping-On-Animation_Bleak-Yellow-Sheet2.png" id="2_3p8b1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4immq"]
+atlas = ExtResource("2_3p8b1")
+region = Rect2(0, 0, 32, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u78tj"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_4immq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Grass_4_Stepping-On-Animation_Bleak-Yellow-Sheet2" type="Node2D" unique_id=1231853020]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=524189669]
+material = ExtResource("1_ahras")
+sprite_frames = SubResource("SpriteFrames_u78tj")
+centered = false

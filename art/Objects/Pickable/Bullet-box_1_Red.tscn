@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_bjcbp"]
+[ext_resource type="Texture2D" path="res://art/Objects/Pickable/Bullet-box_1_Red.png" id="2_nimi6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuyun"]
+atlas = ExtResource("2_nimi6")
+region = Rect2(0, 0, 6, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8myfg"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_kuyun")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Bullet-box_1_Red" type="Node2D" unique_id=1686255092]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=75767752]
+material = ExtResource("1_bjcbp")
+sprite_frames = SubResource("SpriteFrames_8myfg")
+centered = false

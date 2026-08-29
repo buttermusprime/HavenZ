@@ -12,6 +12,55 @@ extends RefCounted
 
 const DEFAULT_ANIMATION_NAME := "default"
 const SHARED_PALETTE_MATERIAL_PATH := "res://addons/pixelpipe/shared_palette_material.tres"
+const MANIFEST_FILENAME := "asset_manifest.json"
+
+
+## Rebuilds every exported JSON found (recursively) under folder into a sibling
+## .tscn. Returns how many succeeded. Shared by both driver wrappers --
+## import_sprite_frames.gd (EditorScript, File > Run convenience inside an
+## already-open editor) and import_sprite_frames_headless.gd (plain SceneTree,
+## for `godot --headless --script`, no editor session needed at all -- see
+## that file's header comment for why this doesn't actually require one,
+## despite EditorScript's own hard CLI restriction).
+static func run_for_folder(folder: String) -> int:
+	var count := 0
+	for json_path in _find_json_files(folder):
+		if import_one(json_path):
+			count += 1
+	return count
+
+
+## Rebuilds a single exported JSON's scene + saves it as a sibling .tscn.
+## Returns true on success.
+static func import_one(json_path: String) -> bool:
+	var scene_root := build_scene(json_path)
+	if scene_root == null:
+		return false
+
+	var packed := PackedScene.new()
+	var pack_result := packed.pack(scene_root)
+	if pack_result != OK:
+		push_error("PixelPipe: failed to pack scene for %s (error %d)" % [json_path, pack_result])
+		return false
+
+	var out_path := json_path.get_basename() + ".tscn"
+	var save_result := ResourceSaver.save(packed, out_path)
+	if save_result != OK:
+		push_error("PixelPipe: failed to save %s (error %d)" % [out_path, save_result])
+		return false
+
+	print("PixelPipe: %s -> %s" % [json_path, out_path])
+	return true
+
+
+static func _find_json_files(folder: String) -> Array[String]:
+	var results: Array[String] = []
+	for entry in ResourceLoader.list_directory(folder):
+		if entry.ends_with("/"):
+			results.append_array(_find_json_files(folder.path_join(entry)))
+		elif entry.ends_with(".json") and entry != MANIFEST_FILENAME:
+			results.append(folder.path_join(entry))
+	return results
 
 
 ## One animation per Aseprite Tag. A source with no Tags at all gets a

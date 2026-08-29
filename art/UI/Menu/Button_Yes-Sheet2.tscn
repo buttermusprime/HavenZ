@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_4d388"]
+[ext_resource type="Texture2D" path="res://art/UI/Menu/Button_Yes-Sheet2.png" id="2_nvgpo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1sbf"]
+atlas = ExtResource("2_nvgpo")
+region = Rect2(0, 0, 20, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlvkc"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_w1sbf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Button_Yes-Sheet2" type="Node2D" unique_id=361043135]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1933114172]
+material = ExtResource("1_4d388")
+sprite_frames = SubResource("SpriteFrames_hlvkc")
+centered = false

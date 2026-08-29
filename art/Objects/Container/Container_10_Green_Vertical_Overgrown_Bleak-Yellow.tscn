@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ylqcu"]
+[ext_resource type="Texture2D" path="res://art/Objects/Container/Container_10_Green_Vertical_Overgrown_Bleak-Yellow.png" id="2_men6t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_455gl"]
+atlas = ExtResource("2_men6t")
+region = Rect2(0, 0, 29, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rsqvu"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_455gl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Container_10_Green_Vertical_Overgrown_Bleak-Yellow" type="Node2D" unique_id=1305553244]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=45230493]
+material = ExtResource("1_ylqcu")
+sprite_frames = SubResource("SpriteFrames_rsqvu")
+centered = false

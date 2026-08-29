@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ct831"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildings/Enterance_Green.png" id="2_yvsug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqq6m"]
+atlas = ExtResource("2_yvsug")
+region = Rect2(0, 0, 31, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jy450"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_vqq6m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Enterance_Green" type="Node2D" unique_id=1468495613]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=179773763]
+material = ExtResource("1_ct831")
+sprite_frames = SubResource("SpriteFrames_jy450")
+centered = false

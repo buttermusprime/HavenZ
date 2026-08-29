@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_8slsh"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildings/layered-posters_1_For-ground-and-walls.png" id="2_m4qhk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmw1w"]
+atlas = ExtResource("2_m4qhk")
+region = Rect2(0, 0, 15, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ioepd"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_fmw1w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="layered-posters_1_For-ground-and-walls" type="Node2D" unique_id=1760670905]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=98844657]
+material = ExtResource("1_8slsh")
+sprite_frames = SubResource("SpriteFrames_ioepd")
+centered = false

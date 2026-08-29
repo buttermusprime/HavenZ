@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_gfpve"]
+[ext_resource type="Texture2D" path="res://art/Objects/Pickable/Bandage.png" id="2_iev5d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bchq"]
+atlas = ExtResource("2_iev5d")
+region = Rect2(0, 0, 5, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0scdd"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_2bchq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Bandage" type="Node2D" unique_id=122434635]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226416858]
+material = ExtResource("1_gfpve")
+sprite_frames = SubResource("SpriteFrames_0scdd")
+centered = false

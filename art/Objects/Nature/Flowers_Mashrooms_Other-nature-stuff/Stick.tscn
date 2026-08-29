@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_8jt1d"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Flowers_Mashrooms_Other-nature-stuff/Stick.png" id="2_nh3nk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dssjj"]
+atlas = ExtResource("2_nh3nk")
+region = Rect2(0, 0, 10, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_voj53"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_dssjj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Stick" type="Node2D" unique_id=1641166205]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1044205555]
+material = ExtResource("1_8jt1d")
+sprite_frames = SubResource("SpriteFrames_voj53")
+centered = false

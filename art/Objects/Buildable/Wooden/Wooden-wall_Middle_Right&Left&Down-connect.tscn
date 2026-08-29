@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_7dm7d"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildable/Wooden/Wooden-wall_Middle_Right&Left&Down-connect.png" id="2_otx8h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_defem"]
+atlas = ExtResource("2_otx8h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5c258"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_defem")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Wooden-wall_Middle_Right&Left&Down-connect" type="Node2D" unique_id=763936482]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=152263317]
+material = ExtResource("1_7dm7d")
+sprite_frames = SubResource("SpriteFrames_5c258")
+centered = false

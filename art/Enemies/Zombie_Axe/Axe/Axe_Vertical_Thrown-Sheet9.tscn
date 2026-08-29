@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_peklc"]
+[ext_resource type="Texture2D" path="res://art/Enemies/Zombie_Axe/Axe/Axe_Vertical_Thrown-Sheet9.png" id="2_fwy1m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u41s"]
+atlas = ExtResource("2_fwy1m")
+region = Rect2(0, 0, 27, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_raini"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_2u41s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Axe_Vertical_Thrown-Sheet9" type="Node2D" unique_id=1636437173]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=303853262]
+material = ExtResource("1_peklc")
+sprite_frames = SubResource("SpriteFrames_raini")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_sasle"]
+[ext_resource type="Texture2D" path="res://art/Objects/Gray-brick_Debris.png" id="2_kiqv8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71ahd"]
+atlas = ExtResource("2_kiqv8")
+region = Rect2(0, 0, 17, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vj57m"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_71ahd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Gray-brick_Debris" type="Node2D" unique_id=1730668100]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1509880143]
+material = ExtResource("1_sasle")
+sprite_frames = SubResource("SpriteFrames_vj57m")
+centered = false

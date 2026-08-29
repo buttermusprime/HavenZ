@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_k6sy6"]
+[ext_resource type="Texture2D" path="res://art/UI/Crafting/Crafting_Arrow.png" id="2_k2i4w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw4yw"]
+atlas = ExtResource("2_k2i4w")
+region = Rect2(0, 0, 7, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0a8a"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_vw4yw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Crafting_Arrow" type="Node2D" unique_id=460331958]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=74107763]
+material = ExtResource("1_k6sy6")
+sprite_frames = SubResource("SpriteFrames_e0a8a")
+centered = false

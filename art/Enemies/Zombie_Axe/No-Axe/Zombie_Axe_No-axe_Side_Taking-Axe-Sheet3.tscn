@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_aim8e"]
+[ext_resource type="Texture2D" path="res://art/Enemies/Zombie_Axe/No-Axe/Zombie_Axe_No-axe_Side_Taking-Axe-Sheet3.png" id="2_fcjfw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqn2x"]
+atlas = ExtResource("2_fcjfw")
+region = Rect2(0, 0, 60, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fss8g"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_vqn2x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Zombie_Axe_No-axe_Side_Taking-Axe-Sheet3" type="Node2D" unique_id=1394029409]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=171081903]
+material = ExtResource("1_aim8e")
+sprite_frames = SubResource("SpriteFrames_fss8g")
+centered = false

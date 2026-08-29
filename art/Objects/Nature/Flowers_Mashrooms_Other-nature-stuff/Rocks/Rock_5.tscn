@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_aac7a"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Flowers_Mashrooms_Other-nature-stuff/Rocks/Rock_5.png" id="2_iwo8c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc37j"]
+atlas = ExtResource("2_iwo8c")
+region = Rect2(0, 0, 14, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ftrc4"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_wc37j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Rock_5" type="Node2D" unique_id=655492478]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1205351117]
+material = ExtResource("1_aac7a")
+sprite_frames = SubResource("SpriteFrames_ftrc4")
+centered = false

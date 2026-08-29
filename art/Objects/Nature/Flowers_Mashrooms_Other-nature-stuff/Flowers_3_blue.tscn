@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_chny4"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Flowers_Mashrooms_Other-nature-stuff/Flowers_3_blue.png" id="2_xwmpn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt1b6"]
+atlas = ExtResource("2_xwmpn")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1i48s"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_yt1b6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Flowers_3_blue" type="Node2D" unique_id=325826741]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=27041930]
+material = ExtResource("1_chny4")
+sprite_frames = SubResource("SpriteFrames_1i48s")
+centered = false

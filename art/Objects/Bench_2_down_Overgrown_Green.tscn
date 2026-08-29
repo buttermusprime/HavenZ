@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_47kls"]
+[ext_resource type="Texture2D" path="res://art/Objects/Bench_2_down_Overgrown_Green.png" id="2_a23px"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00s6t"]
+atlas = ExtResource("2_a23px")
+region = Rect2(0, 0, 32, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4h5hm"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_00s6t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Bench_2_down_Overgrown_Green" type="Node2D" unique_id=1002641830]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=175663737]
+material = ExtResource("1_47kls")
+sprite_frames = SubResource("SpriteFrames_4h5hm")
+centered = false

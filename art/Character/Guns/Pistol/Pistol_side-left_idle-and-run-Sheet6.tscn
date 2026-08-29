@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_w06v4"]
+[ext_resource type="Texture2D" path="res://art/Character/Guns/Pistol/Pistol_side-left_idle-and-run-Sheet6.png" id="2_s7xqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk1by"]
+atlas = ExtResource("2_s7xqh")
+region = Rect2(0, 0, 48, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_faie5"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_kk1by")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Pistol_side-left_idle-and-run-Sheet6" type="Node2D" unique_id=338437583]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=548019624]
+material = ExtResource("1_w06v4")
+sprite_frames = SubResource("SpriteFrames_faie5")
+centered = false

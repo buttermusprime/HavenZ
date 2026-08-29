@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_s0n1e"]
+[ext_resource type="Texture2D" path="res://art/Objects/Exhaust-pipe.png" id="2_hvrxf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgxeh"]
+atlas = ExtResource("2_hvrxf")
+region = Rect2(0, 0, 5, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wniyh"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_pgxeh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Exhaust-pipe" type="Node2D" unique_id=1475504544]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=784337127]
+material = ExtResource("1_s0n1e")
+sprite_frames = SubResource("SpriteFrames_wniyh")
+centered = false

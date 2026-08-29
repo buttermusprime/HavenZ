@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_f8g3t"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildings/Balcony_3_Left_Ladder-hole.png" id="2_y4p37"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttlnq"]
+atlas = ExtResource("2_y4p37")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ptvv"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ttlnq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Balcony_3_Left_Ladder-hole" type="Node2D" unique_id=1882625159]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=592886122]
+material = ExtResource("1_f8g3t")
+sprite_frames = SubResource("SpriteFrames_3ptvv")
+centered = false

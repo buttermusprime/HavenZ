@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ornld"]
+[ext_resource type="Texture2D" path="res://art/Character/Helmet/Helmet_Up-and-Down_Idle-and-Run-Sheet6.png" id="2_3c78b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d7mr"]
+atlas = ExtResource("2_3c78b")
+region = Rect2(0, 0, 60, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0c77l"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_0d7mr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Helmet_Up-and-Down_Idle-and-Run-Sheet6" type="Node2D" unique_id=1924965995]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1229140058]
+material = ExtResource("1_ornld")
+sprite_frames = SubResource("SpriteFrames_0c77l")
+centered = false

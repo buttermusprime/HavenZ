@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_efvo2"]
+[ext_resource type="Texture2D" path="res://art/Objects/Container/Container_6_Red_Vertical_Overgrown_Dark-Green.png" id="2_igwe3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x86v4"]
+atlas = ExtResource("2_igwe3")
+region = Rect2(0, 0, 29, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jroux"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_x86v4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Container_6_Red_Vertical_Overgrown_Dark-Green" type="Node2D" unique_id=1351602704]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1565431423]
+material = ExtResource("1_efvo2")
+sprite_frames = SubResource("SpriteFrames_jroux")
+centered = false

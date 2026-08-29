@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_00s8j"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Bleak-Yellow/Bush_2_Bleak-Yellow.png" id="2_r03ec"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7crq"]
+atlas = ExtResource("2_r03ec")
+region = Rect2(0, 0, 28, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0d5bu"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_u7crq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Bush_2_Bleak-Yellow" type="Node2D" unique_id=1635383111]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1768416862]
+material = ExtResource("1_00s8j")
+sprite_frames = SubResource("SpriteFrames_0d5bu")
+centered = false

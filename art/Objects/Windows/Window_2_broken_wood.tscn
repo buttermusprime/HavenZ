@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_wffu0"]
+[ext_resource type="Texture2D" path="res://art/Objects/Windows/Window_2_broken_wood.png" id="2_l7tcp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad4vl"]
+atlas = ExtResource("2_l7tcp")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t823d"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ad4vl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Window_2_broken_wood" type="Node2D" unique_id=1700168744]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1089692795]
+material = ExtResource("1_wffu0")
+sprite_frames = SubResource("SpriteFrames_t823d")
+centered = false

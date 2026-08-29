@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_4445a"]
+[ext_resource type="Texture2D" path="res://art/UI/Inventory/Inventory_Close_Pressed.png" id="2_2q3nu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsunf"]
+atlas = ExtResource("2_2q3nu")
+region = Rect2(0, 0, 7, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_daf6i"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_fsunf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Inventory_Close_Pressed" type="Node2D" unique_id=1896755709]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=8851050]
+material = ExtResource("1_4445a")
+sprite_frames = SubResource("SpriteFrames_daf6i")
+centered = false

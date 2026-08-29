@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_feh0e"]
+[ext_resource type="Texture2D" path="res://art/Character/Helmet/Helmet_Up-and-Down_Pick-up-Sheet3.png" id="2_3i78x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3npo"]
+atlas = ExtResource("2_3i78x")
+region = Rect2(0, 0, 30, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l2vo0"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_s3npo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Helmet_Up-and-Down_Pick-up-Sheet3" type="Node2D" unique_id=1911703495]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1564456138]
+material = ExtResource("1_feh0e")
+sprite_frames = SubResource("SpriteFrames_l2vo0")
+centered = false

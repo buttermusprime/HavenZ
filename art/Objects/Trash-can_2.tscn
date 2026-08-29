@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_itnqc"]
+[ext_resource type="Texture2D" path="res://art/Objects/Trash-can_2.png" id="2_ltg5v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj5vj"]
+atlas = ExtResource("2_ltg5v")
+region = Rect2(0, 0, 13, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oo7na"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_gj5vj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Trash-can_2" type="Node2D" unique_id=258928060]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=105019717]
+material = ExtResource("1_itnqc")
+sprite_frames = SubResource("SpriteFrames_oo7na")
+centered = false

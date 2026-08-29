@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_mpjue"]
+[ext_resource type="Texture2D" path="res://art/Enemies/Zombie_Axe/Axe/Axe_Side_Landing-Sheet5.png" id="2_vdx8j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcqet"]
+atlas = ExtResource("2_vdx8j")
+region = Rect2(0, 0, 95, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dhggi"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_wcqet")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Axe_Side_Landing-Sheet5" type="Node2D" unique_id=16284531]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=446192444]
+material = ExtResource("1_mpjue")
+sprite_frames = SubResource("SpriteFrames_dhggi")
+centered = false

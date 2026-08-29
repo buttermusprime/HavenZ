@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_ng2ot"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Green/Grass_1_Green.png" id="2_bwwyr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw104"]
+atlas = ExtResource("2_bwwyr")
+region = Rect2(0, 0, 7, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hh730"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_kw104")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Grass_1_Green" type="Node2D" unique_id=1857051577]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=533117230]
+material = ExtResource("1_ng2ot")
+sprite_frames = SubResource("SpriteFrames_hh730")
+centered = false

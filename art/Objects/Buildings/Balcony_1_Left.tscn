@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_xik7v"]
+[ext_resource type="Texture2D" path="res://art/Objects/Buildings/Balcony_1_Left.png" id="2_5bo2o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm54v"]
+atlas = ExtResource("2_5bo2o")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pltkm"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_cm54v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Balcony_1_Left" type="Node2D" unique_id=1884715631]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=429128754]
+material = ExtResource("1_xik7v")
+sprite_frames = SubResource("SpriteFrames_pltkm")
+centered = false

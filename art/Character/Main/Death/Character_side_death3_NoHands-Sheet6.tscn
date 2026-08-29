@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_es2ck"]
+[ext_resource type="Texture2D" path="res://art/Character/Main/Death/Character_side_death3_NoHands-Sheet6.png" id="2_ols6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uctbn"]
+atlas = ExtResource("2_ols6k")
+region = Rect2(0, 0, 147, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wlqgu"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_uctbn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Character_side_death3_NoHands-Sheet6" type="Node2D" unique_id=1393251549]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1795384248]
+material = ExtResource("1_es2ck")
+sprite_frames = SubResource("SpriteFrames_wlqgu")
+centered = false

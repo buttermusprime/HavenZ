@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_jf3un"]
+[ext_resource type="Texture2D" path="res://art/Objects/Vending-machine_Blue_Overgrown_Bleak-Yellow.png" id="2_ge7wu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw0ft"]
+atlas = ExtResource("2_ge7wu")
+region = Rect2(0, 0, 19, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qwc7"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_mw0ft")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Vending-machine_Blue_Overgrown_Bleak-Yellow" type="Node2D" unique_id=430742416]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=777104245]
+material = ExtResource("1_jf3un")
+sprite_frames = SubResource("SpriteFrames_1qwc7")
+centered = false

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_o63ha"]
+[ext_resource type="Texture2D" path="res://art/UI/Inventory/Objects/Icon_Canned-food.png" id="2_mme5s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qka2g"]
+atlas = ExtResource("2_mme5s")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urjbr"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_qka2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Icon_Canned-food" type="Node2D" unique_id=1475506530]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754480731]
+material = ExtResource("1_o63ha")
+sprite_frames = SubResource("SpriteFrames_urjbr")
+centered = false

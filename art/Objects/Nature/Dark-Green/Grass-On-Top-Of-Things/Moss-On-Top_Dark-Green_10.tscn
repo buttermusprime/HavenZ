@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_mf1yd"]
+[ext_resource type="Texture2D" path="res://art/Objects/Nature/Dark-Green/Grass-On-Top-Of-Things/Moss-On-Top_Dark-Green_10.png" id="2_hikfo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02u1n"]
+atlas = ExtResource("2_hikfo")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aehkj"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_02u1n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Moss-On-Top_Dark-Green_10" type="Node2D" unique_id=415736555]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1250903947]
+material = ExtResource("1_mf1yd")
+sprite_frames = SubResource("SpriteFrames_aehkj")
+centered = false

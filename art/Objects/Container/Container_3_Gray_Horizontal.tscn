@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_3v7i8"]
+[ext_resource type="Texture2D" path="res://art/Objects/Container/Container_3_Gray_Horizontal.png" id="2_7sh3f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iib3x"]
+atlas = ExtResource("2_7sh3f")
+region = Rect2(0, 0, 41, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cdo4w"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_iib3x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Container_3_Gray_Horizontal" type="Node2D" unique_id=1741312871]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1306875525]
+material = ExtResource("1_3v7i8")
+sprite_frames = SubResource("SpriteFrames_cdo4w")
+centered = false

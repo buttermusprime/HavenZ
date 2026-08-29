@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://addons/pixelpipe/shared_palette_material.tres" id="1_3woao"]
+[ext_resource type="Texture2D" path="res://art/Character/Main/Idle/Character_down_idle-Sheet6.png" id="2_hjy60"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7pa6"]
+atlas = ExtResource("2_hjy60")
+region = Rect2(0, 0, 78, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0uuky"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_i7pa6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Character_down_idle-Sheet6" type="Node2D" unique_id=653019802]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=286129382]
+material = ExtResource("1_3woao")
+sprite_frames = SubResource("SpriteFrames_0uuky")
+centered = false

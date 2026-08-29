@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dvhlc1bi6a0b4"]
 
-[ext_resource type="Shader" uid="uid://kl036wpq7h62" path="res://addons/pixelpipe/palette_unified.gdshader" id="1_pu1fd"]
+[ext_resource type="Shader" uid="uid://o6arbiuo62fp" path="res://addons/pixelpipe/palette_unified.gdshader" id="1_pu1fd"]
 
 [sub_resource type="Image" id="Image_xsxcm"]
 data = {

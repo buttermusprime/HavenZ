@@ -14,11 +14,11 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 0 | 0.5 | build | 1 | 1 | 1 sitting | no |
 | 1 | 1.1 | build | 1 | 6 | 6 sittings | no |
 | 1 | 1.2 | checkpoint | 1 | 1 | 1 sitting | no |
-| 2 | 2.1 | build | 1 | 1 (in progress) | 1 sitting | no |
+| 2 | 2.1 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
 
-### S2.1 (in progress) — Configure PixelPipe for HavenZ
+### S2.1 — Configure PixelPipe for HavenZ
 
 Per this session's own provisional-text instruction, opened PixelPipe's real `README.md`/`docs/ROADMAP.md`
 before writing anything, and found real mismatches against what this roadmap assumed:
@@ -68,15 +68,26 @@ before writing anything, and found real mismatches against what this roadmap ass
 - Unzipped `PostApocalypse_AssetPack_v1.1.2.zip` to a sibling folder at the HavenZ project root
   (1,113 PNGs) — this is the real `source_packs` target; the zip itself is left untouched.
 
-**Blocked:** a live Godot editor was already open on this project (`GrayBox.tscn - HavenZ - Godot
-Engine`) when it came time to do the first headless import/verification pass — per
-[[feedback-godot-editor-lock-before-export]], never race a headless process against the user's own
-open editor. Deferred: confirming the plugin actually loads/enables, the palette `.gpl` imports
-without error, and the new `.uid`s regenerate cleanly.
+**Unblocked, same sitting:** the user closed the open editor; ran `godot --headless --editor --quit`
+once to confirm the install. Plugin registered all 4 global classes (`PixelPipeAssetValidator`,
+`PixelPipeAuditLog`, `PixelPipeLutGenerator`, `PixelPipeSpriteFramesImporter`), the palette table
+dock loaded all 40 colors from the real `HavenZ_Field_Palette.gpl`, and the duplicate-recolor dock
+correctly reported no `asset_manifest.json` yet (expected — no sync has run). **One real bug found
+and fixed:** stripping the copied addon's `.uid` sidecar files (done to avoid carrying over
+PixelPipe's own project-specific UID cache) wasn't quite enough — `shared_palette_material.tres`'s
+`ext_resource` header has the shader's UID baked directly into the resource text, not just via the
+sidecar, so it kept pointing at PixelPipe's stale `uid://kl036wpq7h62` even after Godot regenerated
+a fresh `uid://o6arbiuo62fp` for the local `palette_unified.gdshader`. Godot degraded gracefully
+(fell back to the text path, not a hard failure) but logged a warning on every load. Fixed by hand-
+editing the `.tres`'s `ext_resource` line to the new UID; re-ran headless and confirmed the warning
+is gone, only the two expected PixelPipe log lines remain. Worth remembering for any future
+addon-copy-across-projects: sidecar `.uid` files aren't the only place a UID reference lives —
+`.tres`/`.tscn` files can embed one directly in an `ext_resource` header too.
 
-**Next:** once the editor is closed (or the user does the equivalent check themselves in the live
-session), run `godot --headless --editor --quit` once to confirm the plugin loads with no errors,
-then S2.2 (real palette extraction & reconciliation against the full ~1,100-file pack).
+**S2.1 complete.** Committed locally (not yet pushed — ask before pushing).
+
+**Next:** S2.2 (real palette extraction & reconciliation against the full ~1,100-file pack, which
+is what actually supersedes this seed palette).
 
 ### S1.2 — Playtest & go/no-go: PASS
 

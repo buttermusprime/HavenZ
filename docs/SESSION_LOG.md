@@ -21,8 +21,53 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 2 | 2.6 | build | 1 | 1 | 1 sitting | no |
 | 3 | 3.1 | build | 1 | 1 | 1 sitting | no |
 | 3 | 3.2 | build | 1 | 1 | 1 sitting | no |
+| 4 | 4.1 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S4.1 — Deck / hand / draw-pile data
+
+**Shipped:** `res://scripts/deck/deck.gd` — a real `Deck` class (`RefCounted`, not `Resource`:
+every field is runtime state, nothing is designer-authored upfront) generalizing the Phase 1
+gray-box's flat random-draw-with-replacement pool into GDD §7's actual Player Turn rules:
+`draw_pile`/`hand`/`discard_pile` arrays of `CardResource`, `draw_card()` (reshuffles the discard
+pile into the draw pile if empty, returns `null` only on total exhaustion), `play_card(index)`
+(discards the played card, draws a replacement), `drop_card(index)` (removes from hand, no
+discard, no replacement draw). Deliberately generic over `CardResource` — no HavenZ card
+categories anywhere in this file — per its own `[Extraction candidate]` tag.
+
+**Resolved a real conflict between the roadmap's own summary and the GDD, in the GDD's favor:**
+the session prompt's parenthetical says "playing or dropping a card draws a replacement," but
+GDD §7's Minute-to-Minute Chain is explicit and unambiguous: "When a card is dropped a new card
+IS NOT drawn as a penalty, so their hand size is reduced the remainder of the turn." Built
+`drop_card()` to match the GDD, not the roadmap summary, and documented why directly in the
+method's own comment — the standing instruction to always trust a fresh GDD read over
+remembered/summarized text applies to a roadmap's own paraphrase of the GDD, not just to old
+memory. Also per the GDD's "leaves the deck's cycle entirely until re-salvaged" line: a dropped
+card does NOT go to the discard pile at all — turning it into a real world Pickable is session
+4.4's job, not this class's; `drop_card()` only removes it from hand and returns it to the caller.
+
+**First real committed test file in the project:** `res://scripts/tests/logic/deck_test.gd`, with
+the `# Exercises: res://scripts/deck/deck.gd` header session 0.5's convention requires. Session
+0.5 set up the folder structure and header rule but nothing populated it yet (no gameplay code
+existed then) — this session had to also decide, for the first time, how a test file actually
+*runs*: a plain `extends SceneTree` script invoked directly via `godot --headless --script
+<path>`, printing PASS/FAIL and exiting non-zero on failure, no external framework. Removed the
+now-redundant `scripts/tests/logic/.gitkeep` (the folder isn't empty anymore); `ui/`/`integration/`
+keep theirs. Tested against an arbitrary 8-card deck per the session's own explicit ask (not just
+the 5 gray-box cards) — 17 checks: initial deal/pile sizes, play (replenish + correct discard
+placement), drop (no replenish, no discard, per the GDD rule above), forced draw-pile exhaustion
+and reshuffle-from-discard, and total exhaustion (`draw_card()` returns `null`, doesn't crash,
+against a tiny fully-dealt 2-card deck). All passed. Hit the now-known `class_name`-created-
+outside-the-editor gotcha again (see S3.1's own entry / the shared `PENDING_LESSONS.md`) — one
+`--headless --editor --quit` pass registered `Deck` before `--script` mode could resolve it.
+
+**Stubbed / deferred:** no Control nodes, no card art, no wiring into the gray-box scene at all —
+this is a standalone, isolated system per the session's own explicit scope. `GrayBox.gd` still
+uses its old ad hoc hand logic untouched; session 4.3 ("Wire it to the Deck class from session
+4.1") and 4.4 (the real play/drop branch) are what actually replace it.
+
+**Next:** S4.2 (gamepad virtual cursor system) per the roadmap.
 
 ### S3.2 — World set-dressing & biome zones
 

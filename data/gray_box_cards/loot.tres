@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_card")
 id = &"gb_loot"
-display_name = "Loot"
+display_name = "CARD_LOOT"
 category = 1
 noise_cost = 2.0
 effect_data = {}

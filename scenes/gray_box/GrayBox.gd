@@ -188,14 +188,19 @@ const HIGHLIGHT_COLOR := Color(0.85, 0.75, 0.2, OVERLAY_ALPHA)
 @onready var turn_label: Label = $HUD/Root/TurnLabel
 @onready var stats_label: Label = $HUD/Root/StatsLabel
 @onready var status_label: Label = $HUD/Root/StatusLabel
-@onready var hand_container: HBoxContainer = $HUD/Root/HandScroll/HandContainer
+@onready var hand_ui: HBoxContainer = $HUD/Root/HandUI
 
 var tiles: Dictionary = {}  # Vector2i -> TileResource
 var tile_views: Dictionary = {}  # Vector2i -> {rect: ColorRect, label: Label}
 var loot_tiles: Dictionary = {}  # Vector2i -> true
 var haven_entrances: Dictionary = {}  # Vector2i -> HavenResource
 var card_pool: Array[CardResource] = []
-var hand: Array[CardResource] = []
+## Session 4.3 -- replaces the old flat `hand: Array[CardResource]` field entirely. Every prior
+## reference to a bare `hand[i]` now reads `deck.hand[i]`; every card-consuming call site now
+## calls the real deck.play_card(i) instead of the old placeholder's `hand[i] = <random pool
+## draw>` -- a real discard pile and reshuffle-on-exhaustion for the first time, not a change in
+## rules this session was asked to invent.
+var deck: Deck
 var enemy_resource: EnemyResource
 
 var player_pos: Vector2i
@@ -226,9 +231,9 @@ func _ready() -> void:
 	# Purely visual (idling in place) -- build_scene() selects the sheet's only real tag/
 	# animation but never calls play() itself, so nothing animates until something does.
 	player_sprite.play()
-	for i in range(HAND_SIZE):
-		hand.append(card_pool[randi() % card_pool.size()])
-	_render_hand()
+	deck = Deck.new(card_pool, HAND_SIZE)
+	hand_ui.card_slot_pressed.connect(_on_hand_slot_pressed)
+	hand_ui.setup(deck)
 	_redraw_tiles()
 	_update_hud()
 
@@ -248,7 +253,11 @@ func _load_card_pool() -> void:
 	for r in MOVE_RANGES:
 		var card := CardResource.new()
 		card.id = "gb_move_range_%d" % r
-		card.display_name = "Move x%d" % r
+		# A localization KEY, not literal text -- session 4.3's rule that every piece of card
+		# text goes through tr() applies here too, even for a card built in code rather than a
+		# .tres. CardSlot.gd's setup() always calls .format([move_range]) on the translated
+		# text, so the CSV's own "Move x{0}" template is what actually injects the range number.
+		card.display_name = "CARD_MOVE_RANGED"
 		card.category = CardResource.Category.MOVE_LOUD
 		card.move_range = r
 		card.noise_cost = r * BASE_MOVE_NOISE
@@ -408,37 +417,29 @@ func _on_tile_gui_input(event: InputEvent, coord: Vector2i) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_try_move_to_tile(coord)
 
-func _render_hand() -> void:
-	for child in hand_container.get_children():
-		child.queue_free()
-	for i in range(hand.size()):
-		var card := hand[i]
-		var button := Button.new()
-		button.text = "%s (%.1f)" % [card.display_name, card.noise_cost]
-		button.toggle_mode = true
-		button.button_pressed = (i == selected_card_index)
-		button.pressed.connect(_on_card_pressed.bind(i))
-		hand_container.add_child(button)
-
-func _on_card_pressed(i: int) -> void:
+## Session 4.3 -- fired by HandUI's card_slot_pressed signal (a real Button press on a CardSlot,
+## from either a real mouse click or session 4.2's gamepad cursor pushing a simulated one --
+## this code has no way to tell which, by design). Same selection/resolve behavior the old
+## ad hoc per-card Button drove; only the trigger (HandUI/CardSlot instead of a manually-built
+## Button) and the data source (deck.hand instead of a flat array) changed.
+func _on_hand_slot_pressed(i: int) -> void:
 	if i == selected_card_index:
 		# Clicking the already-selected move card again cancels the selection.
 		selected_card_index = -1
-		_render_hand()
 		_redraw_tiles()
 		status_label.text = "Selection cancelled."
 		return
 
-	var card := hand[i]
+	var card := deck.hand[i]
 	if card.category in MOVE_CATEGORIES:
 		selected_card_index = i
-		_render_hand()
 		_redraw_tiles()
-		status_label.text = "%s selected — click any highlighted tile up to %d away." % [card.display_name, card.move_range]
+		status_label.text = "%s selected — click any highlighted tile up to %d away." % [tr(card.display_name).format([card.move_range]), card.move_range]
 		return
 
 	_resolve_card_in_place(card)
-	_consume_played_card(i)
+	deck.play_card(i)
+	hand_ui.refresh()
 	_spend_action()
 
 func _try_move_to_tile(coord: Vector2i) -> void:
@@ -449,11 +450,12 @@ func _try_move_to_tile(coord: Vector2i) -> void:
 	if not (coord in valid):
 		status_label.text = "That tile isn't reachable with the selected card."
 		return
-	var card := hand[selected_card_index]
+	var card := deck.hand[selected_card_index]
 	var distance := _floored_distance(player_pos, coord)
 	player_pos = coord
 	_apply_card_heat(card, player_pos, distance * BASE_MOVE_NOISE)
-	_consume_played_card(selected_card_index)
+	deck.play_card(selected_card_index)
+	hand_ui.refresh()
 	selected_card_index = -1
 	if haven_entrances.has(coord):
 		haven_entered.emit(haven_entrances[coord])
@@ -516,7 +518,7 @@ func _get_valid_move_tiles() -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	if selected_card_index == -1:
 		return result
-	var card := hand[selected_card_index]
+	var card := deck.hand[selected_card_index]
 	if not (card.category in MOVE_CATEGORIES):
 		return result
 	var r := card.move_range
@@ -592,18 +594,14 @@ func _apply_card_heat(card: CardResource, coord: Vector2i, noise_cost_override: 
 	tile.heat += heat_delta
 	tile.add_heat_origin(TileResource.HeatOrigin.PLAYER)
 	status_label.text = "Played %s (+%.1f heat, radio x%.1f) at (%d,%d)." % [
-		card.display_name, heat_delta, multiplier, coord.x, coord.y,
+		tr(card.display_name).format([card.move_range]), heat_delta, multiplier, coord.x, coord.y,
 	]
-
-func _consume_played_card(i: int) -> void:
-	hand[i] = card_pool[randi() % card_pool.size()]
 
 func _spend_action() -> void:
 	actions_remaining -= 1
 	if actions_remaining <= 0:
 		_end_turn()
 		actions_remaining = ACTIONS_PER_TURN
-	_render_hand()
 	_update_hud()
 	_redraw_tiles()
 	_render_visual_positions()

@@ -23,8 +23,99 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 3 | 3.2 | build | 1 | 1 | 1 sitting | no |
 | 4 | 4.1 | build | 1 | 1 | 1 sitting | no |
 | 4 | 4.2 | build | 1 | 1 | 1 sitting | no |
+| 4 | 4.3 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S4.3 — Hand UI
+
+**Shipped:** `res://scenes/hand_ui/` — `HandUI.gd`/`.tscn` (an `HBoxContainer` anchored to the
+bottom of the viewport, `PRESET_BOTTOM_WIDE` + `grow_vertical=BEGIN`, no hardcoded positions) and
+`CardSlot.gd`/`.tscn` (a real `Button`, not a plain `Panel`, styled with 4 embedded `StyleBoxFlat`
+sub-resources for normal/hover/pressed/focus — programmer art, since no card-frame art exists
+anywhere in the pack). Replaces the gray-box's old ad hoc per-card `Button` list entirely.
+Deck-backed for real: `GrayBox.gd`'s flat `hand: Array[CardResource]` field is gone, replaced by
+a real `deck: Deck` (session 4.1); every prior `hand[i]` read now reads `deck.hand[i]`, and the
+old placeholder's `_consume_played_card()` (`hand[i] = card_pool[randi() % card_pool.size()]`,
+which bypassed any concept of a discard pile) is gone too — replaced by real `deck.play_card(i)`
+calls, so playing a card in the gray-box now genuinely discards it and draws a real replacement,
+for the first time. **D-pad quick-switch uses two brand-new project input actions,
+`hand_focus_prev`/`hand_focus_next` (D-pad Left/Right only, generated programmatically the same
+"don't hand-type Godot's exact resource-object format" way S0.3 built the audio bus layout) —
+deliberately NOT Godot's own default `ui_left`/`ui_right`,** confirmed via
+`InputMap.action_get_events()` to ALSO be bound to the left stick's X-axis by default — reusing
+them would have meant aiming session 4.2's virtual cursor with the stick silently yanked hand
+focus on every nudge, quietly merging two interactions the roadmap's own Input Scheme keeps
+separate. (Checked and ruled out a second suspected conflict the same way, rather than assuming:
+Godot's default `ui_accept`/`ui_select`/`ui_cancel` are NOT bound to gamepad A/B in this Godot
+version, so there was no actual double-fire risk between them and session 4.2's custom A/B→
+simulated-click routing to design around.) Mouse `mouse_entered` grabs real Control focus on a
+slot, converging hover and D-pad/gamepad focus onto one shared state exactly as asked — Godot's
+own `focus` theme override then drives one highlight visual regardless of which input method set
+it. Every piece of card text now goes through `tr()`: the 4 fixed `.tres` cards' `display_name`
+fields were changed from literal English strings to real translation keys (`CARD_ATTACK` etc.),
+`CardResource.Category`'s 10 enum values all got `CATEGORY_*` keys (only 5 are in active
+gray-box use; the rest pre-seeded for Phase 5/6/11's real roster rather than left for a future
+session to remember), and 16 new rows landed in `localization/strings.csv`.
+
+**Two real `_ready()`-timing bugs found and fixed in the actual game code** (not just a test
+harness this time — `HandUI.refresh()`/`CardSlot.setup()` are real production code paths):
+(1) `HandUI.refresh()`'s `add_child(slot); slot.setup(card)` assumed the freshly-added slot's
+`@onready var name_label` etc. were already populated — they weren't, since `_ready()` isn't
+guaranteed to have run the instant `add_child()` returns, the same family of Godot timing gotcha
+this project has hit before, just previously only in test scripts. Fixed by having `CardSlot`
+resolve its Labels via `%UniqueName` lookups instead of `@onready var` caching — the scene's
+owner-based unique-name table is correct immediately at `instantiate()` time, independent of
+`_ready()` timing, unlike a `@onready`-assigned variable. (2) `_focus_index()`'s `grab_focus()`
+call on a just-added slot hit a real `!is_inside_tree()` guard failure for the same underlying
+reason — fixed by making `refresh()` `await get_tree().process_frame` before grabbing focus, and
+making `setup()` itself `await refresh()` so a caller that needs deterministic completion (this
+session's own test) has something real to await rather than guessing frame counts.
+
+**A third, more surprising real finding, specific to `--script`-mode verification, not the game
+itself:** the session's own test initially failed a "does `tr()` return real translated text"
+check — `tr("CARD_ATTACK")` came back as the literal untranslated key. Root-caused (not assumed)
+via a direct `load("res://localization/strings.csv")` call returning `null` with the exact same
+"Failed loading resource" error the project already knew about as a supposedly-harmless boot-time
+warning (S0.2) — except confirmed here, via a full clean `.godot` cache wipe and reimport, that
+it's not harmless at all in `--script` mode: it's a total, repeatable failure to load a
+`csv_translation`-imported resource by its SOURCE path, which is exactly what `project.godot`'s
+`locale/translations` setting (and Godot's own automatic boot-time translation registration) is
+configured to use — so no translation ever gets auto-registered in a `--script` run. Loading the
+COMPILED `.translation` output directly instead worked immediately and returned correct real
+text, proving the CSV/import/compiled-resource chain itself is entirely correct; this is
+specific to how `--script` mode resolves that one resource type by its virtual path. Strong
+reason to believe (though not directly confirmed via an actual windowed launch) this doesn't
+affect the real shipping game — Godot's real automatic translation loading during a normal engine
+boot is extremely well-established functionality, and this project's own history already shows
+`--script` mode skips/reorders some normal bootstrap steps. Worked around it in the test (and the
+session's own real-GPU screenshot capture) by manually loading the compiled path and calling
+`TranslationServer.add_translation()` — logged as a real, reusable finding in the shared
+`PENDING_LESSONS.md`, since this is the first time this project's own testing ever checked `tr()`
+OUTPUT correctness rather than just "did the file load."
+
+**Verified headlessly** (third committed test file, first covering integration between two real
+systems rather than one in isolation): `res://scripts/tests/ui/hand_ui_test.gd` — slot count
+matches hand size, real translated text (not the raw key), initial focus on setup, mouse-hover-
+grabs-focus, D-pad next/prev shifts focus correctly (including wrap-around, after catching and
+fixing a real bug in the TEST's own wraparound assertion logic — it exercised a completely
+different, non-wrapping sequence than what its own description claimed to test), a real `Button`
+press correctly emitting `card_slot_pressed` with the right index, and `refresh()` correctly
+rebuilding after a real `deck.play_card()` mutation. Re-ran `deck_test.gd` and
+`gamepad_cursor_test.gd` as a regression check since this session touched shared infrastructure
+(`project.godot`, `GrayBox.gd`) — both still pass. Then did a real-GPU screenshot capture (same
+technique as S3.1/S3.2) confirming by eye: real translated card names/categories/noise values
+render correctly, and the initially-focused card shows a real, visible highlight border.
+
+**Stubbed / deferred:** clicking a card slot still resolves instantly (non-move cards) or arms
+movement-tile-highlighting (move cards) — the EXACT SAME interaction the gray-box has had since
+S1.1, just now correctly routed through `HandUI`'s `card_slot_pressed` signal and `deck.hand`/
+`deck.play_card()` instead of the old ad hoc Button array. This is NOT session 4.4's real
+play/drop branch (locked-in left/right-click control scheme, real turn-end-when-nothing-playable
+rule, `apply_effect()` hook, drop-to-world-tile mechanics) — none of that scope was touched here,
+on purpose.
+
+**Next:** S4.4 (Play/drop resolution branch) per the roadmap.
 
 ### S4.2 — Gamepad virtual cursor system
 

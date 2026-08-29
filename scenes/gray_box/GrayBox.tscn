@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scenes/gray_box/GrayBox.gd" id="1_graybox"]
 [ext_resource type="PackedScene" path="res://art/Character/Main/Idle/Character_down_idle-Sheet6.tscn" id="2_player_sprite"]
+[ext_resource type="PackedScene" path="res://scenes/hand_ui/HandUI.tscn" id="3_hand_ui"]
 
 [node name="GrayBox" type="Node2D"]
 script = ExtResource("1_graybox")
@@ -47,12 +48,5 @@ theme_override_font_sizes/font_size = 11
 autowrap_mode = 2
 text = "Click a card to play it. Movement cards highlight tiles you can move to."
 
-[node name="HandScroll" type="ScrollContainer" parent="HUD/Root"]
-offset_left = 4.0
-offset_top = 252.0
-offset_right = 508.0
-offset_bottom = 286.0
-vertical_scroll_mode = 0
-
-[node name="HandContainer" type="HBoxContainer" parent="HUD/Root/HandScroll"]
-layout_mode = 2
+[node name="HandUI" parent="HUD/Root" instance=ExtResource("3_hand_ui")]
+layout_mode = 1

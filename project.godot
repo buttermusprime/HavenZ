@@ -22,10 +22,7 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 [autoload]
 
 AudioSettings="*res://systems/audio/AudioSettings.tscn"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/pixelpipe/plugin.cfg")
+GamepadCursor="*res://systems/input/GamepadCursor.tscn"
 
 [display]
 
@@ -35,6 +32,10 @@ window/size/window_width_override=1024
 window/size/window_height_override=576
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/pixelpipe/plugin.cfg")
 
 [internationalization]
 

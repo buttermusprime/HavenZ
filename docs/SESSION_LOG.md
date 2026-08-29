@@ -22,8 +22,67 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 3 | 3.1 | build | 1 | 1 | 1 sitting | no |
 | 3 | 3.2 | build | 1 | 1 | 1 sitting | no |
 | 4 | 4.1 | build | 1 | 1 | 1 sitting | no |
+| 4 | 4.2 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S4.2 — Gamepad virtual cursor system
+
+**Shipped:** `systems/input/GamepadCursor.gd`/`.tscn`, a new `GamepadCursor` autoload (registered
+in `project.godot`, following `AudioSettings`' exact shape from S0.3 — deliberately no
+`class_name`, since one matching an autoload's own name makes Godot refuse to load the script
+entirely, per the bug already hit once on `AudioSettings` itself). One analog stick drives a
+virtual cursor position with `sensitivity`/`deadzone`/`invert_x`/`invert_y` as `@export` fields
+(surfaced as real UI in session 12.1, same "plumbing before the screen" pattern as
+`AudioSettings`), persisted through the same `user://settings.cfg` under a new `gamepad_cursor`
+section. **A → a real `InputEventMouseButton` left-click, B → a real right-click, both dispatched
+via `Viewport.push_input()`** — not a bespoke click/back signal pair. This is the same technique
+this project's own Sheepshead history already confirmed genuinely drives Godot's real GUI
+hit-testing pipeline (see the shared `PENDING_LESSONS.md`), used here on purpose rather than
+re-derived from scratch: it's exactly what "no downstream Control should be able to tell a click
+came from the mouse or the gamepad cursor" requires. B routes to a real right-click specifically
+because this project's own locked mouse scheme already treats right-click as the secondary/
+cancel-ish action (session 4.4 wires left-click=play, right-click=drop) — B reuses that existing
+meaning instead of inventing a parallel gamepad-only one. The on-screen reticle is a procedurally
+generated placeholder dot (`Image`/`ImageTexture` built at runtime) since no cursor art exists
+anywhere in the pack, only visible while a real joypad is connected (`Input.get_connected_joypads()`)
+so mouse-only players never see an idle static dot. **Survives pause**: `process_mode` set to
+`PROCESS_MODE_ALWAYS` in `_ready()`, per session 0.4's own `CLAUDE.md` convention, which names
+this exact system by name as the reason that convention exists ("input has to keep working in
+order to un-pause at all").
+
+**Pure motion math factored into its own static `_compute_motion()`** specifically so it's
+testable without a real or simulated joypad device — `_process()` is a thin I/O wrapper around it.
+Rescales past the deadzone boundary (`(magnitude - deadzone) / (1.0 - deadzone)`) rather than a
+naive "clamp below deadzone to 0, pass raw through above it," so the response starts at 0 exactly
+at the boundary instead of jumping discontinuously the instant the stick crosses it.
+
+**First test file in `res://scripts/tests/ui/`** (deck_test.gd was the first in `logic/`; this is
+the first click-path/interaction test, per session 0.5's own folder split) —
+`gamepad_cursor_test.gd`, same run pattern (`extends SceneTree`, `godot --headless --script`).
+Removed the now-redundant `.gitkeep`. **Real bug caught in the test itself, not in
+`GamepadCursor`:** the first version connected `button.pressed` to `func(): press_count += 1`,
+which silently never worked — this project's own well-documented E3 gotcha (GDScript lambdas
+capture outer locals by value, not reference) meant the lambda only ever incremented its own
+private copy. Fixed by wrapping the counter in a single-element `Array` instead, confirmed the
+fix actually changed the outcome (failed before, passed after, with zero changes to
+`GamepadCursor.gd` itself) rather than just assuming the bug was in the test. 9 checks, all
+passing: autoload presence and pause-survival, deadzone/inversion/scaling math, a real settings
+save→load round-trip through the actual `ConfigFile` on disk (restored to defaults afterward so
+this test doesn't leave the shared `settings.cfg` mutated for whoever opens the project next),
+and — the one that actually matters most for this session's own stated goal — a real `Button`'s
+`pressed` signal firing from a simulated A-button click routed entirely through `push_input()`.
+
+**No screenshot spot-check this session** (unlike S3.1/S3.2) — the only visual element is a
+placeholder dot that's invisible without a real connected controller, which this headless
+environment doesn't have; the motion-math and real-click-routing checks above already cover the
+behavior a screenshot would otherwise be standing in for.
+
+**Stubbed / deferred:** no Settings-menu UI for these exported fields (session 12.1). No
+gamepad-driven scrolling/D-pad handling — that's session 4.3 (Hand UI) and later UI Shell
+sessions' job, this session only ships the stick-cursor + A/B click/back primitives themselves.
+
+**Next:** S4.3 (Hand UI) per the roadmap.
 
 ### S4.1 — Deck / hand / draw-pile data
 

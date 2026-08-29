@@ -57,9 +57,21 @@ filename convention, explicit metadata, Aseprite's own spritesheet-import grid-s
 not a quick patch, and needs a decision before S2.5 can use any multi-pose Character sheet for
 real animation. Flagged to the user rather than guessed at.
 
-**Next:** resolve the sheet-slicing design question (likely a new PixelPipe session, since this is
-pipeline-level, not HavenZ-specific), then S2.5 (reskin the gray-box) can proceed for real —
-single-pose assets (a lot of Objects/Tiles content) are already usable as-is in the meantime.
+**Sheet-slicing gap resolved, same sitting.** Confirmed the real convention against the pack
+(264/268 real "-SheetN.png" files divide their width evenly by N, a horizontal strip — the 4
+exceptions have a stale frame count baked into their own filename, a pre-existing pack data issue,
+not a parsing bug) and fixed it directly in PixelPipe's `convert_indexed.lua` — full detail in
+that repo's own `docs/LESSONS.md`. Found and fixed a second real Aseprite Lua bug along the way:
+`Sprite:newCel()` copies its `Image` argument at call time rather than keeping a live reference,
+so every frame must be fully painted before `newCel` is called, not after (the first slicing
+attempt produced 6 frames that all rendered identically, traced to exactly this). Re-ran the
+entire pipeline from scratch — conversion, sync, `.import` generation, and the new headless
+SpriteFrames rebuild — and verified for real: `Character_down_idle-Sheet6` now has 6 genuine,
+pixel-perfect distinct frames; the 4 known-mismatched files correctly fall back to 1 frame with a
+warning; a plain non-sheet vehicle asset is unaffected.
+
+**Next:** S2.5 (reskin the gray-box) can proceed for real — every real animated Character sheet
+and every static Object/Tile asset are both correctly represented now.
 
 ### S2.3 — Real pack conversion & sync
 

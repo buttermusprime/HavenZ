@@ -17,8 +17,62 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 2 | 2.1 | build | 1 | 1 | 1 sitting | no |
 | 2 | 2.2 | build | 1 | 1 | 1 sitting | no |
 | 2 | 2.3 | build | 1 | 1 | 1 sitting | no |
+| 2 | 2.5 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S2.5 — Reskin the validated gray-box
+
+**Visuals (no gameplay logic touched):** real tile art (`Background_Green_TileSet.png`, one
+plain-grass atlas cell picked by eye) now renders via a real `TileSet`/`TileMapLayer` built at
+runtime in a new `_build_terrain()`, sitting behind the existing per-tile heat/highlight overlay
+`ColorRect`s — those are now semi-transparent (`OVERLAY_ALPHA = 0.55`) instead of fully opaque, so
+the real art shows through; the heat-tint color math itself is unchanged except for explicitly
+carrying alpha through (`Color(r,g,b)`'s 3-arg constructor silently defaults to opaque, which
+would have clobbered the new transparency the instant any tile's heat rose above 0 — caught before
+it shipped). `PlayerVisual` is now a real instanced scene
+(`art/Character/Main/Idle/Character_down_idle-Sheet6.tscn`, S2.5's headless-import output) with its
+`AnimatedSprite2D` explicitly `.play()`ed in `_ready()` — `build_scene()` selects the animation but
+never starts it. `TILE_SIZE` changed from the gray-box's arbitrary 24px placeholder to the real
+16px logical unit locked in S0.1; `GridVisual`'s position re-centered for the new grid pixel size.
+Enemy square deliberately left as a plain `ColorRect` — nothing in this session's scope asked for
+reskinning it.
+
+**Logic (the one thing this session was explicitly allowed to extend):** heat decay is now real
+ring-based propagation per the Noise System Design's starting parameters — 40% of a source tile's
+own current heat bleeds to every tile 1 ring out, ~15% at 2 rings out (Chebyshev distance, the
+standard tile-grid meaning of "N tiles out" — deliberately different from the movement system's
+Euclidean range check, which answers a different question). Bleeding does NOT deplete the source
+(heat is a telegraph signal, not a moved resource). Gated by `TileResource.blocks_noise` on the
+*target* tile (a source keeps generating heat even if walled off; a neighbor past that wall just
+never receives it) — no walls exist until Phase 3.1, so this path is unexercised in practice today,
+written and verified against a synthetic flag now per the roadmap's explicit ask. Kept generic in
+shape per the Modular Systems section (only the `tile.heat` field access and the two fraction
+constants are heat-specific) without extracting it into a separate file yet — same "tag now,
+extract on the second real use" pattern already established elsewhere in this project.
+`_decay_tiles()` renamed to `_propagate_and_decay_tiles()`, split into two passes (compute every
+bleed delta from one heat snapshot, then apply bleed, then decay) so a tile's bleed contribution
+can never depend on dictionary iteration order.
+
+**Real bug caught immediately by the standard headless editor pass, before any functional
+testing:** `var target_coord := source_coord + Vector2i(dx, dy)` failed to parse — `source_coord`
+comes from an untyped `Dictionary`'s `.keys()`, so it's `Variant` to the static parser even though
+it's always a `Vector2i` at runtime, the same family of inference gap as the already-known
+untyped-array-indexing gotcha. Fixed with an explicit `: Vector2i` type instead of `:=`.
+
+**Verified headlessly** (throwaway script, deleted after use, per this project's established S1.1+
+precedent — no committed test file yet): terrain has exactly 80 used cells; the player sprite has
+6 real frames and reports `is_playing() == true`; overlay alpha is 0.55, not the old opaque 1.0;
+heat-bleed math is exactly right (a 10.0-heat tile bleeds 4.0 to every ring-1 neighbor — orthogonal
+AND diagonal, confirming the Chebyshev ring logic — and 1.5 to ring-2, nothing to ring-3); flagging
+a ring-1 neighbor `blocks_noise = true` correctly zeroes its own delta while leaving others intact;
+the source tile's own heat is unchanged after computing deltas (confirms non-depletion); and full
+existing movement/card-play regression still works end to end (selecting a real move card from the
+hand, computing valid tiles, and actually moving there all behave identically to before).
+
+**Next:** Phase 2 (Art Pipeline Adoption) is now functionally complete for the gray-box's own
+needs — S2.4 (palette tuning) can be revisited now that real art actually renders somewhere, or
+Phase 2.6 (colorblind check) / Phase 3 (Grid, Havens & World) per the roadmap.
 
 ### S2.4 assessed, deferred — and a real capability unlock found while investigating why
 

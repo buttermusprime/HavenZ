@@ -5,6 +5,13 @@ extends Node2D
 ## exist. Routed through the real CardResource/TileResource/EnemyResource classes from session
 ## 0.2 so this survives Phase 2's reskin rather than being thrown away.
 ##
+## Reskinned in session 2.5 with S2.2/S2.3's real master palette and converted art: real tile
+## art under the existing per-tile heat/highlight overlay (now semi-transparent, same logic as
+## before), a real AnimatedSprite2D for the player. The enemy square stays a ColorRect --
+## nothing in this session's own scope asked for reskinning it, and the roster/zombie-art
+## mapping is later phase work. Same-session addition: heat decay is now real ring-based
+## bleed/propagation (Noise System Design's starting parameters), not a flat per-tile value.
+##
 ## Attack/Loot/Food/Water resolve instantly on click. A movement card is different: it sets a
 ## RANGE (and its noise cost), and the player then clicks any reachable tile -- including
 ## diagonals -- to actually move there. An earlier version baked a fixed direction into the card
@@ -30,9 +37,28 @@ extends Node2D
 
 const GRID_WIDTH := 10
 const GRID_HEIGHT := 8
-const TILE_SIZE := 24
+## Real logical tile size (the actual 16px unit locked in S0.1's viewport math), not the
+## arbitrary 24px placeholder S1.1's gray-box used before real art existed.
+const TILE_SIZE := 16
 const HEAT_DECAY_RATE := 1.0
 const HEAT_DISPLAY_MAX := 10.0
+
+## Real floor tile art (S2.2's master palette, S2.3's real conversion) — one plain-grass cell
+## from the Green biome sheet, picked by eye as a flat, undecorated tile with no path/edge
+## marking baked in. Real per-biome tile variety is Phase 3.2 scope, not this session's.
+const TILE_TEXTURE_PATH := "res://art/Tiles/Background_Green_TileSet.png"
+const TILE_ATLAS_COORD := Vector2i(0, 0)
+
+## Adjacency bleed fractions per the Noise System Design section's starting parameters: 40% of
+## a source tile's OWN current heat radiates to every tile 1 ring out, ~15% at 2 rings out.
+## "Ring" here is Chebyshev distance (max(|dx|,|dy|)) — the standard tile-grid meaning of "N
+## tiles out" (all 8 immediately-surrounding tiles, diagonals included, are ring 1) — distinct
+## from the true/Euclidean distance the movement system uses for its circular range check,
+## which answers a different question (how far can I walk) than this one (how many grid steps
+## away is this neighbor).
+const HEAT_BLEED_RING_1_FRACTION := 0.40
+const HEAT_BLEED_RING_2_FRACTION := 0.15
+const HEAT_BLEED_MAX_RING := 2
 ## Heat value at which a nearby zombie's pull chance is ~certain. Rough gray-box tuning value,
 ## not from the Noise System Design doc (which only specifies starting per-card noise_cost).
 const ENEMY_PULL_HEAT_SCALE := 8.0
@@ -66,12 +92,17 @@ const FIXED_CARD_POOL_PATHS: Array[String] = [
 
 const ENEMY_RESOURCE_PATH := "res://data/samples/enemy_walker_basic.tres"
 
-const LOOT_COLOR := Color(0.12, 0.26, 0.14)
-const NORMAL_COLOR := Color(0.15, 0.15, 0.18)
-const HIGHLIGHT_COLOR := Color(0.85, 0.75, 0.2)
+## Semi-transparent so the real tile art built in _build_terrain() shows through underneath --
+## this overlay's own color logic (heat tint / highlight / loot marker) is otherwise unchanged
+## from the pre-reskin gray-box; only the alpha and the presence of real art beneath it are new.
+const OVERLAY_ALPHA := 0.55
+const LOOT_COLOR := Color(0.12, 0.26, 0.14, OVERLAY_ALPHA)
+const NORMAL_COLOR := Color(0.15, 0.15, 0.18, OVERLAY_ALPHA)
+const HIGHLIGHT_COLOR := Color(0.85, 0.75, 0.2, OVERLAY_ALPHA)
 
 @onready var grid_visual: Node2D = $GridVisual
-@onready var player_visual: ColorRect = $PlayerVisual
+@onready var player_visual: Node2D = $PlayerVisual
+@onready var player_sprite: AnimatedSprite2D = $PlayerVisual/AnimatedSprite2D
 @onready var enemy_visual: ColorRect = $EnemyVisual
 @onready var turn_label: Label = $HUD/Root/TurnLabel
 @onready var stats_label: Label = $HUD/Root/StatsLabel
@@ -103,9 +134,13 @@ func _ready() -> void:
 	player_pos = Vector2i(5, 4)
 	enemy_pos = Vector2i(0, 0)
 	enemy_spawn_pos = enemy_pos
+	_build_terrain()
 	_build_grid()
 	_place_loot_tiles()
 	_render_visual_positions()
+	# Purely visual (idling in place) -- build_scene() selects the sheet's only real tag/
+	# animation but never calls play() itself, so nothing animates until something does.
+	player_sprite.play()
 	for i in range(HAND_SIZE):
 		hand.append(card_pool[randi() % card_pool.size()])
 	_render_hand()
@@ -133,6 +168,28 @@ func _load_card_pool() -> void:
 		card.move_range = r
 		card.noise_cost = r * BASE_MOVE_NOISE
 		card_pool.append(card)
+
+## Real tile art underneath the existing heat/highlight overlay (built by _build_grid() below) --
+## a plain, uniform floor across the whole grid. Real per-tile terrain variety (walls, biome
+## mixing) is Phase 3.1/3.2 scope; this session only proves the pipeline's real art renders
+## correctly at the real 16px scale, without touching any movement/hand/heat logic.
+func _build_terrain() -> void:
+	var texture: Texture2D = load(TILE_TEXTURE_PATH)
+	var tile_set := TileSet.new()
+	tile_set.tile_size = Vector2i(TILE_SIZE, TILE_SIZE)
+	var atlas_source := TileSetAtlasSource.new()
+	atlas_source.texture = texture
+	atlas_source.texture_region_size = Vector2i(TILE_SIZE, TILE_SIZE)
+	atlas_source.create_tile(TILE_ATLAS_COORD)
+	var source_id := tile_set.add_source(atlas_source)
+
+	var tile_map := TileMapLayer.new()
+	tile_map.tile_set = tile_set
+	grid_visual.add_child(tile_map)
+	grid_visual.move_child(tile_map, 0)  # behind every per-tile overlay ColorRect built next
+	for y in range(GRID_HEIGHT):
+		for x in range(GRID_WIDTH):
+			tile_map.set_cell(Vector2i(x, y), source_id, TILE_ATLAS_COORD)
 
 func _build_grid() -> void:
 	for y in range(GRID_HEIGHT):
@@ -327,7 +384,7 @@ func _spend_action() -> void:
 func _end_turn() -> void:
 	status_label.text += "  -- Turn %d ends, zombie moves --" % turn_number
 	_enemy_turn()
-	_decay_tiles()
+	_propagate_and_decay_tiles()
 	turn_number += 1
 
 func _enemy_turn() -> void:
@@ -359,12 +416,64 @@ func _step_toward(from: Vector2i, to: Vector2i) -> Vector2i:
 		step.y += signi(delta.y)
 	return step
 
-func _decay_tiles() -> void:
+## Per-turn heat update: bleed, then decay. Two passes over the whole grid, not one -- every
+## tile's bleed contribution must come from the SAME starting snapshot of heat values, so a
+## tile's own bleed amount can't depend on whether it happened to be visited before or after a
+## neighbor in dictionary iteration order (which isn't a real rule, just an implementation
+## accident waiting to happen if bleed and decay were folded into a single pass).
+func _propagate_and_decay_tiles() -> void:
+	var bleed_deltas := _compute_heat_bleed()
+	for coord in bleed_deltas.keys():
+		var tile: TileResource = tiles[coord]
+		tile.heat += bleed_deltas[coord]
 	for coord in tiles.keys():
 		var tile: TileResource = tiles[coord]
 		if tile.this_turn_origins.is_empty():
 			tile.heat = maxf(0.0, tile.heat - HEAT_DECAY_RATE)
 		tile.clear_turn_origins()
+
+## Computes how much heat every tile should GAIN this turn from its neighbors' current heat,
+## without mutating anything yet (see _propagate_and_decay_tiles for why). Generic in shape --
+## "a value that bleeds to neighbors at a decaying fraction... blocked by a wall flag" (the
+## Modular Systems section's own description of this pattern, for reuse beyond heat once a
+## second real use case exists) -- only the field read (tile.heat) and the two fraction
+## constants above are heat-specific; everything else is plain grid-ring math.
+## Bleeding does NOT deplete the source tile: heat is a telegraph signal, not a finite resource
+## being physically moved, so a hot tile keeps radiating at full strength every turn it stays
+## hot rather than running out.
+func _compute_heat_bleed() -> Dictionary:
+	var deltas: Dictionary = {}  # Vector2i -> float, additive
+	for source_coord in tiles.keys():
+		var source: TileResource = tiles[source_coord]
+		if source.heat <= 0.0:
+			continue
+		for dx in range(-HEAT_BLEED_MAX_RING, HEAT_BLEED_MAX_RING + 1):
+			for dy in range(-HEAT_BLEED_MAX_RING, HEAT_BLEED_MAX_RING + 1):
+				if dx == 0 and dy == 0:
+					continue
+				var ring := maxi(absi(dx), absi(dy))
+				if ring > HEAT_BLEED_MAX_RING:
+					continue
+				# source_coord comes from an untyped Dictionary's .keys(), so it's a Variant to
+				# the static parser even though it's always really a Vector2i at runtime --
+				# an explicit type here sidesteps ":=" inference needing to prove that itself.
+				var target_coord: Vector2i = source_coord + Vector2i(dx, dy)
+				if not tiles.has(target_coord):
+					continue
+				var target: TileResource = tiles[target_coord]
+				# A wall blocks noise from reaching PAST it -- checked on the target, not the
+				# source, since a walled-off tile still generates its own heat, it just doesn't
+				# transmit further. No true line-of-sight/raycast between source and a
+				# 2-rings-out target yet, so a wall directly between them that ISN'T the target
+				# itself wouldn't be caught (heat could still sneak in around a corner
+				# diagonally). Flagged, not solved -- no real walls exist until Phase 3.1, so
+				# there's nothing to get wrong yet; revisit this simplification once that
+				# session actually exercises blocks_noise for real.
+				if target.blocks_noise:
+					continue
+				var fraction := HEAT_BLEED_RING_1_FRACTION if ring == 1 else HEAT_BLEED_RING_2_FRACTION
+				deltas[target_coord] = deltas.get(target_coord, 0.0) + source.heat * fraction
+	return deltas
 
 func _redraw_tiles() -> void:
 	var highlighted := _get_valid_move_tiles()
@@ -376,14 +485,16 @@ func _redraw_tiles() -> void:
 		else:
 			var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
 			var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
-			view.rect.color = Color(base.r + 0.7 * t, base.g, base.b)
+			view.rect.color = Color(base.r + 0.7 * t, base.g, base.b, base.a)
 		view.label.text = "%.1f" % tile.heat
 
 func _render_visual_positions() -> void:
 	var origin := grid_visual.position
-	player_visual.size = Vector2(TILE_SIZE - 4, TILE_SIZE - 4)
 	enemy_visual.size = Vector2(TILE_SIZE - 4, TILE_SIZE - 4)
-	player_visual.position = origin + Vector2(player_pos) * TILE_SIZE + Vector2(2, 2)
+	# Top-left anchored, same convention _build_terrain()/_build_grid() use for every tile --
+	# the real sprite (AnimatedSprite2D.centered = false, set by PixelPipe's build_scene()) draws
+	# from its own local (0,0) same as a tile does, so no extra inset/centering math is needed.
+	player_visual.position = origin + Vector2(player_pos) * TILE_SIZE
 	enemy_visual.position = origin + Vector2(enemy_pos) * TILE_SIZE + Vector2(2, 2)
 
 func _update_hud() -> void:

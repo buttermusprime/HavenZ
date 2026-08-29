@@ -15,8 +15,50 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 1 | 1.1 | build | 1 | 6 | 6 sittings | no |
 | 1 | 1.2 | checkpoint | 1 | 1 | 1 sitting | no |
 | 2 | 2.1 | build | 1 | 1 | 1 sitting | no |
+| 2 | 2.2 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S2.2 — Real palette extraction & reconciliation
+
+Ran PixelPipe's real full-folder extraction against the actual 1,113-file `PostApocalypse_AssetPack_v1.1.2`
+(not a sample) via `extract_palette.py --config`: **263 unique colors** at exact-match quantization —
+already over Aseprite's 256-color Indexed cap on its own, confirming this session's own "does it fit,
+or does it need quantization" question was a real one, not a formality.
+
+Reconciled against the S2.1 seed `HavenZ_Field_Palette` (40 colors): **0 exact matches, 139
+near-matches (all within the 16.0 threshold, mostly single-digit RGB distance — anti-aliasing/dither
+noise around each seed color, not evidence the seed was wrong), 124 genuinely new colors.** Zero
+exact matches makes sense once you look at the near-match distances — the seed's flat "true" colors
+generally aren't literally present as pack pixels (real sprites are full of AA blending), so
+`quantize_step=1` extraction never counted them as identical; PixelPipe's own nearest-color-match
+conversion (C.2) already absorbs all 139 near-matches into their closest master neighbor
+automatically, so nothing here needed manual re-mapping.
+
+**Real, concrete proof the `ignore_globs` gap (flagged as a background task during S2.1) actually
+matters, not just in theory:** cross-referenced all 124 new colors' source file lists against the
+same ignore-glob patterns already sitting inert in `pixelpipe.config.json`. 23 of them are sourced
+*exclusively* from deprioritized-asset files — most visibly `(11, 8, 61)`, a jarring saturated
+navy that doesn't belong anywhere near this palette's muted family, traced to
+`Puddles-And-Water-Anim`'s rain/downspout animation frames (already flagged in the Asset Audit as
+"ignore or deprioritize"). Since the tool can't filter these out itself yet, filtered them out by
+hand for this session's own new-color set (20 further colors are only *partially* attributable to
+deprioritized files and were correctly kept, since they're still needed for the surviving content
+that shares them).
+
+**Master palette adopted:** `haven-z/palette/HavenZ_Field_Palette.gpl` overwritten in place (same
+config path, so nothing downstream needs to change) — 40 original seed colors + 101 real
+hand-filtered new colors = **141 total**, comfortably under the 256 cap. **No quantization pass
+needed.** Verified via PixelPipe's own `read_gpl()` (parses clean, correct named/unnamed split) and
+a real headless Godot run (palette table dock reports "Loaded 141 color(s)"). Kept
+`HavenZ_Extracted.{json,gpl}` and `HavenZ_Reconciliation.json`/`_Report.md` alongside it in
+`palette/` as the paper trail for how the 141 were arrived at; deleted the intermediate
+`HavenZ_Master_Proposed.gpl` once folded into the real file.
+
+**Next:** S2.3 — real pack conversion & sync (produces HavenZ's actual `res://art_source/` and
+`res://art/` for the first time).
+
+### S2.1 — Configure PixelPipe for HavenZ
 
 ### S2.1 — Configure PixelPipe for HavenZ
 

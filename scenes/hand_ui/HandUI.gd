@@ -12,11 +12,23 @@ extends HBoxContainer
 ## Input Scheme keeps "stick drives the cursor" and "D-pad quick-switches the hand" as two
 ## genuinely separate interactions, and sharing an action would quietly merge them back into one.
 ##
-## Deliberately generic about WHAT a press does: emits card_slot_pressed(index) and leaves the
-## caller (GrayBox, today; session 4.4's real play/drop branch, going forward) to decide what
-## that means, the same separation-of-concerns Deck itself already follows.
-
-signal card_slot_pressed(index: int)
+## Deliberately generic about WHAT a play/drop actually DOES: emits card_play_requested(index)/
+## card_drop_requested(index) and leaves the caller (GrayBox's own real resolution branch) to
+## decide what that means, the same separation-of-concerns Deck itself already follows.
+##
+## Session 4.4 -- two ways a play/drop request reaches here, both converging on the same two
+## signals: (1) a click landing DIRECTLY on a CardSlot fires that slot's own play_requested/
+## drop_requested (session 4.4's CardSlot.gd change), relayed below with its index; (2) a click
+## landing anywhere ELSE on screen (nothing under the cursor claimed it, so it reached this
+## script's own _unhandled_input()) is treated as acting on whichever slot currently has real
+## Control focus -- matching the locked-in scheme's literal wording, "left-click plays the
+## FOCUSED/targeted card," not merely "whatever the cursor happened to be over." Gamepad A/Y
+## need zero special-case code here: session 4.2's cursor already pushes real
+## InputEventMouseButton events through the same Viewport.push_input() pipeline, so they
+## naturally take path (1) or (2) depending on where the virtual cursor is sitting, exactly like
+## a real mouse click would.
+signal card_play_requested(index: int)
+signal card_drop_requested(index: int)
 
 const CARD_SLOT_SCENE := preload("res://scenes/hand_ui/CardSlot.tscn")
 
@@ -50,28 +62,47 @@ func refresh() -> void:
 		var slot := CARD_SLOT_SCENE.instantiate()
 		add_child(slot)
 		slot.setup(deck.hand[i])
-		slot.pressed.connect(_on_slot_pressed.bind(i))
+		slot.play_requested.connect(_on_slot_play_requested.bind(i))
+		slot.drop_requested.connect(_on_slot_drop_requested.bind(i))
 	await get_tree().process_frame
 	_focus_index(clampi(previous_focus, 0, get_child_count() - 1))
 
-func _on_slot_pressed(index: int) -> void:
-	card_slot_pressed.emit(index)
+func _on_slot_play_requested(index: int) -> void:
+	card_play_requested.emit(index)
 
+func _on_slot_drop_requested(index: int) -> void:
+	card_drop_requested.emit(index)
+
+## -1 when the hand is empty or nothing has focus (e.g. focus hasn't been granted yet) --
+## callers must check for -1, not assume 0 is always a safe fallback index.
 func _focused_index() -> int:
 	for i in range(get_child_count()):
 		if get_child(i).has_focus():
 			return i
-	return 0
+	return -1
 
 func _focus_index(index: int) -> void:
 	if index >= 0 and index < get_child_count():
 		get_child(index).grab_focus()
 
+## D-pad quick-switch (see the two new project actions in the class comment above) and, per
+## session 4.4, a click landing anywhere OUTSIDE any specific CardSlot -- Godot's own GUI hit-
+## testing already consumes a click that lands directly ON a slot (a Button with the default
+## mouse_filter=STOP) before it would ever reach _unhandled_input, so this only ever fires for
+## the "missed every slot" case; CardSlot.gd's own _gui_input() override handles a direct hit.
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hand_focus_prev"):
 		_shift_focus(-1)
 	elif event.is_action_pressed("hand_focus_next"):
 		_shift_focus(1)
+	elif event is InputEventMouseButton and event.pressed:
+		var focused := _focused_index()
+		if focused == -1:
+			return
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			card_play_requested.emit(focused)
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			card_drop_requested.emit(focused)
 
 func _shift_focus(direction: int) -> void:
 	var count := get_child_count()

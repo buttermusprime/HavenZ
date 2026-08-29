@@ -1,4 +1,5 @@
 # Exercises: res://scenes/hand_ui/HandUI.gd, res://scenes/hand_ui/CardSlot.gd
+# Session 4.4 update: play_requested/drop_requested replaced the old card_slot_pressed signal.
 extends SceneTree
 
 ## Third test file (deck_test.gd in logic/, gamepad_cursor_test.gd was the first in ui/) -- same
@@ -86,11 +87,37 @@ func _initialize() -> void:
 		hand_ui.get_child(hand_ui.get_child_count() - 1).has_focus(),
 	)
 
-	# --- Real click routing: a CardSlot is a real Button, pressing it fires card_slot_pressed ---
-	var pressed_index := [-1]
-	hand_ui.card_slot_pressed.connect(func(i): pressed_index[0] = i)
-	hand_ui.get_child(1).emit_signal("pressed")
-	_check("pressing a real CardSlot Button emits card_slot_pressed with the right index", pressed_index[0] == 1)
+	# --- Real click routing, path 1: a click landing DIRECTLY on a slot (CardSlot's own
+	# gui_input signal handler, NOT an overridden _gui_input() -- that was tried first and
+	# found to silently break Button's native click processing, since Control's _gui_input has
+	# no GDScript-visible base implementation a script override can chain to via `super.`)
+	# fires that slot's play_requested/drop_requested with ITS index ---
+	var played := [-1]
+	var dropped := [-1]
+	hand_ui.card_play_requested.connect(func(i): played[0] = i)
+	hand_ui.card_drop_requested.connect(func(i): dropped[0] = i)
+
+	var left_click := InputEventMouseButton.new()
+	left_click.button_index = MOUSE_BUTTON_LEFT
+	left_click.pressed = true
+	hand_ui.get_child(1)._on_gui_input(left_click)
+	_check("a direct left-click on slot 1 emits card_play_requested(1)", played[0] == 1)
+
+	var right_click := InputEventMouseButton.new()
+	right_click.button_index = MOUSE_BUTTON_RIGHT
+	right_click.pressed = true
+	hand_ui.get_child(3)._on_gui_input(right_click)
+	_check("a direct right-click on slot 3 emits card_drop_requested(3)", dropped[0] == 3)
+
+	# --- Real click routing, path 2: a click that lands on NEITHER a slot nor the hand-focus
+	# actions reaches HandUI's own _unhandled_input(), which applies it to whatever currently
+	# has focus -- exactly the "left-click plays the FOCUSED card" wording, not "whatever's
+	# under the cursor," and exactly what a click missing every slot (or a gamepad A/Y press
+	# while the virtual cursor sits elsewhere) looks like in practice. ---
+	played[0] = -1
+	hand_ui._focus_index(2)
+	hand_ui._unhandled_input(left_click)
+	_check("a click that misses every slot plays whichever slot currently has focus (2)", played[0] == 2)
 
 	# --- refresh() rebuilds cleanly after a real Deck mutation (what session 4.4 will trigger) ---
 	deck.play_card(0)

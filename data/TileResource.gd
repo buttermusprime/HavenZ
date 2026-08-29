@@ -13,6 +13,15 @@ enum HeatOrigin {
 @export var blocks_zombie: bool = false
 @export var blocks_noise: bool = false
 
+## Session 4.4 -- GDD's generic "Pickable" tag: a tile something can be recovered from by
+## playing an Action (Looting) card on it, per the re-salvage note ("no separate pickup
+## mechanic"). Introduced now because a dropped hand card's landing tile needs to become
+## Pickable; the gray-box's own pre-existing `loot_tiles` Dictionary (naturally-spawned loot,
+## since S1.1) is a separate, older mechanism this field does NOT yet unify with -- that
+## reconciliation is session 5.3's job, once Looting cards actually need one real rule for
+## "what's pickable here," not invented preemptively against a guess at that shape.
+@export var is_pickable: bool = false
+
 ## Single current value. Only ever changes by addition (a rise from an action or bleed
 ## from a neighbor) or subtraction (decay) — never wholesale overwritten by a new source.
 @export var heat: float = 0.0

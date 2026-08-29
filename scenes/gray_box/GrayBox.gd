@@ -17,28 +17,26 @@ signal haven_entered(haven: HavenResource)
 ## mapping is later phase work. Same-session addition: heat decay is now real ring-based
 ## bleed/propagation (Noise System Design's starting parameters), not a flat per-tile value.
 ##
-## Attack/Loot/Food/Water resolve instantly on click. A movement card is different: it sets a
-## RANGE (and its noise cost), and the player then clicks any reachable tile -- including
-## diagonals -- to actually move there. An earlier version baked a fixed direction into the card
-## itself, which felt bad in play -- a run of unlucky draws could leave you with no way to go the
-## direction you actually needed. Range-then-pick keeps "which movement card to play" a real
-## tradeoff (further costs more noise) without ever locking out a direction.
+## Session 4.4 -- the real play/drop resolution branch replaces S1.1's original ad hoc
+## click-a-card/click-a-tile flow entirely, per the locked-in control scheme (START.08): left
+## click (or gamepad A) plays whichever card currently has FOCUS, right click (or gamepad Y)
+## drops it. "Which card is focused" is the same shared focus state session 4.3's HandUI already
+## unifies across mouse hover and D-pad -- this session doesn't add a second, competing notion of
+## "selected." A dropped card marks its landing tile Pickable and leaves the deck's cycle
+## entirely (re-salvaging it is session 5.3's Looting-card job, not this one's). Playing a card
+## always applies its real, already-working noise_cost as heat (the Noise system is a separate,
+## cross-cutting MVP system per GDD §8, not a per-category "effect"), then calls a stub
+## apply_effect(card, target_tile) -- real Attack/Loot/Move/Supply effects are Phase 5-6 content,
+## not this session's job to build. Turn-end is now the real rule too: a turn ends once nothing
+## left in hand is legally playable, not a fixed action count -- see _hand_has_playable_card().
 ##
-## Reachability uses true (Euclidean) distance, unrounded, not a step count -- a diagonal step is
-## sqrt(2) away, not 1, so diagonal movement can't out-cover orthogonal movement for the same
-## range value; a range-2 card cannot reach a tile that's actually 2.83 away just because it's
-## only 2 steps out on each axis. This produces a circular reachable area rather than a square
-## (which is what naively counting steps in any of 8 directions -- Chebyshev distance -- would
-## give). Only the noise-cost CHARGE for a move rounds distance down, not the range check itself.
-##
-## Deliberately NOT built here (real design/systems work for later sessions, not gray-box scope):
-## - Variable turn length ("ends when no legal play" + Supply-card turn extension) - session 4.4.
-##   This gray-box uses a simpler fixed ACTIONS_PER_TURN instead, just to make turn boundaries
-##   legible for playtesting; the real rule replaces this constant later, not extends it.
-## - A real loot/economy system (Supply Request tracking, etc.) - Phase 6. The loot tiles here are
-##   a bare "something is worth walking to" signal, not the real system.
-## - Directional facing / ranged combat - not asked for anywhere in the roadmap; Attack instead
-##   auto-targets an adjacent zombie, which is enough to test the hook without a facing mechanic.
+## Consequence, not a bug: since apply_effect is a pure stub this session, Attack/Loot/Move all
+## genuinely do nothing but log/apply heat right now -- the player doesn't move, the zombie can't
+## be damaged, loot can't be collected. This is the same kind of deliberately-incomplete
+## intermediate state S4.1-S4.3 already left in different corners of the gray-box (a Deck no
+## scene used yet, a cursor no focusable UI existed for yet); Phase 5 is what makes each category
+## do something real again, this time built as part of apply_effect() rather than the old
+## bespoke per-category functions this session removes.
 
 const GRID_WIDTH := 10
 const GRID_HEIGHT := 8
@@ -68,20 +66,13 @@ const HEAT_BLEED_MAX_RING := 2
 ## not from the Noise System Design doc (which only specifies starting per-card noise_cost).
 const ENEMY_PULL_HEAT_SCALE := 8.0
 
-const ATTACK_DAMAGE := 1
 const LOOT_TILE_COUNT := 3
 const HAND_SIZE := 6
-
-## Fixed actions-per-turn for gray-box legibility only -- see the header comment above.
-const ACTIONS_PER_TURN := 2
 
 ## Debug-only stand-in for the Portable Radio System's card-play heat burst (real system:
 ## sessions 10.5/10.6), doubling here as the player's general stealth dial per playtest feedback.
 ## Index 0 = Off (quietest, baseline 1.0x); 1-5 stand in for its 5 volume tiers, each louder.
 const RADIO_MULTIPLIERS: Array[float] = [1.0, 1.2, 1.5, 2.0, 2.5, 3.0]
-
-## MOVE_STEALTH is defined on CardResource but unused here -- see the header comment.
-const MOVE_CATEGORIES := [CardResource.Category.MOVE_LOUD]
 
 const MOVE_RANGES: Array[int] = [1, 2, 3]
 ## Heat per tile actually moved, before the radio-dial multiplier -- moving further is louder.
@@ -179,7 +170,6 @@ const ENEMY_RESOURCE_PATH := "res://data/samples/enemy_walker_basic.tres"
 const OVERLAY_ALPHA := 0.55
 const LOOT_COLOR := Color(0.12, 0.26, 0.14, OVERLAY_ALPHA)
 const NORMAL_COLOR := Color(0.15, 0.15, 0.18, OVERLAY_ALPHA)
-const HIGHLIGHT_COLOR := Color(0.85, 0.75, 0.2, OVERLAY_ALPHA)
 
 @onready var grid_visual: Node2D = $GridVisual
 @onready var player_visual: Node2D = $PlayerVisual
@@ -194,6 +184,11 @@ var tiles: Dictionary = {}  # Vector2i -> TileResource
 var tile_views: Dictionary = {}  # Vector2i -> {rect: ColorRect, label: Label}
 var loot_tiles: Dictionary = {}  # Vector2i -> true
 var haven_entrances: Dictionary = {}  # Vector2i -> HavenResource
+## Session 4.4 -- a card removed from the deck's cycle by drop_card(), keyed by the tile it
+## landed on (also marked TileResource.is_pickable there). Deliberately separate from the older
+## loot_tiles Dictionary above (naturally-spawned loot, since S1.1) rather than unified with it --
+## see TileResource.is_pickable's own comment for why that reconciliation is session 5.3's job.
+var dropped_cards: Dictionary = {}  # Vector2i -> CardResource
 var card_pool: Array[CardResource] = []
 ## Session 4.3 -- replaces the old flat `hand: Array[CardResource]` field entirely. Every prior
 ## reference to a bare `hand[i]` now reads `deck.hand[i]`; every card-consuming call site now
@@ -210,8 +205,6 @@ var enemy_current_hp: int
 var salvage_count: int = 0
 var turn_number: int = 1
 var radio_tier_index: int = 0
-var actions_remaining: int = ACTIONS_PER_TURN
-var selected_card_index: int = -1
 
 func _ready() -> void:
 	randomize()
@@ -232,7 +225,8 @@ func _ready() -> void:
 	# animation but never calls play() itself, so nothing animates until something does.
 	player_sprite.play()
 	deck = Deck.new(card_pool, HAND_SIZE)
-	hand_ui.card_slot_pressed.connect(_on_hand_slot_pressed)
+	hand_ui.card_play_requested.connect(_on_card_play_requested)
+	hand_ui.card_drop_requested.connect(_on_card_drop_requested)
 	hand_ui.setup(deck)
 	_redraw_tiles()
 	_update_hud()
@@ -306,11 +300,6 @@ func _build_grid() -> void:
 			label.text = "0"
 			label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			rect.add_child(label)
-
-			# gui_input's bound coord comes from Callable.bind(), not a captured loop variable -
-			# GDScript lambdas/closures capture by value at creation time, which would otherwise
-			# make every tile's callback see the loop's *final* coord.
-			rect.gui_input.connect(_on_tile_gui_input.bind(coord))
 			tile_views[coord] = {"rect": rect, "label": label}
 
 ## Session 3.1 -- builds the Home Haven + one other Haven per GDD §8.1: a walled rectangle of
@@ -413,72 +402,80 @@ func _place_loot_tiles() -> void:
 	for i in range(mini(needed, candidates.size())):
 		loot_tiles[candidates[i]] = true
 
-func _on_tile_gui_input(event: InputEvent, coord: Vector2i) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		_try_move_to_tile(coord)
-
-## Session 4.3 -- fired by HandUI's card_slot_pressed signal (a real Button press on a CardSlot,
-## from either a real mouse click or session 4.2's gamepad cursor pushing a simulated one --
-## this code has no way to tell which, by design). Same selection/resolve behavior the old
-## ad hoc per-card Button drove; only the trigger (HandUI/CardSlot instead of a manually-built
-## Button) and the data source (deck.hand instead of a flat array) changed.
-func _on_hand_slot_pressed(i: int) -> void:
-	if i == selected_card_index:
-		# Clicking the already-selected move card again cancels the selection.
-		selected_card_index = -1
-		_redraw_tiles()
-		status_label.text = "Selection cancelled."
+## Session 4.4 -- fired by HandUI's card_play_requested signal, itself fired either by a direct
+## click on a CardSlot or a click/gamepad-A press landing anywhere else, applied to whichever
+## card currently has focus. `index` is only ever emitted synchronously from a real input event,
+## so it can't go stale before this runs.
+func _on_card_play_requested(index: int) -> void:
+	if index < 0 or index >= deck.hand.size():
 		return
-
-	var card := deck.hand[i]
-	if card.category in MOVE_CATEGORIES:
-		selected_card_index = i
-		_redraw_tiles()
-		status_label.text = "%s selected — click any highlighted tile up to %d away." % [tr(card.display_name).format([card.move_range]), card.move_range]
-		return
-
-	_resolve_card_in_place(card)
-	deck.play_card(i)
+	var card: CardResource = deck.hand[index]
+	_apply_card_heat(card, player_pos)
+	apply_effect(card, player_pos)
+	deck.play_card(index)
 	hand_ui.refresh()
-	_spend_action()
+	_after_play_or_drop()
 
-func _try_move_to_tile(coord: Vector2i) -> void:
-	if selected_card_index == -1:
-		status_label.text = "Select a movement card first, then click a highlighted tile."
+## Drops the card at `index` via Deck.drop_card() -- removed from hand, no discard, no
+## replenish, a real GDD §7 penalty (session 4.1), not a discard-bound variant of playing. Marks
+## the landing tile Pickable so a Looting card (session 5.3) can re-salvage it later -- no
+## separate pickup mechanic, per the GDD's own re-salvage note. "A dropped card always resolves
+## via the same fixed, non-player-chosen logic for where it lands" per this session's own
+## explicit ask -- the player's own current tile is the simplest deterministic choice available;
+## tuning the real rule is explicitly not this session's job.
+func _on_card_drop_requested(index: int) -> void:
+	if index < 0 or index >= deck.hand.size():
 		return
-	var valid := _get_valid_move_tiles()
-	if not (coord in valid):
-		status_label.text = "That tile isn't reachable with the selected card."
-		return
-	var card := deck.hand[selected_card_index]
-	var distance := _floored_distance(player_pos, coord)
-	player_pos = coord
-	_apply_card_heat(card, player_pos, distance * BASE_MOVE_NOISE)
-	deck.play_card(selected_card_index)
+	var card := deck.drop_card(index)
+	dropped_cards[player_pos] = card
+	tiles[player_pos].is_pickable = true
 	hand_ui.refresh()
-	selected_card_index = -1
-	if haven_entrances.has(coord):
-		haven_entered.emit(haven_entrances[coord])
-	_spend_action()
+	status_label.text = "Dropped %s at (%d,%d) — pick it back up with a Looting card." % [
+		tr(card.display_name).format([card.move_range]), player_pos.x, player_pos.y,
+	]
+	_after_play_or_drop()
 
 func _on_haven_entered(haven: HavenResource) -> void:
 	# TODO(Phase 10): open the real Trade/Craft menu here. This session only proves the
 	# entrance detects the player and identifies which Haven, per its own explicit scope.
 	status_label.text += "  Entered %s." % haven.display_name
 
-## True (Euclidean) distance between two tiles, unrounded. A diagonal step is sqrt(2) away, not
-## 1 -- this is the real distance used to decide what's IN RANGE, so diagonal movement can never
-## reach farther than the card's range actually allows (flooring this before comparing would let
-## e.g. a true-distance-2.83 corner sneak in under a range-2 cap -- it must not).
-func _true_distance(a: Vector2i, b: Vector2i) -> float:
-	var delta := b - a
-	return sqrt(float(delta.x * delta.x + delta.y * delta.y))
+## Stub per this session's own explicit scope -- real Attack/Loot/Move/Supply effects (damage,
+## looting, movement, supply consumption) are Phase 5-6 content. `target_tile` is always
+## player_pos for now, since no real per-category targeting rule exists yet (Attack should
+## target an adjacent zombie, Move a chosen tile, Loot the player's own tile, etc.) -- this only
+## proves the hook exists and gets called with the right shape.
+func apply_effect(card: CardResource, target_tile: Vector2i) -> void:
+	print("apply_effect stub: %s -> (%d,%d)" % [card.id, target_tile.x, target_tile.y])
 
-## Same distance, rounded down to a whole tile count -- used only for the noise-cost charge, so
-## a diagonal move's cost stays a clean multiple of BASE_MOVE_NOISE instead of an odd fraction.
-## Never used for the range check itself; see _true_distance.
-func _floored_distance(a: Vector2i, b: Vector2i) -> int:
-	return floori(_true_distance(a, b))
+## GDD §7's real turn-end rule: a turn ends once nothing left in hand is legally playable, not a
+## fixed action count (the old ACTIONS_PER_TURN constant this replaces). A reusable, generic
+## check per this session's own explicit ask -- Phase 6.1's Food/Water cards extend a turn by
+## granting extra plays, and Phase 7.1's zombie turn fires once this goes false, both meant to
+## build on this exact function rather than duplicate its logic.
+func _hand_has_playable_card() -> bool:
+	for card in deck.hand:
+		if _is_card_playable(card):
+			return true
+	return false
+
+## Real per-category cost/target legality (Attack needs an adjacent zombie, Move a reachable
+## tile, etc.) is Phase 5 content, and apply_effect() itself is still a stub -- the only rule
+## generically available right now is GDD §7's own explicit one: Scrap cards are never
+## playable, only droppable. Nothing in the gray-box's current pool is Scrap, so this always
+## returns true today; that's an honest consequence of the gray-box's tiny always-playable
+## content, not a bug -- a real hand can still run out of playable cards once Scrap/cost-gated
+## cards actually exist, and the turn genuinely won't end automatically until then except by the
+## player dropping every card in hand.
+func _is_card_playable(card: CardResource) -> bool:
+	return card.category != CardResource.Category.SUPPLY_SCRAP
+
+func _after_play_or_drop() -> void:
+	if not _hand_has_playable_card():
+		_end_turn()
+	_update_hud()
+	_redraw_tiles()
+	_render_visual_positions()
 
 ## Bresenham's line algorithm -- every tile from `from` to `to` inclusive, in grid order. Used
 ## only to stop a movement card's straight-line hop from crossing a wall it should have to walk
@@ -509,102 +506,22 @@ func _tiles_along_line(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
 			y0 += sy
 	return result
 
-## All tiles (including diagonals, no obstacles yet) within the selected card's move_range, using
-## unrounded true distance so the reachable area is circular, not a square -- a range-2 card
-## cannot reach a tile that's actually 2.83 tiles away just because two of its axes each moved by
-## only 2. Every tile within range is a valid stop, not just the far edge, so a long-range card
-## can still be played for a short, quieter hop if that's the better play.
-func _get_valid_move_tiles() -> Array[Vector2i]:
-	var result: Array[Vector2i] = []
-	if selected_card_index == -1:
-		return result
-	var card := deck.hand[selected_card_index]
-	if not (card.category in MOVE_CATEGORIES):
-		return result
-	var r := card.move_range
-	for dx in range(-r, r + 1):
-		for dy in range(-r, r + 1):
-			if dx == 0 and dy == 0:
-				continue
-			var coord := player_pos + Vector2i(dx, dy)
-			if not tiles.has(coord):
-				continue
-			if _true_distance(player_pos, coord) > float(r):
-				continue
-			var target: TileResource = tiles[coord]
-			if not target.walkable:
-				continue
-			if _path_crosses_wall(player_pos, coord):
-				continue
-			result.append(coord)
-	return result
-
-## True if any tile strictly between `from` and `to` (exclusive of both ends -- `to` itself is
-## already checked separately as the destination) blocks movement. Without this, a long-range
-## move card could hop straight over a 1-tile-thick Haven wall onto a walkable tile beyond it,
-## which would make the wall meaningless for anything but the shortest cards.
-func _path_crosses_wall(from: Vector2i, to: Vector2i) -> bool:
-	var path := _tiles_along_line(from, to)
-	for i in range(1, path.size() - 1):
-		var coord: Vector2i = path[i]
-		if tiles.has(coord) and not tiles[coord].walkable:
-			return true
-	return false
-
-## Resolves a non-move card's effect at the player's current tile: Attack hits an adjacent
-## zombie (no facing/direction needed since it just targets whichever of the 4 neighbors the
-## zombie occupies), Loot claims a loot tile if the player is standing on one, everything else
-## (Food/Water) is a heat-only placeholder until Phase 6's real economy exists.
-func _resolve_card_in_place(card: CardResource) -> void:
-	_apply_card_heat(card, player_pos, card.noise_cost)
-	match card.category:
-		CardResource.Category.ATTACK:
-			_resolve_attack()
-		CardResource.Category.LOOT:
-			_resolve_loot()
-
-func _resolve_attack() -> void:
-	var dist := absi(enemy_pos.x - player_pos.x) + absi(enemy_pos.y - player_pos.y)
-	if dist != 1:
-		status_label.text += " No zombie adjacent — attack missed."
-		return
-	enemy_current_hp -= ATTACK_DAMAGE
-	if enemy_current_hp <= 0:
-		status_label.text += " Zombie destroyed! A new one appears elsewhere."
-		enemy_pos = enemy_spawn_pos
-		enemy_current_hp = enemy_resource.max_hp
-	else:
-		status_label.text += " Hit the zombie (%d/%d HP left)." % [enemy_current_hp, enemy_resource.max_hp]
-
-func _resolve_loot() -> void:
-	if loot_tiles.has(player_pos):
-		loot_tiles.erase(player_pos)
-		salvage_count += 1
-		status_label.text += " Looted this tile! (+1 salvage)"
-		_place_loot_tiles()
-	else:
-		status_label.text += " Nothing to loot here."
-
-## noise_cost_override lets a movement card charge for the distance actually picked (which may be
-## less than its max range) rather than the card's own noise_cost field, which represents the cap.
-func _apply_card_heat(card: CardResource, coord: Vector2i, noise_cost_override: float) -> void:
+## Every card applies its own flat noise_cost as heat at the player's current tile on play --
+## Noise is a separate, cross-cutting MVP system (GDD §8), not a per-category "effect," so this
+## stays independent of apply_effect()'s stub. Previously took a distance-based override for
+## movement cards (the old select-then-target-a-tile flow charged for distance actually picked,
+## not the card's max range); that flow is gone as of this session (see the header comment), so
+## every card -- move cards included -- now charges its own flat noise_cost uniformly, same as
+## Attack/Loot/Supply always did.
+func _apply_card_heat(card: CardResource, coord: Vector2i) -> void:
 	var tile: TileResource = tiles[coord]
 	var multiplier := RADIO_MULTIPLIERS[radio_tier_index]
-	var heat_delta := noise_cost_override * multiplier
+	var heat_delta := card.noise_cost * multiplier
 	tile.heat += heat_delta
 	tile.add_heat_origin(TileResource.HeatOrigin.PLAYER)
 	status_label.text = "Played %s (+%.1f heat, radio x%.1f) at (%d,%d)." % [
 		tr(card.display_name).format([card.move_range]), heat_delta, multiplier, coord.x, coord.y,
 	]
-
-func _spend_action() -> void:
-	actions_remaining -= 1
-	if actions_remaining <= 0:
-		_end_turn()
-		actions_remaining = ACTIONS_PER_TURN
-	_update_hud()
-	_redraw_tiles()
-	_render_visual_positions()
 
 func _end_turn() -> void:
 	status_label.text += "  -- Turn %d ends, zombie moves --" % turn_number
@@ -728,17 +645,16 @@ func _compute_heat_bleed() -> Dictionary:
 				deltas[target_coord] = deltas.get(target_coord, 0.0) + source.heat * fraction
 	return deltas
 
+## Session 4.4: no more selected-card tile highlighting -- the old select-a-move-card-then-
+## click-a-tile flow is gone (see the header comment), and Phase 5.1's real movement targeting
+## will define its own real highlighting when it actually needs one, not resurrect this one.
 func _redraw_tiles() -> void:
-	var highlighted := _get_valid_move_tiles()
 	for coord in tile_views.keys():
 		var tile: TileResource = tiles[coord]
 		var view: Dictionary = tile_views[coord]
-		if coord in highlighted:
-			view.rect.color = HIGHLIGHT_COLOR
-		else:
-			var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
-			var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
-			view.rect.color = Color(base.r + 0.7 * t, base.g, base.b, base.a)
+		var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
+		var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
+		view.rect.color = Color(base.r + 0.7 * t, base.g, base.b, base.a)
 		# Wall tiles are blocks_noise=true, so bleed can never reach them (S2.5's own bleed loop
 		# skips any target with blocks_noise) and nothing can ever stand on one to apply heat
 		# directly either (walkable=false) -- the label would just be a permanent, uninformative
@@ -757,8 +673,8 @@ func _render_visual_positions() -> void:
 
 func _update_hud() -> void:
 	var tier_name := "Off" if radio_tier_index == 0 else "Tier %d" % radio_tier_index
-	turn_label.text = "Turn %d  |  Radio: %s (x%.1f) [0-5]  |  Actions: %d/%d" % [
-		turn_number, tier_name, RADIO_MULTIPLIERS[radio_tier_index], actions_remaining, ACTIONS_PER_TURN,
+	turn_label.text = "Turn %d  |  Radio: %s (x%.1f) [0-5]" % [
+		turn_number, tier_name, RADIO_MULTIPLIERS[radio_tier_index],
 	]
 	stats_label.text = "Salvage: %d  |  Zombie HP: %d/%d" % [
 		salvage_count, enemy_current_hp, enemy_resource.max_hp,

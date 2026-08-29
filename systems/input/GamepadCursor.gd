@@ -79,19 +79,28 @@ static func _compute_motion(
 		rescaled.y = -rescaled.y
 	return rescaled * sens * delta_time
 
+## Session 4.4 correction: this originally also routed B to a simulated right-click, reasoning
+## that right-click's "secondary action" meaning matched B closely enough. That was wrong --
+## the roadmap's own Input Scheme table (START.08), read more carefully during session 4.4,
+## locks B EXCLUSIVELY to back/cancel ("never overloaded") and assigns "drop a hand card"
+## (right-click's OTHER, unrelated meaning on PC) to a separate X-or-Y button instead. PC's
+## mouse genuinely overloads right-click across two different meanings depending on context;
+## the gamepad scheme deliberately un-overloads that onto two distinct buttons. B is left
+## unbound here on purpose -- nothing in the game needs a real back/cancel action yet (no menu
+## exists to cancel out of), and binding it to anything now would risk re-creating the exact
+## ambiguity this fix just removed. Y was chosen for drop (session 4.4's own pick, recorded in
+## the roadmap's Input Scheme table).
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventJoypadButton):
 		return
 	if event.button_index == JOY_BUTTON_A:
 		_push_click(MOUSE_BUTTON_LEFT, event.pressed)
-	elif event.button_index == JOY_BUTTON_B:
+	elif event.button_index == JOY_BUTTON_Y:
 		_push_click(MOUSE_BUTTON_RIGHT, event.pressed)
 
-## A -> a real left-click, B -> a real right-click -- not a bespoke click/back pair, per the
-## session's own explicit ask that downstream Control code be unable to tell the difference.
-## Right-click already carries "the secondary/cancel-ish action" meaning in this project's own
-## locked mouse scheme (session 4.4 wires left-click=play, right-click=drop), so B reuses that
-## existing meaning instead of inventing a parallel gamepad-only one.
+## A -> a real left-click (play), Y -> a real right-click (drop) -- not a bespoke pair of
+## signals, per session 4.2's original explicit ask that downstream Control code be unable to
+## tell a real mouse click from a simulated one.
 func _push_click(button: MouseButton, pressed: bool) -> void:
 	var mb := InputEventMouseButton.new()
 	mb.button_index = button

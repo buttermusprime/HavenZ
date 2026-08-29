@@ -24,8 +24,92 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 4 | 4.1 | build | 1 | 1 | 1 sitting | no |
 | 4 | 4.2 | build | 1 | 1 | 1 sitting | no |
 | 4 | 4.3 | build | 1 | 1 | 1 sitting | no |
+| 4 | 4.4 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S4.4 — Play/drop resolution branch
+
+**Real conflict found and fixed before writing any resolution code:** session 4.2 wired gamepad
+B to a simulated right-click, reasoning in its own comment that right-click's "secondary action"
+meaning matched B's purpose closely enough. Re-reading the roadmap's actual locked-in Input
+Scheme table (START.08) for this session's own "gamepad A plays, X or Y drops (pick one)" ask
+showed that reasoning was wrong: B is reserved EXCLUSIVELY for back/cancel ("never overloaded"),
+and "drop a hand card" — right-click's OTHER, unrelated PC meaning — maps to a separate X-or-Y
+button instead. PC's mouse genuinely overloads right-click across two different meanings
+depending on context; the gamepad scheme deliberately un-overloads that onto two distinct
+buttons, and S4.2 conflated them. Fixed in `GamepadCursor.gd`: removed B→right-click, added
+Y→right-click, left B genuinely unbound (nothing needs real back/cancel yet — no menu exists to
+cancel out of). Recorded **Y** in the roadmap's Input Scheme table, per this session's own
+explicit "record the choice here once picked" instruction.
+
+**Shipped the real play/drop branch, replacing S1.1's original click-a-card/click-a-tile flow
+entirely:** left-click (or gamepad A, via S4.2's existing push_input pipeline — zero new
+gamepad-specific code needed) plays whichever card currently has FOCUS; right-click (or gamepad
+Y) drops it. Two paths converge on the same `HandUI.card_play_requested`/`card_drop_requested`
+signals: a click landing DIRECTLY on a `CardSlot` (via its own `gui_input` signal — see the real
+bug below for why NOT an overridden `_gui_input()`), and a click landing anywhere else reaching
+`HandUI`'s own top-level `_unhandled_input()`, applied to whichever slot has real Control focus —
+matching "left-click plays the FOCUSED card" literally, not "whatever's under the cursor."
+Dropping uses `Deck.drop_card()` (session 4.1's real no-replenish penalty) and marks the landing
+tile `TileResource.is_pickable` (new field) — the player's own current tile, since "a dropped
+card always resolves via the same fixed, non-player-chosen logic for where it lands" and tuning
+the real rule is explicitly not this session's job. New `dropped_cards: Dictionary` tracks which
+card landed where; unifying this with the older, separate `loot_tiles` mechanism (naturally-
+spawned loot since S1.1) is explicitly session 5.3's job, not done here. Playing a card applies
+its real, already-working `noise_cost` as heat (Noise is a separate GDD §8 system, not a
+per-category "effect") and then calls a stub `apply_effect(card, target_tile)` — real
+Attack/Loot/Move/Supply effects are Phase 5-6 content; `target_tile` is always `player_pos` for
+now, since no real per-category targeting rule exists yet.
+
+**Real turn-end rule replaces the fixed `ACTIONS_PER_TURN` constant:** a turn ends once nothing
+left in hand is legally playable, via a new reusable `_hand_has_playable_card()`/
+`_is_card_playable()` pair — Phase 6.1's Food/Water cards and Phase 7.1's zombie-turn trigger are
+both meant to build on this exact function, per the session's own explicit ask. The only rule
+generically available today (Scrap cards are never playable) can't be exercised by the gray-box's
+own card pool (no Scrap exists yet) — an honest, explicitly-documented consequence, not a bug;
+verified the function's own aggregate loop directly (not just inferred from the per-card check)
+by temporarily swapping in a synthetic all-Scrap hand, and separately confirmed a real end-to-end
+case: dropping every card in hand (the one way the turn CAN end today) empties it and correctly
+triggers a real `_end_turn()`.
+
+**Consequence, not a bug, flagged clearly in the file's own header comment:** since `apply_effect`
+is a pure stub this session, Attack/Loot/Move genuinely do nothing but log/apply heat right now —
+the player doesn't move, the zombie can't be damaged, loot can't be collected. Removed the entire
+superseded select-a-move-card-then-click-a-tile flow as a result (`_get_valid_move_tiles`,
+`_path_crosses_wall`, `_true_distance`, `_floored_distance`, tile-click wiring, movement-tile
+highlighting, `_resolve_card_in_place`/`_resolve_attack`/`_resolve_loot`, the old
+`ACTIONS_PER_TURN`/`_spend_action`) rather than leave it as unreachable dead code — Phase 5.1
+rebuilds real movement targeting as part of `apply_effect()`, not by resurrecting this.
+
+**Two real bugs found and fixed, both while writing (not just running) the verification:**
+(1) `CardSlot.gd`'s first attempt added `play_requested`/`drop_requested` by overriding the
+`_gui_input()` virtual method and calling `super._gui_input(event)` first, assuming that would
+preserve Button's own native press/hover visual processing — it doesn't: `Control._gui_input` has
+no GDScript-visible base implementation a script override can chain to via `super.`, so the
+override silently replaced Button's native click handling entirely rather than extending it
+(confirmed the hard way: `Invalid call. Nonexistent function 'setup' in base 'Button'` cascaded
+out of `HandUI.refresh()` because the whole script had failed to parse). Fixed by connecting to
+the `gui_input` SIGNAL instead — a pure notification that doesn't touch Button's native
+processing at all, the same pattern this project's own tile ColorRects already used back in
+session 1.1. (2) The verification's own first heat-application check used a loose "heat >
+before" assertion against whichever card the shuffled deck happened to deal to hand index 0 —
+Food/Water cards have `noise_cost = 0.0`, so this was a real false-failure risk against an honest
+zero-cost card, not evidence of an actual bug. Fixed by checking the exact expected delta
+(`card.noise_cost * radio_multiplier`) against whichever real card was actually there.
+
+**Verified via a throwaway script** (GrayBox itself has never gotten a committed test, unlike
+Deck/GamepadCursor/HandUI — established S1.1-S3.2 convention, continued here): real play
+(replenish, real discard, exact heat delta), real drop (no replenish, no discard, Pickable
+marking, retrievable dropped-card data), `_is_card_playable`/`_hand_has_playable_card` both ways
+(including the synthetic-Scrap-hand check above), and the real end-to-end drop-everything →
+turn-end case. Re-ran `hand_ui_test.gd` (updated for the new signals and the `gui_input`-signal
+fix), `deck_test.gd`, and `gamepad_cursor_test.gd` as regressions — all still pass. Real-GPU
+screenshot confirmed by eye: the HUD's old "Actions: X/Y" display is gone, a real drop status
+message renders correctly, and the hand shows exactly the right card count after a play
+(replenished) followed by a drop (not replenished).
+
+**Next:** Phase 5 (Action & Movement Cards), starting S5.1, per the roadmap.
 
 ### S4.3 — Hand UI
 

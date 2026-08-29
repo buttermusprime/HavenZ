@@ -41,7 +41,7 @@ Godot 4.6 · GDScript | Tile-tactics deckbuilder | Single dev + Claude Code | Ta
 
 > **What changed in v18.** The v17 card-synergy brainstorm now has a real home in the GDD, not just this document: a new "Open Design Question — Card Synergy" note appended to Design Pillars (§3) lists the three directions from that discussion (a flat same-category chain discount, a three-way Quiet→Aggressive→Loud posture cycle, and a minimal two-node version of it) as things to actually try, not committed design. Session 1.2's gray-box checkpoint now points at it directly — if an iteration attempt is close but not landing, trying a synergy rule against the abstract gray-box categories is explicitly cheaper than waiting until Phase 4's real card logic exists to find out it doesn't help. No session count change (61, 1 tentative) — this is content inside an existing checkpoint, not a new one.
 
-> **What changed in v19.** Real development started 2026-08-25 — this revision syncs against the actual build for the first time via a new Session Status & Progress table below, the same convention PixelPipe and Sheepshead's own roadmaps already use. No session prompts were rewritten to match final implementation details — `docs/SESSION_LOG.md` remains the full narrative of what actually shipped and every deviation/bug found along the way; this table is a status layer on top, not a replacement. Current state: **Phase 0-2 complete** (12 of 61 pre-ship sessions), with one exception — **S2.4 is Deferred, not Done** (no real rendered art existed yet to tune against). S1.1 took 6 real sittings against direct playtest feedback before S1.2 passed on the first attempt. **Next: S5.1 (Movement cards — Stealth & Loud), starting Phase 5.**
+> **What changed in v19.** Real development started 2026-08-25 — this revision syncs against the actual build for the first time via a new Session Status & Progress table below, the same convention PixelPipe and Sheepshead's own roadmaps already use. No session prompts were rewritten to match final implementation details — `docs/SESSION_LOG.md` remains the full narrative of what actually shipped and every deviation/bug found along the way; this table is a status layer on top, not a replacement. Current state: **Phase 0-2 complete** (12 of 61 pre-ship sessions), with one exception — **S2.4 is Deferred, not Done** (no real rendered art existed yet to tune against). S1.1 took 6 real sittings against direct playtest feedback before S1.2 passed on the first attempt. **Next: S5.2 (Melee Attack cards).**
 
 ## START.00 — Session Status & Progress
 
@@ -68,7 +68,7 @@ _Real build status, synced 2026-08-29 from `docs/SESSION_LOG.md` and the repo's 
 | 4.2 | Gamepad virtual cursor system | Done | 2026-08-29 | A/B route through real push_input() mouse-button events, not a bespoke signal pair. Second real test file (scripts/tests/ui/). |
 | 4.3 | Hand UI | Done | 2026-08-29 | Found a real `--script`-mode-only tr() resolution gap (logged to shared lessons); D-pad quick-switch uses new dedicated actions to avoid colliding with the S4.2 cursor's stick binding. |
 | 4.4 | Play/drop resolution branch | Done | 2026-08-29 | Corrected S4.2's own B→right-click wiring (should've been Y; B is exclusively back/cancel). Removed the entire superseded select-then-target-a-tile flow; apply_effect() is a stub until Phase 5. |
-| 5.1 | Movement cards — Stealth & Loud | Not Started | — | — |
+| 5.1 | Movement cards — Stealth & Loud | Done | 2026-08-29 | S4.4 left movement targeting with no mechanism; asked the user rather than guessing, who chose reintroducing click-to-target over baking direction into cards. noise_cost now carries a dual meaning (flat vs. per-tile rate) per CardResource's own pre-existing S0.2 doc comment. Found a real forgotten-CSV-reimport bug (same class as S4.3's) via screenshot. |
 | 5.2 | Melee Attack cards | Not Started | — | — |
 | 5.3 | Looting, Trap & Distraction cards | Not Started | — | — |
 | 6.1 | Supply cards | Not Started | — | — |
@@ -111,7 +111,7 @@ _Real build status, synced 2026-08-29 from `docs/SESSION_LOG.md` and the repo's 
 | 14.4 | Retrospective & metrics rollup | Not Started | — | — |
 | POST.1 | Extract the UI Shell | Not Started | — | Post-launch, not counted in the 61. |
 
-**18 of 61 pre-ship sessions done, 1 deferred, 42 not started** (plus POST.1). Real elapsed time: 5 active calendar days (2026-08-25 through 2026-08-29), 30 commits, 23 real working sittings against those 18 sessions.
+**19 of 61 pre-ship sessions done, 1 deferred, 41 not started** (plus POST.1). Real elapsed time: 5 active calendar days (2026-08-25 through 2026-08-29), 31 commits, 24 real working sittings against those 19 sessions.
 
 ## START.01 — Lifecycle Lessons Applied
 

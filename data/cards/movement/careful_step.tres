@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://dfvx0smdd0v4j" path="res://data/CardResource.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+id = &"careful_step"
+display_name = "CARD_CAREFUL_STEP"
+category = 4
+noise_cost = 0.0
+effect_data = {}
+move_range = 1

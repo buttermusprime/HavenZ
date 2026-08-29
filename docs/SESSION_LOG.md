@@ -25,8 +25,77 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 4 | 4.2 | build | 1 | 1 | 1 sitting | no |
 | 4 | 4.3 | build | 1 | 1 | 1 sitting | no |
 | 4 | 4.4 | build | 1 | 1 | 1 sitting | no |
+| 5 | 5.1 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S5.1 — Movement cards — Stealth & Loud
+
+**Real design gap resolved before writing any code, via an explicit user decision:** session
+4.4's new "one card resolves instantly on play" model left no mechanism for picking WHERE to
+move, since the old click-a-tile targeting flow was removed as superseded — but Movement
+inherently needs a destination, unlike Attack/Loot/Supply (which always resolve at the player's
+own tile). Asked the user directly rather than guessing, since this project has direct prior
+history here (S1.1's multi-sitting finding that baking a fixed direction into a movement card, or
+by extension into an automatic "current facing," felt bad in real play) and the GDD's own
+"Player Facing Direction" concept doesn't actually specify how a card would pick a direction on
+its own. Chose: reintroduce a scoped click-to-target step (playing a Move card enters a pending-
+target state; the next tile click confirms it), reusing the same reachability/wall-crossing math
+S1.1-S3.1 already built and validated rather than reinventing it.
+
+**Shipped the real Movement category, replacing the old gray-box's procedural "Move x1/x2/x3"
+placeholders with two real roster cards** in a new `data/cards/movement/` (distinct from
+`data/gray_box_cards/`, since these are meant to persist as real content, not gray-box
+exploration): **Careful Step** (MOVE_STEALTH, move_range 1, noise_cost 0.0) and **Sprint**
+(MOVE_LOUD, move_range 3, noise_cost 1.0). `CardResource.noise_cost` now means something
+different for these two categories than for every other — a PER-TILE rate, not a flat amount —
+charged against the ACTUAL distance moved (not the card's max move_range), so playing Sprint for
+a 1-tile hop costs 1, not 3, the same real tradeoff the old gray-box's flexible-distance design
+already validated through direct playtesting. Stealth's 0.0 rate means literally zero heat
+regardless of distance, satisfying GDD §10.5 without a special case. `apply_effect()` now
+actually does something for Move categories (dispatches to a new `_apply_move_effect()`) instead
+of the S4.4 stub; every other category still falls through to the print/log stub, unchanged.
+Re-added `pending_move_index`, `_get_valid_move_tiles()`, `_true_distance()`/`_floored_distance()`,
+`_path_crosses_wall()`, tile `gui_input` wiring, and `HIGHLIGHT_COLOR` — all real S4.4 removals
+this session deliberately brings back in scoped form, not a revert of that session's own
+(correct, at the time) decision to remove the old bespoke flow. `haven_entered` fires again for
+the first time since S4.4 silently orphaned it (nothing called `_try_move_to_tile`'s equivalent
+after movement was removed) — a real, quiet regression this session's own reinstatement fixes as
+a side effect, not something separately hunted for.
+
+**A card slot's noise label now branches by category** (`CardSlot.gd`): Move cards show
+"Noise: {rate}/tile" (new `CARD_NOISE_LABEL_PER_TILE` key) instead of the flat "Noise: {cost}"
+every other card uses — a flat "0.0" on Sprint would have misleadingly implied it's silent, when
+its real cost scales with distance actually moved.
+
+**Real bug found via the session's own required visual spot-check, not assumed fixed:** the
+first screenshot showed literal untranslated keys ("CARD_SPRINT", "CARD_NOISE_LABEL_PER_TILE")
+on the new cards, even though older cards translated correctly. Root cause: this session's own
+`strings.csv` edits (new `CARD_CAREFUL_STEP`/`CARD_SPRINT`/`CARD_NOISE_LABEL_PER_TILE` keys,
+removed `CARD_MOVE_RANGED`) were never followed by the now well-established `--headless --editor
+--quit` re-import pass this project has needed after every single prior CSV edit (S4.3 discovered
+and documented this exact requirement) — a real, avoidable process slip, not a new bug in the
+translation system. Fixed by running the reimport and re-capturing; the same screenshot then also
+confirmed the highlight pattern is a genuine circle/diamond, not a square, matching intent.
+
+**Two real bugs found and fixed in the verification script itself, not the game:** (1) assumed
+Careful Step (range 1) would offer all 8 surrounding tiles — the already-validated true-distance
+circular reachability rule (S1.1) correctly excludes diagonals at range 1, since a diagonal
+neighbor is sqrt(2) ≈ 1.414 tiles away, exceeding a 1.0 cap; Stealth's real reachable set is the 4
+orthogonal neighbors only, confirmed as correct rather than assumed. (2) asserted
+`discard_pile.size() > 0` after one play — the real card pool is now exactly 6 cards, equal to
+`HAND_SIZE`, so `draw_pile` is empty from the very first deal and every single `play_card()`
+immediately reshuffles `discard_pile` back into `draw_pile` and redraws (Deck's own already-
+tested S4.1 behavior) — a real, harmless emergent property of this specific pool size, not a
+defect; removed the assertion rather than chase a false failure.
+
+**Verified via a throwaway script** (GrayBox itself still has no committed test, per established
+convention): pool/hand membership for both new cards, pending-state entry/cancel, correct 4-tile
+Stealth reachability, zero-heat Stealth movement, exact-actual-distance Loud heat charging (not
+max range), and wall-tile exclusion from a synthetic Loud card's reachable set. Re-ran
+`deck_test.gd`/`gamepad_cursor_test.gd`/`hand_ui_test.gd` as regressions — all still pass.
+
+**Next:** S5.2 (Melee Attack cards) per the roadmap.
 
 ### S4.4 — Play/drop resolution branch
 

@@ -58,11 +58,17 @@ func _on_gui_input(event: InputEvent) -> void:
 		drop_requested.emit()
 
 ## card.display_name is a localization KEY (e.g. "CARD_ATTACK"), not literal display text --
-## every piece of card text goes through tr(), per this session's own explicit rule, so a raw
-## English string never reaches the screen directly. .format() is a documented no-op on any
-## string with no matching {0} placeholder, so calling it unconditionally here is safe for every
-## non-move card too (their translated text simply has no {0} to replace) -- avoids a special
-## case for the one category (MOVE_LOUD) whose display text needs its own move_range value.
+## every piece of card text goes through tr(), per session 4.3's explicit rule, so a raw English
+## string never reaches the screen directly. .format() is a documented no-op on any string with
+## no matching {0} placeholder, so calling it unconditionally here is safe for every card even
+## though only a couple of translation values actually use {0} -- no per-category special case
+## needed for whether a given card's name/noise text happens to interpolate anything.
+##
+## Session 5.1 -- noise_cost means something different for the two Move categories than for
+## everything else (a per-tile RATE, not a flat amount -- see CardResource.noise_cost's own
+## comment), so the noise label branches on category rather than always showing the raw number:
+## a flat "0.0" on Sprint would misleadingly imply it's silent, when its real cost scales with
+## however far the player ends up moving.
 ##
 ## Resolves its Label children via get_node() rather than cached @onready vars, on purpose:
 ## HandUI.refresh() calls setup() on a slot the very same frame it's add_child()ed, before this
@@ -75,4 +81,6 @@ func setup(new_card: CardResource) -> void:
 	card = new_card
 	%NameLabel.text = tr(card.display_name).format([card.move_range])
 	%CategoryLabel.text = tr(CATEGORY_KEYS.get(card.category, ""))
-	%NoiseLabel.text = tr("CARD_NOISE_LABEL").format([card.noise_cost])
+	var is_move := card.category in [CardResource.Category.MOVE_STEALTH, CardResource.Category.MOVE_LOUD]
+	var noise_key := "CARD_NOISE_LABEL_PER_TILE" if is_move else "CARD_NOISE_LABEL"
+	%NoiseLabel.text = tr(noise_key).format([card.noise_cost])

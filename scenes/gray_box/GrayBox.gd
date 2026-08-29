@@ -30,13 +30,31 @@ signal haven_entered(haven: HavenResource)
 ## not this session's job to build. Turn-end is now the real rule too: a turn ends once nothing
 ## left in hand is legally playable, not a fixed action count -- see _hand_has_playable_card().
 ##
-## Consequence, not a bug: since apply_effect is a pure stub this session, Attack/Loot/Move all
-## genuinely do nothing but log/apply heat right now -- the player doesn't move, the zombie can't
-## be damaged, loot can't be collected. This is the same kind of deliberately-incomplete
-## intermediate state S4.1-S4.3 already left in different corners of the gray-box (a Deck no
-## scene used yet, a cursor no focusable UI existed for yet); Phase 5 is what makes each category
-## do something real again, this time built as part of apply_effect() rather than the old
-## bespoke per-category functions this session removes.
+## Consequence, not a bug: since apply_effect was a pure stub in session 4.4, Attack/Loot/Move all
+## genuinely did nothing but log/apply heat -- the player didn't move, the zombie couldn't be
+## damaged, loot couldn't be collected. Phase 5 is what makes each category do something real
+## again, one at a time, built as part of apply_effect() rather than the old bespoke per-category
+## functions S4.4 removed.
+##
+## Session 5.1 -- Movement (GDD §10.5-10.6) is the first category apply_effect() does something
+## real for. Real per-card mechanics: Stealth (MOVE_STEALTH) moves the player exactly 1 tile at
+## zero heat; Loud (MOVE_LOUD) moves 2-3 tiles (per-card, via move_range) and charges heat at
+## noise_cost's PER-TILE rate times tiles actually moved (CardResource.noise_cost means something
+## different for these two categories than for every other -- see its own doc comment). A real
+## design question resolved before writing any code: S4.4's new "one card resolves instantly on
+## play" model has no mechanism left for picking WHERE to move, since the old click-a-tile flow
+## was removed as superseded. Reintroducing a scoped click-to-target step (playing a Move card
+## enters a pending-target state; the next tile click confirms it) was the deliberate choice here
+## over baking a direction into the card or into a "current facing" concept, matching this
+## project's own direct prior finding (S1.1, multiple sittings): baking a fixed direction into a
+## movement card felt bad in real play, since a bad hand could leave the player unable to go the
+## direction they actually needed. This reuses (not reinvents) the exact reachability/wall-
+## crossing math S1.1-S3.1 already built and validated for this; only the trigger (a real
+## CardResource.category branch inside the new play/drop architecture, not a bespoke selection
+## flow) and the heat formula (real per-tile rate, not the gray-box's old flat placeholder) are
+## new. The old procedural "Move x1/x2/x3" gray-box cards are gone, replaced by the two real
+## roster cards this session adds ("Careful Step", "Sprint") -- the first real Movement content,
+## not placeholder exploration.
 
 const GRID_WIDTH := 10
 const GRID_HEIGHT := 8
@@ -73,11 +91,6 @@ const HAND_SIZE := 6
 ## sessions 10.5/10.6), doubling here as the player's general stealth dial per playtest feedback.
 ## Index 0 = Off (quietest, baseline 1.0x); 1-5 stand in for its 5 volume tiers, each louder.
 const RADIO_MULTIPLIERS: Array[float] = [1.0, 1.2, 1.5, 2.0, 2.5, 3.0]
-
-const MOVE_RANGES: Array[int] = [1, 2, 3]
-## Heat per tile actually moved, before the radio-dial multiplier -- moving further is louder.
-## Charged for the distance the player actually picks, not a card's max range.
-const BASE_MOVE_NOISE := 0.5
 
 ## Session 3.1 -- GDD §8.1's Home Haven + one other Haven: fixed rectangles, hand-placed. No
 ## level-design tooling exists yet, so this is hardcoded the same way the terrain grid itself
@@ -160,6 +173,10 @@ const FIXED_CARD_POOL_PATHS: Array[String] = [
 	"res://data/gray_box_cards/loot.tres",
 	"res://data/gray_box_cards/supply_food.tres",
 	"res://data/gray_box_cards/supply_water.tres",
+	# Session 5.1's first two real roster cards -- replace the old procedurally-generated
+	# "Move x1/x2/x3" gray-box placeholders entirely (removed from _load_card_pool()).
+	"res://data/cards/movement/careful_step.tres",
+	"res://data/cards/movement/sprint.tres",
 ]
 
 const ENEMY_RESOURCE_PATH := "res://data/samples/enemy_walker_basic.tres"
@@ -170,6 +187,11 @@ const ENEMY_RESOURCE_PATH := "res://data/samples/enemy_walker_basic.tres"
 const OVERLAY_ALPHA := 0.55
 const LOOT_COLOR := Color(0.12, 0.26, 0.14, OVERLAY_ALPHA)
 const NORMAL_COLOR := Color(0.15, 0.15, 0.18, OVERLAY_ALPHA)
+## Re-added in session 5.1 for real movement-target highlighting -- S4.4 removed this along with
+## the old selection flow, on the (correct, per this session's own design note) assumption that
+## Phase 5.1 would define its own real highlighting rather than resurrect the gray-box's, which
+## is exactly what this is: the same visual, now driven by a real per-category targeting need.
+const HIGHLIGHT_COLOR := Color(0.85, 0.75, 0.2, OVERLAY_ALPHA)
 
 @onready var grid_visual: Node2D = $GridVisual
 @onready var player_visual: Node2D = $PlayerVisual
@@ -205,6 +227,11 @@ var enemy_current_hp: int
 var salvage_count: int = 0
 var turn_number: int = 1
 var radio_tier_index: int = 0
+## Session 5.1 -- index into deck.hand of a Move-category card awaiting its target tile click,
+## or -1 when nothing is pending. Distinct from "focus" (HandUI's own concept, unaffected by
+## this): a Move card can be focused without a pending target, but the reverse can't happen --
+## a pending target is set exactly when a Move card was just played.
+var pending_move_index: int = -1
 
 func _ready() -> void:
 	randomize()
@@ -244,18 +271,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _load_card_pool() -> void:
 	for path in FIXED_CARD_POOL_PATHS:
 		card_pool.append(load(path))
-	for r in MOVE_RANGES:
-		var card := CardResource.new()
-		card.id = "gb_move_range_%d" % r
-		# A localization KEY, not literal text -- session 4.3's rule that every piece of card
-		# text goes through tr() applies here too, even for a card built in code rather than a
-		# .tres. CardSlot.gd's setup() always calls .format([move_range]) on the translated
-		# text, so the CSV's own "Move x{0}" template is what actually injects the range number.
-		card.display_name = "CARD_MOVE_RANGED"
-		card.category = CardResource.Category.MOVE_LOUD
-		card.move_range = r
-		card.noise_cost = r * BASE_MOVE_NOISE
-		card_pool.append(card)
 
 ## Real tile art underneath the existing heat/highlight overlay (built by _build_grid() below) --
 ## a plain, uniform floor across the whole grid. Real per-tile terrain variety (walls, biome
@@ -300,6 +315,12 @@ func _build_grid() -> void:
 			label.text = "0"
 			label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			rect.add_child(label)
+			# Re-added in session 5.1 for real movement targeting (S4.4 removed this along with
+			# the old selection flow) -- gui_input's bound coord comes from Callable.bind(), not
+			# a captured loop variable, since GDScript lambdas/closures capture by value at
+			# creation time, which would otherwise make every tile's callback see the loop's
+			# *final* coord.
+			rect.gui_input.connect(_on_tile_gui_input.bind(coord))
 			tile_views[coord] = {"rect": rect, "label": label}
 
 ## Session 3.1 -- builds the Home Haven + one other Haven per GDD §8.1: a walled rectangle of
@@ -402,19 +423,119 @@ func _place_loot_tiles() -> void:
 	for i in range(mini(needed, candidates.size())):
 		loot_tiles[candidates[i]] = true
 
+## Session 5.1 -- re-added for real movement targeting (removed in S4.4 along with the old
+## selection flow it belonged to; see the header comment for why this session brings a scoped
+## version back). Only meaningful while a Move card's target is pending; a click while nothing
+## is pending is a harmless no-op.
+func _on_tile_gui_input(event: InputEvent, coord: Vector2i) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		_try_move_to_tile(coord)
+
+func _try_move_to_tile(coord: Vector2i) -> void:
+	if pending_move_index == -1:
+		return
+	var valid := _get_valid_move_tiles()
+	if not (coord in valid):
+		status_label.text = "That tile isn't reachable with the selected card."
+		return
+	var card: CardResource = deck.hand[pending_move_index]
+	apply_effect(card, coord)
+	deck.play_card(pending_move_index)
+	hand_ui.refresh()
+	pending_move_index = -1
+	_after_play_or_drop()
+
+## True (Euclidean) distance between two tiles, unrounded. A diagonal step is sqrt(2) away, not
+## 1 -- this is the real distance used to decide what's IN RANGE, so diagonal movement can never
+## reach farther than the card's range actually allows (flooring this before comparing would let
+## e.g. a true-distance-2.83 corner sneak in under a range-2 cap -- it must not).
+func _true_distance(a: Vector2i, b: Vector2i) -> float:
+	var delta := b - a
+	return sqrt(float(delta.x * delta.x + delta.y * delta.y))
+
+## Same distance, rounded down to a whole tile count -- used only for the noise-cost charge, so
+## a diagonal move's cost stays a clean multiple of a Loud card's per-tile rate instead of an
+## odd fraction. Never used for the range check itself; see _true_distance.
+func _floored_distance(a: Vector2i, b: Vector2i) -> int:
+	return floori(_true_distance(a, b))
+
+## True if any tile strictly between `from` and `to` (exclusive of both ends -- `to` itself is
+## already checked separately as the destination) blocks movement. Without this, a long-range
+## move card could hop straight over a 1-tile-thick Haven wall onto a walkable tile beyond it,
+## which would make the wall meaningless for anything but the shortest cards.
+func _path_crosses_wall(from: Vector2i, to: Vector2i) -> bool:
+	var path := _tiles_along_line(from, to)
+	for i in range(1, path.size() - 1):
+		var coord: Vector2i = path[i]
+		if tiles.has(coord) and not tiles[coord].walkable:
+			return true
+	return false
+
+## All tiles (including diagonals) within the pending Move card's move_range, using unrounded
+## true distance so the reachable area is circular, not a square -- a range-2 card cannot reach
+## a tile that's actually 2.83 tiles away just because two of its axes each moved by only 2.
+## Every tile within range is a valid stop, not just the far edge, so a range-3 Loud card can
+## still be played for a shorter, quieter hop if that's the better play.
+func _get_valid_move_tiles() -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	if pending_move_index == -1:
+		return result
+	var card: CardResource = deck.hand[pending_move_index]
+	var r := card.move_range
+	for dx in range(-r, r + 1):
+		for dy in range(-r, r + 1):
+			if dx == 0 and dy == 0:
+				continue
+			var coord := player_pos + Vector2i(dx, dy)
+			if not tiles.has(coord):
+				continue
+			if _true_distance(player_pos, coord) > float(r):
+				continue
+			var target: TileResource = tiles[coord]
+			if not target.walkable:
+				continue
+			if _path_crosses_wall(player_pos, coord):
+				continue
+			result.append(coord)
+	return result
+
 ## Session 4.4 -- fired by HandUI's card_play_requested signal, itself fired either by a direct
 ## click on a CardSlot or a click/gamepad-A press landing anywhere else, applied to whichever
 ## card currently has focus. `index` is only ever emitted synchronously from a real input event,
 ## so it can't go stale before this runs.
+##
+## Session 5.1 -- Move-category cards branch out of the instant-resolve path entirely: they
+## don't apply heat or call apply_effect() here at all, since both depend on how far the player
+## actually ends up moving, which isn't known until a tile is clicked. Pressing the SAME pending
+## card again cancels targeting (the only cancel affordance this session adds, matching the old
+## gray-box's click-to-cancel UX); pressing a DIFFERENT card while a move is pending cancels the
+## old target first so the game can never get stuck waiting on a target the player abandoned.
 func _on_card_play_requested(index: int) -> void:
 	if index < 0 or index >= deck.hand.size():
 		return
+	if index == pending_move_index:
+		_cancel_pending_move()
+		status_label.text = "Selection cancelled."
+		return
 	var card: CardResource = deck.hand[index]
+	if card.category == CardResource.Category.MOVE_STEALTH or card.category == CardResource.Category.MOVE_LOUD:
+		_cancel_pending_move()
+		pending_move_index = index
+		_redraw_tiles()
+		status_label.text = "%s selected — click a tile up to %d away." % [
+			tr(card.display_name), card.move_range,
+		]
+		return
 	_apply_card_heat(card, player_pos)
 	apply_effect(card, player_pos)
 	deck.play_card(index)
 	hand_ui.refresh()
 	_after_play_or_drop()
+
+func _cancel_pending_move() -> void:
+	if pending_move_index != -1:
+		pending_move_index = -1
+		_redraw_tiles()
 
 ## Drops the card at `index` via Deck.drop_card() -- removed from hand, no discard, no
 ## replenish, a real GDD §7 penalty (session 4.1), not a discard-bound variant of playing. Marks
@@ -426,6 +547,7 @@ func _on_card_play_requested(index: int) -> void:
 func _on_card_drop_requested(index: int) -> void:
 	if index < 0 or index >= deck.hand.size():
 		return
+	_cancel_pending_move()  # dropping while a different card's move target is pending abandons it
 	var card := deck.drop_card(index)
 	dropped_cards[player_pos] = card
 	tiles[player_pos].is_pickable = true
@@ -440,13 +562,41 @@ func _on_haven_entered(haven: HavenResource) -> void:
 	# entrance detects the player and identifies which Haven, per its own explicit scope.
 	status_label.text += "  Entered %s." % haven.display_name
 
-## Stub per this session's own explicit scope -- real Attack/Loot/Move/Supply effects (damage,
-## looting, movement, supply consumption) are Phase 5-6 content. `target_tile` is always
-## player_pos for now, since no real per-category targeting rule exists yet (Attack should
-## target an adjacent zombie, Move a chosen tile, Loot the player's own tile, etc.) -- this only
-## proves the hook exists and gets called with the right shape.
+## Session 5.1: Movement is the first category this is real for (see the header comment) --
+## Attack/Loot/Supply (Phase 5.2/5.3/6) still fall through to the print/log stub. target_tile is
+## meaningful for Move (the tile the player clicked, per _try_move_to_tile below); still just
+## player_pos for every other category until its own session gives it a real meaning.
 func apply_effect(card: CardResource, target_tile: Vector2i) -> void:
+	if card.category == CardResource.Category.MOVE_STEALTH or card.category == CardResource.Category.MOVE_LOUD:
+		_apply_move_effect(card, target_tile)
+		return
 	print("apply_effect stub: %s -> (%d,%d)" % [card.id, target_tile.x, target_tile.y])
+
+## Moves the player to target_tile and charges heat at noise_cost's PER-TILE rate (0 for
+## Stealth, +1 for Loud, per GDD §10.5-10.6/the Noise System Design) times the real distance
+## moved -- not the card's own max move_range, so playing a range-3 Loud card for a shorter,
+## quieter hop costs less, the same tradeoff the old gray-box's flexible-distance design
+## already validated through real playtesting. Reads player_pos BEFORE moving, since the
+## distance calculation needs both endpoints.
+func _apply_move_effect(card: CardResource, target_tile: Vector2i) -> void:
+	var distance := _floored_distance(player_pos, target_tile)
+	player_pos = target_tile
+	var heat_delta := float(distance) * card.noise_cost
+	if heat_delta > 0.0:
+		var tile: TileResource = tiles[target_tile]
+		var multiplier := RADIO_MULTIPLIERS[radio_tier_index]
+		var scaled := heat_delta * multiplier
+		tile.heat += scaled
+		tile.add_heat_origin(TileResource.HeatOrigin.PLAYER)
+		status_label.text = "Moved with %s (+%.1f heat, radio x%.1f) to (%d,%d)." % [
+			tr(card.display_name), scaled, multiplier, target_tile.x, target_tile.y,
+		]
+	else:
+		status_label.text = "Moved with %s (silent) to (%d,%d)." % [
+			tr(card.display_name), target_tile.x, target_tile.y,
+		]
+	if haven_entrances.has(target_tile):
+		haven_entered.emit(haven_entrances[target_tile])
 
 ## GDD §7's real turn-end rule: a turn ends once nothing left in hand is legally playable, not a
 ## fixed action count (the old ACTIONS_PER_TURN constant this replaces). A reusable, generic
@@ -645,16 +795,19 @@ func _compute_heat_bleed() -> Dictionary:
 				deltas[target_coord] = deltas.get(target_coord, 0.0) + source.heat * fraction
 	return deltas
 
-## Session 4.4: no more selected-card tile highlighting -- the old select-a-move-card-then-
-## click-a-tile flow is gone (see the header comment), and Phase 5.1's real movement targeting
-## will define its own real highlighting when it actually needs one, not resurrect this one.
+## Session 5.1: real movement-target highlighting is back (see the header comment for why this
+## is a deliberate, scoped re-add of S4.4's removed highlighting, not a revert of that removal).
 func _redraw_tiles() -> void:
+	var highlighted := _get_valid_move_tiles()
 	for coord in tile_views.keys():
 		var tile: TileResource = tiles[coord]
 		var view: Dictionary = tile_views[coord]
-		var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
-		var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
-		view.rect.color = Color(base.r + 0.7 * t, base.g, base.b, base.a)
+		if coord in highlighted:
+			view.rect.color = HIGHLIGHT_COLOR
+		else:
+			var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
+			var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
+			view.rect.color = Color(base.r + 0.7 * t, base.g, base.b, base.a)
 		# Wall tiles are blocks_noise=true, so bleed can never reach them (S2.5's own bleed loop
 		# skips any target with blocks_noise) and nothing can ever stand on one to apply heat
 		# directly either (walkable=false) -- the label would just be a permanent, uninformative

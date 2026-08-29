@@ -41,6 +41,78 @@ Godot 4.6 · GDScript | Tile-tactics deckbuilder | Single dev + Claude Code | Ta
 
 > **What changed in v18.** The v17 card-synergy brainstorm now has a real home in the GDD, not just this document: a new "Open Design Question — Card Synergy" note appended to Design Pillars (§3) lists the three directions from that discussion (a flat same-category chain discount, a three-way Quiet→Aggressive→Loud posture cycle, and a minimal two-node version of it) as things to actually try, not committed design. Session 1.2's gray-box checkpoint now points at it directly — if an iteration attempt is close but not landing, trying a synergy rule against the abstract gray-box categories is explicitly cheaper than waiting until Phase 4's real card logic exists to find out it doesn't help. No session count change (61, 1 tentative) — this is content inside an existing checkpoint, not a new one.
 
+> **What changed in v19.** Real development started 2026-08-25 — this revision syncs against the actual build for the first time via a new Session Status & Progress table below, the same convention PixelPipe and Sheepshead's own roadmaps already use. No session prompts were rewritten to match final implementation details — `docs/SESSION_LOG.md` remains the full narrative of what actually shipped and every deviation/bug found along the way; this table is a status layer on top, not a replacement. Current state: **Phase 0-2 complete** (12 of 61 pre-ship sessions), with one exception — **S2.4 is Deferred, not Done** (no real rendered art existed yet to tune against). S1.1 took 6 real sittings against direct playtest feedback before S1.2 passed on the first attempt. **Next: S3.2 (world set-dressing & biome zones).**
+
+## START.00 — Session Status & Progress
+
+_Real build status, synced 2026-08-29 from `docs/SESSION_LOG.md` and the repo's commit history — this table only, not the session prompts below, is updated as sessions land._
+
+| Session | Title | Status | Date | Notes |
+| --- | --- | --- | --- | --- |
+| 0.1 | Project settings, git & repo hygiene | Done | 2026-08-25 | Pushed to origin/master; docs/ROADMAP.md added. |
+| 0.2 | Core Resource class definitions | Done | 2026-08-26 | Also fixed a broken CSV translation import. |
+| 0.3 | Audio bus setup | Done | 2026-08-26 | — |
+| 0.4 | Pause architecture | Done | 2026-08-26 | — |
+| 0.5 | Testing conventions | Done | 2026-08-26 | — |
+| 1.1 | Gray-box the core loop | Done | 2026-08-27 | 6 real sittings — movement redesigned twice, a real range-check bug fixed. Full history in SESSION_LOG. |
+| 1.2 | Playtest & go/no-go | PASS | 2026-08-28 | Go on the first real attempt. |
+| 2.1 | Configure PixelPipe for HavenZ | Done | 2026-08-28 | Corrected two provisional-text mismatches (pixel_scale, ignore_globs). |
+| 2.2 | Real palette extraction & reconciliation | Done | 2026-08-29 | 141-color master palette adopted. |
+| 2.3 | Real pack conversion & sync | Done | 2026-08-29 | Found/fixed a real PixelPipe bug (116 palette-mode source PNGs exporting blank). |
+| 2.4 | HavenZ palette tuning pass | **Deferred** | — | No real rendered art existed yet to tune against. Re-check triggers: real HP-colored UI, a zombie-adjacent scene. |
+| 2.5 | Reskin the validated gray-box | Done | 2026-08-29 | Heat decay extended into real ring-based propagation. |
+| 2.6 | Colorblind accessibility check | Done | 2026-08-29 | Named groups clean; two forward-looking findings flagged. |
+| 3.1 | Haven placement & wall/entrance tiles | Done | 2026-08-29 | Found/fixed a real heat-bleed-through-wall bug (only the final target's flag was ever checked, not tiles in between); player movement and zombie pathing both now enforce walls too. |
+| 3.2 | World set-dressing & biome zones | Not Started | — | — |
+| 4.1 | Deck / hand / draw-pile data | Not Started | — | — |
+| 4.2 | Gamepad virtual cursor system | Not Started | — | — |
+| 4.3 | Hand UI | Not Started | — | — |
+| 4.4 | Play/drop resolution branch | Not Started | — | — |
+| 5.1 | Movement cards — Stealth & Loud | Not Started | — | — |
+| 5.2 | Melee Attack cards | Not Started | — | — |
+| 5.3 | Looting, Trap & Distraction cards | Not Started | — | — |
+| 6.1 | Supply cards | Not Started | — | — |
+| 6.2 | Supply Request loop | Not Started | — | — |
+| 6.3 | Crafting sub-loop | Not Started | — | — |
+| 7.1 | Base zombie & noise pathing | Not Started | — | — |
+| 7.2 | Combat resolution & death trigger | Not Started | — | — |
+| 7.3 | Off-screen tile persistence & ambient repopulation | Not Started | — | — |
+| 8.1 | Corpse marker | Not Started | — | — |
+| 8.2 | Respawn & card inheritance | Not Started | — | — |
+| 8.3 | Corpse decay & recovery | Not Started | — | — |
+| 8.4 | Camera follow finalization | Not Started | — | — |
+| 8.5 | Pause system (core + minimal UI) | Not Started | — | — |
+| 9.1 | Play the full loop & decide | Not Started | — | — |
+| 9.2 | Camera improvements from playtest feedback | Not Started | — | — |
+| 10.1 | Trade/Craft Haven menu | Not Started | — | — |
+| 10.2 | Difficulty ramp | Not Started | — | — |
+| 10.3 | Starting-loadout progression | Not Started | — | — |
+| 10.4 | Day/night pressure layer | Not Started | — | — |
+| 10.5 | Portable Radio: access & heat-burst core | Not Started | — | S1.1's debug radio multiplier already gave this an early feel-check. |
+| 10.6 | Radio events: distress calls, supply drops & moment-of-silence | Not Started | — | — |
+| 10.7 | Radio full buildout: music stations & extended events | Not Started | — | — |
+| 11.1 | Action card roster | Not Started | — | — |
+| 11.2 | Movement card roster | Not Started | — | — |
+| 11.3 | Supply roster & recipes | Not Started | — | — |
+| 11.4 | Zombie variety | Not Started | — | — |
+| 12.1 | Difficulty / accessibility settings | Not Started | — | — |
+| 12.2 | Audio/VFX pass | Not Started | — | — |
+| 12.3 | Main menu & save/load | Not Started | — | — |
+| 12.4 | First-run tutorial / onboarding | Not Started | — | — |
+| 12.5 | Diegetic heat display (ring + tile tint) | Not Started | — | Re-runs S2.6's colorblind check against real rendered colors. |
+| 13.0 | Refresh market research | Not Started | — | — |
+| 13.1 | Start the devlog now | Not Started | — | Starts once Phase 9 confirms the vertical slice works. |
+| 13.2 | Steam page & press-kit copy | Not Started | — | — |
+| 13.3 | Steamworks integration stub | Not Started | — | — |
+| 13.4 | Steam Deck marketing angle | Not Started | — | Tentative — contingent on the Deck-legibility check passing. |
+| 14.1 | External playtest round | Not Started | — | — |
+| 14.2 | Playtest & balance pass | Not Started | — | — |
+| 14.3 | Demo packaging | Not Started | — | — |
+| 14.4 | Retrospective & metrics rollup | Not Started | — | — |
+| POST.1 | Extract the UI Shell | Not Started | — | Post-launch, not counted in the 61. |
+
+**13 of 61 pre-ship sessions done, 1 deferred, 47 not started** (plus POST.1). Real elapsed time: 5 active calendar days (2026-08-25 through 2026-08-29), 25 commits, 18 real working sittings against those 13 sessions.
+
 ## START.01 — Lifecycle Lessons Applied
 
 _Mapped from the briefing doc's 7-stage studio lifecycle (26 shipped games, indie hits to AAA failures) directly onto what changed in this roadmap._

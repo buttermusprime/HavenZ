@@ -1,5 +1,10 @@
 extends Node2D
 
+## Emitted the instant the player's move lands exactly on a Haven's entrance tile. Phase 10 owns
+## the real Trade/Craft menu -- this session only proves the entrance actually detects the player
+## and identifies which Haven, per its own explicit "stub the menu, don't build it" scope.
+signal haven_entered(haven: HavenResource)
+
 ## Phase 1 gray-box (session 1.1, multiple build sittings): proves the noise/heat + card-hand
 ## tension hook with nothing but ColorRects and debug labels before any art or full systems
 ## exist. Routed through the real CardResource/TileResource/EnemyResource classes from session
@@ -83,6 +88,47 @@ const MOVE_RANGES: Array[int] = [1, 2, 3]
 ## Charged for the distance the player actually picks, not a card's max range.
 const BASE_MOVE_NOISE := 0.5
 
+## Session 3.1 -- GDD §8.1's Home Haven + one other Haven: fixed rectangles, hand-placed. No
+## level-design tooling exists yet, so this is hardcoded the same way the terrain grid itself
+## still is; a real map-authoring system is later scope. Sizes/positions chosen to sit clear of
+## the fixed player start (5,4), the fixed enemy spawn (0,0), and each other on this 10x8 grid.
+const HOME_HAVEN_ORIGIN := Vector2i(6, 0)
+const HOME_HAVEN_SIZE := Vector2i(4, 3)
+## Local offset within the rectangle (not a world coord) -- bottom wall, facing the open map
+## toward the player's start rather than a corner, so it reads as an obvious front door.
+const HOME_HAVEN_ENTRANCE_OFFSET := Vector2i(1, 2)
+
+const OTHER_HAVEN_ORIGIN := Vector2i(0, 5)
+const OTHER_HAVEN_SIZE := Vector2i(4, 3)
+const OTHER_HAVEN_ENTRANCE_OFFSET := Vector2i(2, 0)  # top wall, facing north into the open map
+
+## Real Buildable wall art (S2.3's conversion), Wooden variant -- GDD §8.1 draws no distinction
+## between wall materials at MVP, so this is a default pick, not a design decision. Each path
+## points at S2.4's headlessly-generated per-asset scene (Node2D + AnimatedSprite2D,
+## centered=false), the same convention S2.5 used for the player sprite, since these are
+## irregularly-cropped standalone sprites, not a shared grid-aligned tileset atlas like the
+## floor art in _build_terrain(). Corner-piece assignment (which of the 4 connector filenames is
+## the top-left vs top-right vs bottom-left vs bottom-right corner) is inferred from each
+## filename's own "Left-side/Right-side" + "connects Right/Left & Down/Up" wording -- the asset
+## pack documents nothing more specific than that, so this is worth a visual spot-check once it
+## actually renders, same as every other pack-art assumption made so far in this project.
+const WALL_DIR := "res://art/Objects/Buildable/Wooden/"
+const WALL_SCENE_HORIZONTAL := WALL_DIR + "Wooden-wall_Horizontal.tscn"
+const WALL_SCENE_VERTICAL := WALL_DIR + "Wooden-wall_Vertical.tscn"
+const WALL_SCENE_TOP_LEFT := WALL_DIR + "Wooden-wall_Left-side_Right&Down-connect.tscn"
+const WALL_SCENE_TOP_RIGHT := WALL_DIR + "Wooden-wall_Right-side_Left&Down-connect.tscn"
+const WALL_SCENE_BOTTOM_LEFT := WALL_DIR + "Wooden-wall_Left-side_Right&Up-connect.tscn"
+const WALL_SCENE_BOTTOM_RIGHT := WALL_DIR + "Wooden-wall_Right-side_Left&Up-connect.tscn"
+
+## Reserves the Green tint EXCLUSIVELY for the Home Haven's entrance, per this session's own
+## explicit ask, so it reads as distinct from every other Haven at a glance -- Bleak-Yellow for
+## the one other Haven placed here, deliberately different from Green rather than another
+## greenish tint, for the same reason. Also happens to reuse the same Green/Bleak-Yellow zone
+## naming Phase 3.2's biome-dressing session will use, though that's a naming coincidence this
+## session doesn't act on (no biome-zone system exists yet).
+const HOME_HAVEN_ENTRANCE_SCENE := "res://art/Objects/Buildings/Enterance_Green.tscn"
+const OTHER_HAVEN_ENTRANCE_SCENE := "res://art/Objects/Buildings/Enterance_Bleak-Yellow.tscn"
+
 const FIXED_CARD_POOL_PATHS: Array[String] = [
 	"res://data/gray_box_cards/attack.tres",
 	"res://data/gray_box_cards/loot.tres",
@@ -112,6 +158,7 @@ const HIGHLIGHT_COLOR := Color(0.85, 0.75, 0.2, OVERLAY_ALPHA)
 var tiles: Dictionary = {}  # Vector2i -> TileResource
 var tile_views: Dictionary = {}  # Vector2i -> {rect: ColorRect, label: Label}
 var loot_tiles: Dictionary = {}  # Vector2i -> true
+var haven_entrances: Dictionary = {}  # Vector2i -> HavenResource
 var card_pool: Array[CardResource] = []
 var hand: Array[CardResource] = []
 var enemy_resource: EnemyResource
@@ -128,6 +175,7 @@ var selected_card_index: int = -1
 
 func _ready() -> void:
 	randomize()
+	haven_entered.connect(_on_haven_entered)
 	_load_card_pool()
 	enemy_resource = load(ENEMY_RESOURCE_PATH)
 	enemy_current_hp = enemy_resource.max_hp
@@ -136,6 +184,7 @@ func _ready() -> void:
 	enemy_spawn_pos = enemy_pos
 	_build_terrain()
 	_build_grid()
+	_build_havens()
 	_place_loot_tiles()
 	_render_visual_positions()
 	# Purely visual (idling in place) -- build_scene() selects the sheet's only real tag/
@@ -219,13 +268,92 @@ func _build_grid() -> void:
 			rect.gui_input.connect(_on_tile_gui_input.bind(coord))
 			tile_views[coord] = {"rect": rect, "label": label}
 
+## Session 3.1 -- builds the Home Haven + one other Haven per GDD §8.1: a walled rectangle of
+## tiles with a single entrance gap. Must run after _build_grid() (needs every TileResource to
+## already exist) and before _place_loot_tiles() (loot must never land on an unwalkable wall
+## tile) and _redraw_tiles().
+func _build_havens() -> void:
+	_build_one_haven(
+		"home", "Home Haven", true,
+		HOME_HAVEN_ORIGIN, HOME_HAVEN_SIZE, HOME_HAVEN_ENTRANCE_OFFSET, HOME_HAVEN_ENTRANCE_SCENE,
+	)
+	_build_one_haven(
+		"other", "Unaffiliated Haven", false,
+		OTHER_HAVEN_ORIGIN, OTHER_HAVEN_SIZE, OTHER_HAVEN_ENTRANCE_OFFSET, OTHER_HAVEN_ENTRANCE_SCENE,
+	)
+
+func _build_one_haven(
+	id: String, display_name: String, is_home: bool,
+	origin: Vector2i, size: Vector2i, entrance_offset: Vector2i, entrance_scene_path: String,
+) -> void:
+	var haven := HavenResource.new()
+	haven.id = id
+	haven.display_name = display_name
+	haven.is_home = is_home
+	var entrance_coord := origin + entrance_offset
+
+	for x in range(size.x):
+		for y in range(size.y):
+			var local := Vector2i(x, y)
+			var is_wall := x == 0 or x == size.x - 1 or y == 0 or y == size.y - 1
+			if not is_wall:
+				continue  # interior floor tile -- plain walkable ground, no special art yet (Phase 3.2 dressing)
+			var coord := origin + local
+			var tile: TileResource = tiles[coord]
+			# The perimeter blocks noise all the way around, entrance included -- noise
+			# physically leaking through the one gap in an otherwise sealed wall ring would be
+			# an inconsistency this session has no reason to introduce, so only walkable/
+			# blocks_zombie differ at the entrance tile, not blocks_noise.
+			tile.blocks_noise = true
+			if coord == entrance_coord:
+				# The PLAYER's one way in; zombies still can't follow per GDD §8.1's own "safe
+				# because walls physically stop zombies" framing -- blocks_zombie stays true
+				# here too, only walkable flips for the player's benefit.
+				tile.walkable = true
+				tile.blocks_zombie = true
+				_place_object_sprite(entrance_scene_path, coord)
+				haven_entrances[coord] = haven
+			else:
+				tile.walkable = false
+				tile.blocks_zombie = true
+				_place_object_sprite(_wall_scene_for_position(local, size), coord)
+
+## Which wall segment art fits a tile's LOCAL position within the haven rectangle (0,0 to
+## size-1) -- see the WALL_SCENE_* constants' own comment for the corner-piece naming caveat.
+func _wall_scene_for_position(local: Vector2i, size: Vector2i) -> String:
+	var at_left := local.x == 0
+	var at_right := local.x == size.x - 1
+	var at_top := local.y == 0
+	var at_bottom := local.y == size.y - 1
+	if at_left and at_top:
+		return WALL_SCENE_TOP_LEFT
+	if at_right and at_top:
+		return WALL_SCENE_TOP_RIGHT
+	if at_left and at_bottom:
+		return WALL_SCENE_BOTTOM_LEFT
+	if at_right and at_bottom:
+		return WALL_SCENE_BOTTOM_RIGHT
+	if at_top or at_bottom:
+		return WALL_SCENE_HORIZONTAL
+	return WALL_SCENE_VERTICAL
+
+## Top-left anchored at the tile's own world position, same convention _build_terrain()/
+## _build_grid() use for every tile -- every S2.4-generated per-asset scene is centered=false
+## for exactly this reason. Added to grid_visual after the per-tile overlay ColorRects, so wall/
+## entrance art draws on top of the (semi-transparent) heat tint rather than being tinted itself.
+func _place_object_sprite(scene_path: String, coord: Vector2i) -> void:
+	var sprite: Node2D = load(scene_path).instantiate()
+	sprite.position = Vector2(coord) * TILE_SIZE
+	grid_visual.add_child(sprite)
+
 func _place_loot_tiles() -> void:
 	var needed := LOOT_TILE_COUNT - loot_tiles.size()
 	if needed <= 0:
 		return
 	var candidates: Array[Vector2i] = []
 	for coord in tiles.keys():
-		if coord != player_pos and coord != enemy_pos and not loot_tiles.has(coord):
+		var tile: TileResource = tiles[coord]
+		if coord != player_pos and coord != enemy_pos and not loot_tiles.has(coord) and tile.walkable:
 			candidates.append(coord)
 	candidates.shuffle()
 	for i in range(mini(needed, candidates.size())):
@@ -282,7 +410,14 @@ func _try_move_to_tile(coord: Vector2i) -> void:
 	_apply_card_heat(card, player_pos, distance * BASE_MOVE_NOISE)
 	_consume_played_card(selected_card_index)
 	selected_card_index = -1
+	if haven_entrances.has(coord):
+		haven_entered.emit(haven_entrances[coord])
 	_spend_action()
+
+func _on_haven_entered(haven: HavenResource) -> void:
+	# TODO(Phase 10): open the real Trade/Craft menu here. This session only proves the
+	# entrance detects the player and identifies which Haven, per its own explicit scope.
+	status_label.text += "  Entered %s." % haven.display_name
 
 ## True (Euclidean) distance between two tiles, unrounded. A diagonal step is sqrt(2) away, not
 ## 1 -- this is the real distance used to decide what's IN RANGE, so diagonal movement can never
@@ -297,6 +432,35 @@ func _true_distance(a: Vector2i, b: Vector2i) -> float:
 ## Never used for the range check itself; see _true_distance.
 func _floored_distance(a: Vector2i, b: Vector2i) -> int:
 	return floori(_true_distance(a, b))
+
+## Bresenham's line algorithm -- every tile from `from` to `to` inclusive, in grid order. Used
+## only to stop a movement card's straight-line hop from crossing a wall it should have to walk
+## around instead (session 3.1's Haven walls are the first tiles with walkable=false) -- this is
+## NOT a general line-of-sight/vision system, and doesn't touch enemy pathing (_step_toward) or
+## the heat-bleed system's own separate, still-open diagonal-corner simplification from S2.5.
+func _tiles_along_line(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	var x0 := from.x
+	var y0 := from.y
+	var x1 := to.x
+	var y1 := to.y
+	var dx := absi(x1 - x0)
+	var sx := 1 if x0 < x1 else -1
+	var dy := -absi(y1 - y0)
+	var sy := 1 if y0 < y1 else -1
+	var err := dx + dy
+	while true:
+		result.append(Vector2i(x0, y0))
+		if x0 == x1 and y0 == y1:
+			break
+		var e2 := 2 * err
+		if e2 >= dy:
+			err += dy
+			x0 += sx
+		if e2 <= dx:
+			err += dx
+			y0 += sy
+	return result
 
 ## All tiles (including diagonals, no obstacles yet) within the selected card's move_range, using
 ## unrounded true distance so the reachable area is circular, not a square -- a range-2 card
@@ -318,9 +482,27 @@ func _get_valid_move_tiles() -> Array[Vector2i]:
 			var coord := player_pos + Vector2i(dx, dy)
 			if not tiles.has(coord):
 				continue
-			if _true_distance(player_pos, coord) <= float(r):
-				result.append(coord)
+			if _true_distance(player_pos, coord) > float(r):
+				continue
+			var target: TileResource = tiles[coord]
+			if not target.walkable:
+				continue
+			if _path_crosses_wall(player_pos, coord):
+				continue
+			result.append(coord)
 	return result
+
+## True if any tile strictly between `from` and `to` (exclusive of both ends -- `to` itself is
+## already checked separately as the destination) blocks movement. Without this, a long-range
+## move card could hop straight over a 1-tile-thick Haven wall onto a walkable tile beyond it,
+## which would make the wall meaningless for anything but the shortest cards.
+func _path_crosses_wall(from: Vector2i, to: Vector2i) -> bool:
+	var path := _tiles_along_line(from, to)
+	for i in range(1, path.size() - 1):
+		var coord: Vector2i = path[i]
+		if tiles.has(coord) and not tiles[coord].walkable:
+			return true
+	return false
 
 ## Resolves a non-move card's effect at the player's current tile: Attack hits an adjacent
 ## zombie (no facing/direction needed since it just targets whichever of the 4 neighbors the
@@ -407,14 +589,30 @@ func _enemy_turn() -> void:
 	if randf() < pull_chance:
 		enemy_pos = _step_toward(enemy_pos, best_coord)
 
+## Session 3.1: the first thing that ever sets blocks_zombie=true (Haven walls) needs to
+## actually be enforced somewhere, or the flag is inert data -- same class of gap this project
+## has explicitly flagged before (PixelPipe's own ignore_globs went unconsumed for a full
+## session). Tries the preferred axis first (unchanged single-axis behavior from before this
+## session), falls back to the other axis if a wall blocks it, and simply doesn't move if both
+## are blocked -- still not real pathfinding (a zombie fully boxed in on two sides won't route
+## around a corner), which is correctly Phase 7.1's job, not this session's.
 func _step_toward(from: Vector2i, to: Vector2i) -> Vector2i:
 	var delta := to - from
-	var step := from
-	if absi(delta.x) >= absi(delta.y) and delta.x != 0:
-		step.x += signi(delta.x)
-	elif delta.y != 0:
-		step.y += signi(delta.y)
-	return step
+	var candidates: Array[Vector2i] = []
+	if absi(delta.x) >= absi(delta.y):
+		if delta.x != 0:
+			candidates.append(from + Vector2i(signi(delta.x), 0))
+		if delta.y != 0:
+			candidates.append(from + Vector2i(0, signi(delta.y)))
+	else:
+		if delta.y != 0:
+			candidates.append(from + Vector2i(0, signi(delta.y)))
+		if delta.x != 0:
+			candidates.append(from + Vector2i(signi(delta.x), 0))
+	for candidate in candidates:
+		if tiles.has(candidate) and not tiles[candidate].blocks_zombie:
+			return candidate
+	return from
 
 ## Per-turn heat update: bleed, then decay. Two passes over the whole grid, not one -- every
 ## tile's bleed contribution must come from the SAME starting snapshot of heat values, so a
@@ -441,6 +639,16 @@ func _propagate_and_decay_tiles() -> void:
 ## Bleeding does NOT deplete the source tile: heat is a telegraph signal, not a finite resource
 ## being physically moved, so a hot tile keeps radiating at full strength every turn it stays
 ## hot rather than running out.
+## True if the target tile, or any wall tile strictly between source and target, blocks noise --
+## see the call site's comment in _compute_heat_bleed for why this replaced a target-only check.
+func _bleed_path_blocked(source_coord: Vector2i, target_coord: Vector2i) -> bool:
+	for coord in _tiles_along_line(source_coord, target_coord):
+		if coord == source_coord:
+			continue
+		if tiles.has(coord) and tiles[coord].blocks_noise:
+			return true
+	return false
+
 func _compute_heat_bleed() -> Dictionary:
 	var deltas: Dictionary = {}  # Vector2i -> float, additive
 	for source_coord in tiles.keys():
@@ -460,16 +668,18 @@ func _compute_heat_bleed() -> Dictionary:
 				var target_coord: Vector2i = source_coord + Vector2i(dx, dy)
 				if not tiles.has(target_coord):
 					continue
-				var target: TileResource = tiles[target_coord]
-				# A wall blocks noise from reaching PAST it -- checked on the target, not the
-				# source, since a walled-off tile still generates its own heat, it just doesn't
-				# transmit further. No true line-of-sight/raycast between source and a
-				# 2-rings-out target yet, so a wall directly between them that ISN'T the target
-				# itself wouldn't be caught (heat could still sneak in around a corner
-				# diagonally). Flagged, not solved -- no real walls exist until Phase 3.1, so
-				# there's nothing to get wrong yet; revisit this simplification once that
-				# session actually exercises blocks_noise for real.
-				if target.blocks_noise:
+				# Session 3.1 exercised this for real for the first time (Haven walls) and found
+				# the original target-only check wasn't enough: a 1-tile-thick wall let heat
+				# bleed straight through to the un-walled tile immediately behind it at ring 2,
+				# since only the FINAL target's own flag was ever checked, not anything between
+				# source and target. Fixed by walking the straight line between them (the same
+				# Bresenham helper the movement system uses for its own wall-crossing check) and
+				# blocking if the target OR any wall tile strictly in between has blocks_noise.
+				# Still not a full diagonal-corner-aware line-of-sight system -- a wall exactly
+				# one tile off the direct line could still be "seen past" -- but this closes the
+				# specific straight-through-a-wall leak this session's own layout would otherwise
+				# hit immediately.
+				if _bleed_path_blocked(source_coord, target_coord):
 					continue
 				var fraction := HEAT_BLEED_RING_1_FRACTION if ring == 1 else HEAT_BLEED_RING_2_FRACTION
 				deltas[target_coord] = deltas.get(target_coord, 0.0) + source.heat * fraction
@@ -486,7 +696,12 @@ func _redraw_tiles() -> void:
 			var base := LOOT_COLOR if loot_tiles.has(coord) else NORMAL_COLOR
 			var t := clampf(tile.heat / HEAT_DISPLAY_MAX, 0.0, 1.0)
 			view.rect.color = Color(base.r + 0.7 * t, base.g, base.b, base.a)
-		view.label.text = "%.1f" % tile.heat
+		# Wall tiles are blocks_noise=true, so bleed can never reach them (S2.5's own bleed loop
+		# skips any target with blocks_noise) and nothing can ever stand on one to apply heat
+		# directly either (walkable=false) -- the label would just be a permanent, uninformative
+		# "0.0" sitting next to (and, for the half-width Vertical piece, visibly beside) the real
+		# wall sprite drawn on top of this tile, so it's left blank instead of misleadingly precise.
+		view.label.text = "" if not tile.walkable else "%.1f" % tile.heat
 
 func _render_visual_positions() -> void:
 	var origin := grid_visual.position

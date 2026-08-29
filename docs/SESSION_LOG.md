@@ -19,8 +19,91 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 2 | 2.3 | build | 1 | 1 | 1 sitting | no |
 | 2 | 2.5 | build | 1 | 1 | 1 sitting | no |
 | 2 | 2.6 | build | 1 | 1 | 1 sitting | no |
+| 3 | 3.1 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S3.1 — Haven placement & wall/entrance tiles
+
+**Shipped:** a Home Haven (top-right, x6-9/y0-2) and one other Haven (bottom-left, x0-3/y5-7) per
+GDD §8.1 — fixed 4x3 rectangles, hand-placed (no level-design tooling exists yet, same as the
+terrain grid itself). New `data/HavenResource.gd` (id/display_name/is_home — deliberately small;
+layout is placement data owned by the scene, not the resource). Walls use S2.3's real Buildable
+art (`Wooden-wall_Horizontal/Vertical` + 4 corner-connector pieces, corner-to-position mapping
+inferred from filenames since the pack documents nothing more specific — flagged for a visual
+spot-check, done via a real-GPU screenshot capture this same session: layout reads correctly, no
+mismatched corners). The entrance uses `Enterance_Green.tscn`, reserved exclusively for the Home
+Haven per this session's own ask; the other Haven uses `Enterance_Bleak-Yellow.tscn` — confirmed
+via a real pixel diff that the two tints genuinely differ (71 of 837 opaque pixels, swapping a
+green foliage accent for a yellow-tan one), not just two copies of the same file under different
+names. New `haven_entered(haven: HavenResource)` signal fires the instant the player's move lands
+on an entrance tile; `_on_haven_entered` stubs the reaction with a `TODO(Phase 10)` per this
+session's explicit "don't build the menu yet" scope.
+
+**Made `blocks_zombie`/`walkable` real for the first time** (both existed on `TileResource` since
+S0.2 but nothing ever read either field): wall tiles are `walkable=false`/`blocks_zombie=true`/
+`blocks_noise=true`; the entrance tile is `walkable=true` but still `blocks_zombie=true` (GDD
+§8.1's "safe because walls physically stop zombies" applies to the entrance too — only the
+*player* gets through) and still `blocks_noise=true` (noise blocking stays uniform around the
+whole perimeter rather than leaking through the one gap). `_get_valid_move_tiles()` now excludes
+non-walkable destinations, and `_place_loot_tiles()` now excludes them from its candidate pool too
+(a real latent bug that would've let a loot tile spawn permanently unreachable on a wall the
+moment any wall existed). `_step_toward()` (enemy pathing) now tries its preferred axis, falls
+back to the other axis if a wall blocks it, and simply doesn't move if both are blocked — still
+not real pathfinding (Phase 7.1's job), but `blocks_zombie` is no longer inert data, the same
+class of gap this project has flagged before (PixelPipe's `ignore_globs` went unconsumed for a
+full session before anyone noticed).
+
+**Real bug found and fixed, caught by writing the verification checks rather than assumed
+correct:** a straight-line movement card could hop clean over a 1-tile-thick wall onto a walkable
+tile beyond it, since only the destination's own `walkable` flag was ever checked, not the path.
+Fixed with a small Bresenham line-walk (`_tiles_along_line`/`_path_crosses_wall`) that rejects a
+destination if any tile strictly between the player and it is non-walkable. **A second, more
+significant bug found the same way, in the heat-bleed system S2.5 shipped:** S2.5's own code
+comment had explicitly flagged "no real walls exist until Phase 3.1, so there's nothing to get
+wrong yet, revisit once that session actually exercises blocks_noise for real" — and it was right
+to flag it. `_compute_heat_bleed()` only ever checked the FINAL target tile's `blocks_noise`, not
+anything between source and target, so heat placed just outside a Haven's wall bled straight
+through it into the interior tile immediately behind at ring 2, identical to the just-fixed
+movement bug. Fixed by reusing the same Bresenham helper (`_bleed_path_blocked`) to check the
+whole line, not just the endpoint. Verified directly: heat from a tile outside the home haven's
+wall no longer reaches the interior tile behind it, while an equivalent open-field tile at the
+same ring distance still receives bleed normally — the session's own explicit "verify noise
+visibly stops at a Haven wall" ask, now actually true rather than accidentally true only because
+no test had exercised the gap yet.
+
+**Verified headlessly** (throwaway script, deleted after use, per this project's established
+pre-4.1 convention): Haven tile flags (wall vs. entrance vs. interior) correct at every checked
+coordinate; entrance registers the right `HavenResource` with the right `is_home`; no loot tile
+ever lands on a wall; a wall tile is never a valid movement destination; the wall-crossing bug
+above, confirmed fixed; zombie pathing rejects a wall-blocked step; both heat-bleed bugs above,
+confirmed fixed (blocked through a wall, still bleeds normally in the open). Hit two real GDScript
+gotchas along the way, both already-known project lessons re-confirmed rather than new: a script
+referencing a `class_name` created outside the editor needs one `--headless --editor --quit` pass
+before `--script` mode can resolve it (this session's `HavenResource` was created via a plain file
+write, never opened in-editor); and reading a freshly-`add_child()`ed node's state inside a
+`SceneTree`-script's `_initialize()` needs an `await process_frame` first, since `_ready()` hasn't
+necessarily run yet — this script is the `SceneTree` itself, so the fix is bare `await
+process_frame`, not `await get_tree().process_frame` (no `get_tree()` from here). Then did a real
+non-headless, real-GPU screenshot capture (same technique as PixelPipe's D.2 session) specifically
+to spot-check the inferred wall-corner-art mapping and the two entrance tints — both confirmed
+correct by eye and by a pixel diff, not just assumed from the filenames.
+
+**docs/ROADMAP.md:** found a real, substantial addition already sitting in the working tree when
+this session started — a new "Session Status & Progress" table (START.00) and a v19 changelog
+entry, evidently from another concurrent session per this project's documented pattern of parallel
+sessions developing the same roadmap independently. Content was accurate as of S2.6 and not in any
+conflict with this session's own work, so kept it rather than discarding it, and updated the S3.1
+row/summary counts/the "Next" pointer to reflect this session's own completion rather than leaving
+it stale.
+
+**Stubbed / deferred:** Trade/Craft menu (Phase 10, explicitly out of scope — see the TODO
+comment). Haven interior tiles are plain floor, no dressing (Phase 3.2's explicit job). The
+heat-bleed fix is a straight-line check, not full line-of-sight — a wall exactly one tile off the
+direct line between source and target could still be "seen past" at ring 2; flagged, not solved,
+same "worth revisiting if a session actually needs it" spirit as the gap this session just closed.
+
+**Next:** S3.2 (world set-dressing & biome zones) per the roadmap.
 
 ### S2.6 — Colorblind accessibility check
 

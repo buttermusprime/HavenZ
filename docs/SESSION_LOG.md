@@ -18,8 +18,49 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 2 | 2.2 | build | 1 | 1 | 1 sitting | no |
 | 2 | 2.3 | build | 1 | 1 | 1 sitting | no |
 | 2 | 2.5 | build | 1 | 1 | 1 sitting | no |
+| 2 | 2.6 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S2.6 — Colorblind accessibility check
+
+Ran the real 141-color master palette (S2.2) through protanopia/deuteranopia/tritanopia
+simulation (Machado/Viénot-style 100%-severity matrices, applied directly to sRGB) via a
+throwaway Python script — full pairwise distance data written to
+`palette/HavenZ_Colorblind_Check.{md,json}` for future re-use rather than left as a one-off.
+
+**Named-group check (hazard-red family, HP/vitality, undead-related) — clean.** No pair within or
+across these groups collapses under any simulation beyond what's already close under normal
+vision (Brick Shadow/Deep Rust, 11.3 apart originally, is the closest in-family pair and stays
+proportionally close, not closer, post-simulation).
+
+**Two real cross-palette findings, both forward-looking, neither actionable today:** (1) HP
+Shadow collapses with an unnamed reconciled pack color `(127,63,70)` under protanopia (29.2 →
+10.0), and HP Red similarly with `(168,105,90)` under deuteranopia (26.3 → 9.2) — both unnamed
+colors came in through S2.2's reconciliation, not a deliberate choice. Not actionable now since no
+HP-colored UI exists yet (the gray-box HP display is a plain `Label`); flagged as the first
+suspects to re-check once Phase 4/6/12 builds real HP-colored UI. (2) Sickly Green (explicitly the
+zombie-identification color per the palette doc) collapses against several neutral tones (Warm
+Highlight, Parchment Shadow, Bat Fur, a handful of unnamed pack grays/tans) across all three
+simulation types — again not actionable since no zombie sprite and conflicting-tone UI panel share
+a frame yet; re-check once they do.
+
+**Heat ring/tint (Phase 12.5): nothing to check yet** — no hue is assigned to that display
+because it isn't built. Per the roadmap's own text, 12.5 re-runs this same check against the real
+rendered colors once they exist.
+
+**Not flagged:** 40-60 additional full-palette collapses per simulation type, almost all between
+generic reconciled background/scenery tones never intended to be distinguished from each other —
+expected, not actionable. Full list in the JSON if a specific pair ever needs checking.
+
+**No palette edit made.** Two concrete re-check pointers left for whichever future session first
+renders HP-colored UI or a zombie-adjacent scene using the flagged neutral tones — if either comes
+back bad in context, the fix path is S2.4's remap shader (still deferred, not yet built), not
+re-touching source art.
+
+**Next:** Phase 2 (Art Pipeline Adoption) is now fully closed out — S2.4 (palette tuning) remains
+explicitly deferred until real HP/zombie UI exists to check the two pointers above against, or
+Phase 3 (Grid, Havens & World, starting S3.1) per the roadmap.
 
 ### S2.5 — Reskin the validated gray-box
 

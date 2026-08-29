@@ -1,0 +1,1685 @@
+{
+  "palette_source": "HavenZ_Field_Palette.gpl",
+  "color_count": 141,
+  "method": "Machado/Vienot-style 100%-severity CVD matrices applied directly to sRGB byte values",
+  "collapse_threshold_simulated": 12,
+  "collapse_threshold_original_min": 25,
+  "named_groups": {
+    "hazard_red_family": [
+      {
+        "pair": [
+          "Rust Red",
+          "Brick Red"
+        ],
+        "orig": 51.2,
+        "protanopia": 52.2,
+        "deuteranopia": 52.7,
+        "tritanopia": 50.9
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Brick Shadow"
+        ],
+        "orig": 66.5,
+        "protanopia": 67.4,
+        "deuteranopia": 71.1,
+        "tritanopia": 63.9
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Deep Rust"
+        ],
+        "orig": 75.5,
+        "protanopia": 75.3,
+        "deuteranopia": 79.7,
+        "tritanopia": 73.6
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Dark Brick"
+        ],
+        "orig": 89.4,
+        "protanopia": 87.4,
+        "deuteranopia": 94.5,
+        "tritanopia": 87.5
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "Brick Shadow"
+        ],
+        "orig": 25.3,
+        "protanopia": 20.0,
+        "deuteranopia": 23.5,
+        "tritanopia": 24.1
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "Deep Rust"
+        ],
+        "orig": 32.0,
+        "protanopia": 25.5,
+        "deuteranopia": 29.7,
+        "tritanopia": 30.0
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "Dark Brick"
+        ],
+        "orig": 48.0,
+        "protanopia": 38.2,
+        "deuteranopia": 45.3,
+        "tritanopia": 46.0
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "Deep Rust"
+        ],
+        "orig": 11.3,
+        "protanopia": 8.8,
+        "deuteranopia": 9.3,
+        "tritanopia": 9.9
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "Dark Brick"
+        ],
+        "orig": 25.3,
+        "protanopia": 20.0,
+        "deuteranopia": 23.5,
+        "tritanopia": 24.1
+      },
+      {
+        "pair": [
+          "Deep Rust",
+          "Dark Brick"
+        ],
+        "orig": 16.0,
+        "protanopia": 12.7,
+        "deuteranopia": 15.6,
+        "tritanopia": 16.0
+      }
+    ],
+    "hp_vitality": [
+      {
+        "pair": [
+          "HP Red",
+          "HP Shadow"
+        ],
+        "orig": 56.6,
+        "protanopia": 57.5,
+        "deuteranopia": 56.8,
+        "tritanopia": 54.3
+      }
+    ],
+    "undead_related": [
+      {
+        "pair": [
+          "Old Blood",
+          "Sickly Green"
+        ],
+        "orig": 170.3,
+        "protanopia": 164.6,
+        "deuteranopia": 158.4,
+        "tritanopia": 164.0
+      },
+      {
+        "pair": [
+          "Old Blood",
+          "Bruise Mauve"
+        ],
+        "orig": 135.1,
+        "protanopia": 133.5,
+        "deuteranopia": 131.4,
+        "tritanopia": 135.4
+      },
+      {
+        "pair": [
+          "Sickly Green",
+          "Bruise Mauve"
+        ],
+        "orig": 48.0,
+        "protanopia": 32.0,
+        "deuteranopia": 27.3,
+        "tritanopia": 30.6
+      }
+    ],
+    "cross_check": [
+      {
+        "pair": [
+          "Rust Red",
+          "Brick Red"
+        ],
+        "orig": 51.2,
+        "protanopia": 52.2,
+        "deuteranopia": 52.7,
+        "tritanopia": 50.9
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Brick Shadow"
+        ],
+        "orig": 66.5,
+        "protanopia": 67.4,
+        "deuteranopia": 71.1,
+        "tritanopia": 63.9
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Deep Rust"
+        ],
+        "orig": 75.5,
+        "protanopia": 75.3,
+        "deuteranopia": 79.7,
+        "tritanopia": 73.6
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Dark Brick"
+        ],
+        "orig": 89.4,
+        "protanopia": 87.4,
+        "deuteranopia": 94.5,
+        "tritanopia": 87.5
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "HP Red"
+        ],
+        "orig": 26.5,
+        "protanopia": 25.3,
+        "deuteranopia": 27.4,
+        "tritanopia": 25.6
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "HP Shadow"
+        ],
+        "orig": 36.7,
+        "protanopia": 32.9,
+        "deuteranopia": 30.9,
+        "tritanopia": 33.7
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Old Blood"
+        ],
+        "orig": 58.8,
+        "protanopia": 55.4,
+        "deuteranopia": 61.1,
+        "tritanopia": 56.6
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Sickly Green"
+        ],
+        "orig": 140.2,
+        "protanopia": 116.4,
+        "deuteranopia": 108.0,
+        "tritanopia": 133.0
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "Brick Shadow"
+        ],
+        "orig": 25.3,
+        "protanopia": 20.0,
+        "deuteranopia": 23.5,
+        "tritanopia": 24.1
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "Deep Rust"
+        ],
+        "orig": 32.0,
+        "protanopia": 25.5,
+        "deuteranopia": 29.7,
+        "tritanopia": 30.0
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "Dark Brick"
+        ],
+        "orig": 48.0,
+        "protanopia": 38.2,
+        "deuteranopia": 45.3,
+        "tritanopia": 46.0
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "HP Red"
+        ],
+        "orig": 75.9,
+        "protanopia": 77.2,
+        "deuteranopia": 79.5,
+        "tritanopia": 74.9
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "HP Shadow"
+        ],
+        "orig": 25.3,
+        "protanopia": 20.0,
+        "deuteranopia": 23.5,
+        "tritanopia": 24.1
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "Old Blood"
+        ],
+        "orig": 33.0,
+        "protanopia": 18.5,
+        "deuteranopia": 21.9,
+        "tritanopia": 31.6
+      },
+      {
+        "pair": [
+          "Brick Red",
+          "Sickly Green"
+        ],
+        "orig": 184.2,
+        "protanopia": 167.2,
+        "deuteranopia": 158.0,
+        "tritanopia": 177.9
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "Deep Rust"
+        ],
+        "orig": 11.3,
+        "protanopia": 8.8,
+        "deuteranopia": 9.3,
+        "tritanopia": 9.9
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "Dark Brick"
+        ],
+        "orig": 25.3,
+        "protanopia": 20.0,
+        "deuteranopia": 23.5,
+        "tritanopia": 24.1
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "HP Red"
+        ],
+        "orig": 92.6,
+        "protanopia": 92.7,
+        "deuteranopia": 98.4,
+        "tritanopia": 89.5
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "HP Shadow"
+        ],
+        "orig": 48.0,
+        "protanopia": 38.2,
+        "deuteranopia": 45.3,
+        "tritanopia": 46.0
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "Old Blood"
+        ],
+        "orig": 17.9,
+        "protanopia": 14.1,
+        "deuteranopia": 12.7,
+        "tritanopia": 15.6
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "Sickly Green"
+        ],
+        "orig": 186.9,
+        "protanopia": 178.4,
+        "deuteranopia": 170.7,
+        "tritanopia": 178.6
+      },
+      {
+        "pair": [
+          "Deep Rust",
+          "Dark Brick"
+        ],
+        "orig": 16.0,
+        "protanopia": 12.7,
+        "deuteranopia": 15.6,
+        "tritanopia": 16.0
+      },
+      {
+        "pair": [
+          "Deep Rust",
+          "HP Red"
+        ],
+        "orig": 101.8,
+        "protanopia": 100.7,
+        "deuteranopia": 107.0,
+        "tritanopia": 99.1
+      },
+      {
+        "pair": [
+          "Deep Rust",
+          "HP Shadow"
+        ],
+        "orig": 56.6,
+        "protanopia": 45.0,
+        "deuteranopia": 52.7,
+        "tritanopia": 53.5
+      },
+      {
+        "pair": [
+          "Deep Rust",
+          "Old Blood"
+        ],
+        "orig": 24.0,
+        "protanopia": 22.8,
+        "deuteranopia": 21.8,
+        "tritanopia": 24.0
+      },
+      {
+        "pair": [
+          "Deep Rust",
+          "Sickly Green"
+        ],
+        "orig": 193.7,
+        "protanopia": 187.1,
+        "deuteranopia": 180.0,
+        "tritanopia": 187.9
+      },
+      {
+        "pair": [
+          "Dark Brick",
+          "HP Red"
+        ],
+        "orig": 115.9,
+        "protanopia": 112.7,
+        "deuteranopia": 121.9,
+        "tritanopia": 113.1
+      },
+      {
+        "pair": [
+          "Dark Brick",
+          "HP Shadow"
+        ],
+        "orig": 72.4,
+        "protanopia": 57.6,
+        "deuteranopia": 68.3,
+        "tritanopia": 69.4
+      },
+      {
+        "pair": [
+          "Dark Brick",
+          "Old Blood"
+        ],
+        "orig": 33.0,
+        "protanopia": 33.1,
+        "deuteranopia": 34.4,
+        "tritanopia": 33.0
+      },
+      {
+        "pair": [
+          "Dark Brick",
+          "Sickly Green"
+        ],
+        "orig": 200.2,
+        "protanopia": 197.5,
+        "deuteranopia": 192.3,
+        "tritanopia": 194.9
+      },
+      {
+        "pair": [
+          "HP Red",
+          "HP Shadow"
+        ],
+        "orig": 56.6,
+        "protanopia": 57.5,
+        "deuteranopia": 56.8,
+        "tritanopia": 54.3
+      },
+      {
+        "pair": [
+          "HP Red",
+          "Old Blood"
+        ],
+        "orig": 85.0,
+        "protanopia": 80.5,
+        "deuteranopia": 88.4,
+        "tritanopia": 82.0
+      },
+      {
+        "pair": [
+          "HP Red",
+          "Sickly Green"
+        ],
+        "orig": 130.0,
+        "protanopia": 94.7,
+        "deuteranopia": 87.4,
+        "tritanopia": 121.3
+      },
+      {
+        "pair": [
+          "HP Shadow",
+          "Old Blood"
+        ],
+        "orig": 51.2,
+        "protanopia": 30.0,
+        "deuteranopia": 38.9,
+        "tritanopia": 47.6
+      },
+      {
+        "pair": [
+          "HP Shadow",
+          "Sickly Green"
+        ],
+        "orig": 176.4,
+        "protanopia": 149.1,
+        "deuteranopia": 138.5,
+        "tritanopia": 166.4
+      },
+      {
+        "pair": [
+          "Old Blood",
+          "Sickly Green"
+        ],
+        "orig": 170.3,
+        "protanopia": 164.6,
+        "deuteranopia": 158.4,
+        "tritanopia": 164.0
+      }
+    ]
+  },
+  "full_palette_collapses": {
+    "protanopia": [
+      {
+        "pair": [
+          "Skin Shadow",
+          "Unnamed_168_156_136"
+        ],
+        "orig": 26.8,
+        "sim": 1.0
+      },
+      {
+        "pair": [
+          "Leaf Highlight",
+          "Unnamed_143_131_145"
+        ],
+        "orig": 38.1,
+        "sim": 1.0
+      },
+      {
+        "pair": [
+          "Skin Shadow",
+          "Unnamed_168_158_139"
+        ],
+        "orig": 27.7,
+        "sim": 2.4
+      },
+      {
+        "pair": [
+          "Leaf Highlight",
+          "Unnamed_145_131_147"
+        ],
+        "orig": 39.8,
+        "sim": 2.4
+      },
+      {
+        "pair": [
+          "Leaf Highlight",
+          "Unnamed_142_129_145"
+        ],
+        "orig": 39.1,
+        "sim": 2.4
+      },
+      {
+        "pair": [
+          "Panel Slate",
+          "Unnamed_90_117_103"
+        ],
+        "orig": 26.8,
+        "sim": 3.0
+      },
+      {
+        "pair": [
+          "Skin Shadow",
+          "Unnamed_158_168_137"
+        ],
+        "orig": 41.8,
+        "sim": 3.3
+      },
+      {
+        "pair": [
+          "Leather Brown",
+          "Unnamed_128_60_73"
+        ],
+        "orig": 25.6,
+        "sim": 4.1
+      },
+      {
+        "pair": [
+          "Flesh Shadow",
+          "Unnamed_63_123_93"
+        ],
+        "orig": 33.7,
+        "sim": 4.1
+      },
+      {
+        "pair": [
+          "Unnamed_91_111_95",
+          "Unnamed_119_83_102"
+        ],
+        "orig": 40.2,
+        "sim": 4.7
+      },
+      {
+        "pair": [
+          "Unnamed_121_145_117",
+          "Unnamed_153_109_125"
+        ],
+        "orig": 48.8,
+        "sim": 4.7
+      },
+      {
+        "pair": [
+          "Flesh Shadow",
+          "Unnamed_67_115_91"
+        ],
+        "orig": 26.4,
+        "sim": 5.2
+      },
+      {
+        "pair": [
+          "Unnamed_91_111_95",
+          "Unnamed_111_89_95"
+        ],
+        "orig": 29.7,
+        "sim": 5.2
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_153_109_125"
+        ],
+        "orig": 39.8,
+        "sim": 5.2
+      },
+      {
+        "pair": [
+          "Unnamed_242_176_104",
+          "Unnamed_229_201_97"
+        ],
+        "orig": 29.0,
+        "sim": 5.7
+      },
+      {
+        "pair": [
+          "Unnamed_118_148_98",
+          "Unnamed_144_122_101"
+        ],
+        "orig": 36.9,
+        "sim": 5.8
+      },
+      {
+        "pair": [
+          "Leaf Highlight",
+          "Unnamed_148_133_147"
+        ],
+        "orig": 40.4,
+        "sim": 6.2
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_156_118_111"
+        ],
+        "orig": 31.8,
+        "sim": 6.2
+      },
+      {
+        "pair": [
+          "Ground Base",
+          "Concrete Grey"
+        ],
+        "orig": 28.8,
+        "sim": 6.4
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Hunger Tan"
+        ],
+        "orig": 28.8,
+        "sim": 6.4
+      },
+      {
+        "pair": [
+          "Unnamed_73_77_99",
+          "Unnamed_62_99_86"
+        ],
+        "orig": 27.8,
+        "sim": 6.6
+      },
+      {
+        "pair": [
+          "Soft Shadow",
+          "Unnamed_53_78_79"
+        ],
+        "orig": 25.3,
+        "sim": 7.1
+      },
+      {
+        "pair": [
+          "Unnamed_100_118_94",
+          "Unnamed_119_83_102"
+        ],
+        "orig": 40.6,
+        "sim": 7.7
+      },
+      {
+        "pair": [
+          "Unnamed_121_145_117",
+          "Unnamed_139_110_128"
+        ],
+        "orig": 40.9,
+        "sim": 7.8
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_148_133_147"
+        ],
+        "orig": 38.6,
+        "sim": 8.1
+      },
+      {
+        "pair": [
+          "Unnamed_121_145_117",
+          "Unnamed_145_125_130"
+        ],
+        "orig": 33.8,
+        "sim": 8.1
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_145_131_147"
+        ],
+        "orig": 38.6,
+        "sim": 8.2
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_143_131_145"
+        ],
+        "orig": 36.8,
+        "sim": 8.2
+      },
+      {
+        "pair": [
+          "Cool Metal",
+          "Unnamed_63_123_93"
+        ],
+        "orig": 53.2,
+        "sim": 8.2
+      },
+      {
+        "pair": [
+          "Unnamed_112_91_92",
+          "Unnamed_91_111_95"
+        ],
+        "orig": 29.2,
+        "sim": 8.2
+      },
+      {
+        "pair": [
+          "Sickly Green",
+          "Unnamed_179_173_169"
+        ],
+        "orig": 31.8,
+        "sim": 8.5
+      },
+      {
+        "pair": [
+          "Dry Highlight",
+          "Warm Highlight"
+        ],
+        "orig": 27.7,
+        "sim": 8.5
+      },
+      {
+        "pair": [
+          "Unnamed_112_123_100",
+          "Unnamed_134_109_105"
+        ],
+        "orig": 26.6,
+        "sim": 8.5
+      },
+      {
+        "pair": [
+          "Unnamed_147_125_104",
+          "Unnamed_118_148_98"
+        ],
+        "orig": 37.5,
+        "sim": 8.5
+      },
+      {
+        "pair": [
+          "Cool Metal",
+          "Unnamed_67_115_91"
+        ],
+        "orig": 45.9,
+        "sim": 8.6
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "Unnamed_82_64_66"
+        ],
+        "orig": 27.9,
+        "sim": 8.8
+      },
+      {
+        "pair": [
+          "Unnamed_115_110_125",
+          "Unnamed_81_140_111"
+        ],
+        "orig": 47.5,
+        "sim": 9.0
+      },
+      {
+        "pair": [
+          "Panel Slate",
+          "Unnamed_91_111_95"
+        ],
+        "orig": 26.1,
+        "sim": 9.1
+      },
+      {
+        "pair": [
+          "Unnamed_90_117_103",
+          "Unnamed_119_83_102"
+        ],
+        "orig": 44.7,
+        "sim": 9.1
+      },
+      {
+        "pair": [
+          "Ground Base",
+          "Unnamed_142_129_145"
+        ],
+        "orig": 38.9,
+        "sim": 9.3
+      },
+      {
+        "pair": [
+          "Unnamed_122_108_118",
+          "Unnamed_92_134_103"
+        ],
+        "orig": 42.4,
+        "sim": 9.3
+      },
+      {
+        "pair": [
+          "Dead Brown",
+          "Unnamed_100_118_94"
+        ],
+        "orig": 35.7,
+        "sim": 9.4
+      },
+      {
+        "pair": [
+          "Concrete Shadow",
+          "Unnamed_63_123_93"
+        ],
+        "orig": 44.0,
+        "sim": 9.4
+      },
+      {
+        "pair": [
+          "Unnamed_148_124_110",
+          "Unnamed_118_148_98"
+        ],
+        "orig": 40.2,
+        "sim": 9.7
+      },
+      {
+        "pair": [
+          "Sickly Green",
+          "Warm Highlight"
+        ],
+        "orig": 45.3,
+        "sim": 9.8
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_142_129_145"
+        ],
+        "orig": 38.0,
+        "sim": 9.8
+      },
+      {
+        "pair": [
+          "Sickly Green",
+          "Parchment Shadow"
+        ],
+        "orig": 28.8,
+        "sim": 10.0
+      },
+      {
+        "pair": [
+          "HP Shadow",
+          "Unnamed_127_63_70"
+        ],
+        "orig": 29.2,
+        "sim": 10.0
+      },
+      {
+        "pair": [
+          "Unnamed_112_123_100",
+          "Unnamed_122_108_118"
+        ],
+        "orig": 25.5,
+        "sim": 10.1
+      },
+      {
+        "pair": [
+          "Unnamed_115_110_125",
+          "Unnamed_92_134_103"
+        ],
+        "orig": 39.9,
+        "sim": 10.6
+      },
+      {
+        "pair": [
+          "Unnamed_112_91_92",
+          "Unnamed_100_118_94"
+        ],
+        "orig": 29.6,
+        "sim": 10.7
+      },
+      {
+        "pair": [
+          "Unnamed_204_147_204",
+          "Unnamed_186_186_186"
+        ],
+        "orig": 46.6,
+        "sim": 10.7
+      },
+      {
+        "pair": [
+          "Dead Brown",
+          "Unnamed_112_123_100"
+        ],
+        "orig": 31.6,
+        "sim": 10.9
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_150_132_123"
+        ],
+        "orig": 36.0,
+        "sim": 11.0
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_145_125_130"
+        ],
+        "orig": 39.0,
+        "sim": 11.0
+      },
+      {
+        "pair": [
+          "Concrete Shadow",
+          "Unnamed_119_83_102"
+        ],
+        "orig": 26.5,
+        "sim": 11.1
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_145_125_130"
+        ],
+        "orig": 27.2,
+        "sim": 11.1
+      },
+      {
+        "pair": [
+          "Sickly Green",
+          "Unnamed_184_169_173"
+        ],
+        "orig": 39.3,
+        "sim": 11.2
+      },
+      {
+        "pair": [
+          "Concrete Grey",
+          "Unnamed_121_145_117"
+        ],
+        "orig": 26.4,
+        "sim": 11.2
+      },
+      {
+        "pair": [
+          "Unnamed_121_145_117",
+          "Unnamed_135_109_123"
+        ],
+        "orig": 39.1,
+        "sim": 11.4
+      },
+      {
+        "pair": [
+          "Unnamed_100_118_94",
+          "Unnamed_111_89_95"
+        ],
+        "orig": 31.0,
+        "sim": 11.6
+      },
+      {
+        "pair": [
+          "Unnamed_186_184_182",
+          "Unnamed_204_147_204"
+        ],
+        "orig": 46.7,
+        "sim": 11.7
+      },
+      {
+        "pair": [
+          "Unnamed_153_109_125",
+          "Unnamed_118_148_98"
+        ],
+        "orig": 58.9,
+        "sim": 11.8
+      }
+    ],
+    "deuteranopia": [
+      {
+        "pair": [
+          "Unnamed_242_176_104",
+          "Unnamed_229_201_97"
+        ],
+        "orig": 29.0,
+        "sim": 2.4
+      },
+      {
+        "pair": [
+          "Unnamed_73_77_99",
+          "Unnamed_62_99_86"
+        ],
+        "orig": 27.8,
+        "sim": 3.0
+      },
+      {
+        "pair": [
+          "Unnamed_204_147_204",
+          "Unnamed_186_186_186"
+        ],
+        "orig": 46.6,
+        "sim": 3.3
+      },
+      {
+        "pair": [
+          "Unnamed_121_145_117",
+          "Unnamed_139_110_128"
+        ],
+        "orig": 40.9,
+        "sim": 3.5
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_142_129_145"
+        ],
+        "orig": 38.0,
+        "sim": 3.6
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_143_131_145"
+        ],
+        "orig": 36.8,
+        "sim": 3.7
+      },
+      {
+        "pair": [
+          "Flesh Shadow",
+          "Unnamed_63_123_93"
+        ],
+        "orig": 33.7,
+        "sim": 4.0
+      },
+      {
+        "pair": [
+          "Panel Slate",
+          "Unnamed_90_117_103"
+        ],
+        "orig": 26.8,
+        "sim": 4.1
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_153_109_125"
+        ],
+        "orig": 39.8,
+        "sim": 4.1
+      },
+      {
+        "pair": [
+          "Unnamed_186_185_183",
+          "Unnamed_204_147_204"
+        ],
+        "orig": 47.0,
+        "sim": 4.4
+      },
+      {
+        "pair": [
+          "Unnamed_186_184_182",
+          "Unnamed_204_147_204"
+        ],
+        "orig": 46.7,
+        "sim": 4.9
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_145_131_147"
+        ],
+        "orig": 38.6,
+        "sim": 5.0
+      },
+      {
+        "pair": [
+          "Cool Metal",
+          "Unnamed_63_123_93"
+        ],
+        "orig": 53.2,
+        "sim": 5.1
+      },
+      {
+        "pair": [
+          "Unnamed_133_111_118",
+          "Unnamed_118_148_98"
+        ],
+        "orig": 44.7,
+        "sim": 5.1
+      },
+      {
+        "pair": [
+          "Flesh Shadow",
+          "Unnamed_67_115_91"
+        ],
+        "orig": 26.4,
+        "sim": 5.7
+      },
+      {
+        "pair": [
+          "Unnamed_186_183_181",
+          "Unnamed_204_147_204"
+        ],
+        "orig": 46.4,
+        "sim": 5.7
+      },
+      {
+        "pair": [
+          "Unnamed_100_118_94",
+          "Unnamed_119_83_102"
+        ],
+        "orig": 40.6,
+        "sim": 5.9
+      },
+      {
+        "pair": [
+          "Skin Shadow",
+          "Unnamed_168_158_139"
+        ],
+        "orig": 27.7,
+        "sim": 6.2
+      },
+      {
+        "pair": [
+          "Skin Shadow",
+          "Unnamed_168_156_136"
+        ],
+        "orig": 26.8,
+        "sim": 6.3
+      },
+      {
+        "pair": [
+          "Cool Metal",
+          "Unnamed_67_115_91"
+        ],
+        "orig": 45.9,
+        "sim": 6.4
+      },
+      {
+        "pair": [
+          "Leaf Highlight",
+          "Unnamed_142_129_145"
+        ],
+        "orig": 39.1,
+        "sim": 7.0
+      },
+      {
+        "pair": [
+          "Unnamed_130_112_118",
+          "Unnamed_118_148_98"
+        ],
+        "orig": 42.9,
+        "sim": 7.0
+      },
+      {
+        "pair": [
+          "Unnamed_118_148_98",
+          "Unnamed_135_109_123"
+        ],
+        "orig": 49.3,
+        "sim": 7.2
+      },
+      {
+        "pair": [
+          "Unnamed_131_111_107",
+          "Unnamed_118_148_98"
+        ],
+        "orig": 40.2,
+        "sim": 7.3
+      },
+      {
+        "pair": [
+          "Leaf Highlight",
+          "Unnamed_143_131_145"
+        ],
+        "orig": 38.1,
+        "sim": 7.9
+      },
+      {
+        "pair": [
+          "Unnamed_121_145_117",
+          "Unnamed_135_109_123"
+        ],
+        "orig": 39.1,
+        "sim": 7.9
+      },
+      {
+        "pair": [
+          "Leather Brown",
+          "Unnamed_128_60_73"
+        ],
+        "orig": 25.6,
+        "sim": 8.1
+      },
+      {
+        "pair": [
+          "Ground Base",
+          "Concrete Grey"
+        ],
+        "orig": 28.8,
+        "sim": 8.1
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_148_133_147"
+        ],
+        "orig": 38.6,
+        "sim": 8.1
+      },
+      {
+        "pair": [
+          "Rust Red",
+          "Hunger Tan"
+        ],
+        "orig": 28.8,
+        "sim": 8.1
+      },
+      {
+        "pair": [
+          "Unnamed_118_148_98",
+          "Unnamed_134_109_105"
+        ],
+        "orig": 42.7,
+        "sim": 8.1
+      },
+      {
+        "pair": [
+          "Brick Shadow",
+          "Unnamed_82_64_66"
+        ],
+        "orig": 27.9,
+        "sim": 8.2
+      },
+      {
+        "pair": [
+          "Unnamed_112_123_100",
+          "Unnamed_122_108_118"
+        ],
+        "orig": 25.5,
+        "sim": 8.6
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_145_125_130"
+        ],
+        "orig": 27.2,
+        "sim": 8.6
+      },
+      {
+        "pair": [
+          "Panel Slate",
+          "Unnamed_100_118_94"
+        ],
+        "orig": 28.7,
+        "sim": 9.0
+      },
+      {
+        "pair": [
+          "Unnamed_100_118_94",
+          "Unnamed_111_89_95"
+        ],
+        "orig": 31.0,
+        "sim": 9.0
+      },
+      {
+        "pair": [
+          "Panel Slate",
+          "Unnamed_91_111_95"
+        ],
+        "orig": 26.1,
+        "sim": 9.1
+      },
+      {
+        "pair": [
+          "Panel Slate",
+          "Unnamed_92_134_103"
+        ],
+        "orig": 40.9,
+        "sim": 9.1
+      },
+      {
+        "pair": [
+          "Concrete Grey",
+          "Unnamed_121_145_117"
+        ],
+        "orig": 26.4,
+        "sim": 9.2
+      },
+      {
+        "pair": [
+          "HP Red",
+          "Unnamed_168_105_90"
+        ],
+        "orig": 26.3,
+        "sim": 9.2
+      },
+      {
+        "pair": [
+          "Dry Highlight",
+          "Warm Highlight"
+        ],
+        "orig": 27.7,
+        "sim": 9.4
+      },
+      {
+        "pair": [
+          "Unnamed_112_91_92",
+          "Unnamed_100_118_94"
+        ],
+        "orig": 29.6,
+        "sim": 9.5
+      },
+      {
+        "pair": [
+          "Ground Mid",
+          "Unnamed_145_125_130"
+        ],
+        "orig": 39.0,
+        "sim": 10.2
+      },
+      {
+        "pair": [
+          "Leaf Highlight",
+          "Unnamed_145_131_147"
+        ],
+        "orig": 39.8,
+        "sim": 10.3
+      },
+      {
+        "pair": [
+          "Unnamed_147_125_104",
+          "Unnamed_153_109_125"
+        ],
+        "orig": 27.1,
+        "sim": 10.4
+      },
+      {
+        "pair": [
+          "Sickly Green",
+          "Unnamed_179_173_169"
+        ],
+        "orig": 31.8,
+        "sim": 10.5
+      },
+      {
+        "pair": [
+          "Unnamed_121_145_117",
+          "Unnamed_133_111_118"
+        ],
+        "orig": 36.1,
+        "sim": 10.5
+      },
+      {
+        "pair": [
+          "Unnamed_118_148_98",
+          "Unnamed_139_110_128"
+        ],
+        "orig": 52.8,
+        "sim": 10.5
+      },
+      {
+        "pair": [
+          "Skin Shadow",
+          "Unnamed_158_168_137"
+        ],
+        "orig": 41.8,
+        "sim": 10.6
+      },
+      {
+        "pair": [
+          "Bruise Mauve",
+          "Unnamed_158_168_137"
+        ],
+        "orig": 28.4,
+        "sim": 10.8
+      },
+      {
+        "pair": [
+          "Unnamed_91_111_95",
+          "Unnamed_111_89_95"
+        ],
+        "orig": 29.7,
+        "sim": 11.1
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_139_110_128"
+        ],
+        "orig": 35.7,
+        "sim": 11.2
+      },
+      {
+        "pair": [
+          "Dead Brown",
+          "Unnamed_112_123_100"
+        ],
+        "orig": 31.6,
+        "sim": 11.4
+      },
+      {
+        "pair": [
+          "Soft Shadow",
+          "Unnamed_62_99_86"
+        ],
+        "orig": 36.5,
+        "sim": 11.8
+      },
+      {
+        "pair": [
+          "Unnamed_130_112_118",
+          "Unnamed_121_145_117"
+        ],
+        "orig": 34.2,
+        "sim": 11.8
+      }
+    ],
+    "tritanopia": [
+      {
+        "pair": [
+          "Panel Slate",
+          "Unnamed_100_118_94"
+        ],
+        "orig": 28.7,
+        "sim": 3.3
+      },
+      {
+        "pair": [
+          "Bruise Mauve",
+          "Unnamed_158_168_137"
+        ],
+        "orig": 28.4,
+        "sim": 4.2
+      },
+      {
+        "pair": [
+          "Unnamed_148_133_147",
+          "Unnamed_150_99_181"
+        ],
+        "orig": 48.1,
+        "sim": 4.5
+      },
+      {
+        "pair": [
+          "Ground Base",
+          "Unnamed_109_123_166"
+        ],
+        "orig": 41.8,
+        "sim": 6.0
+      },
+      {
+        "pair": [
+          "Unnamed_115_110_125",
+          "Unnamed_118_148_98"
+        ],
+        "orig": 46.7,
+        "sim": 6.5
+      },
+      {
+        "pair": [
+          "Unnamed_207_189_174",
+          "Unnamed_204_147_204"
+        ],
+        "orig": 51.7,
+        "sim": 6.5
+      },
+      {
+        "pair": [
+          "Unnamed_145_131_147",
+          "Unnamed_150_99_181"
+        ],
+        "orig": 47.0,
+        "sim": 6.6
+      },
+      {
+        "pair": [
+          "Unnamed_88_96_139",
+          "Unnamed_92_134_103"
+        ],
+        "orig": 52.5,
+        "sim": 7.3
+      },
+      {
+        "pair": [
+          "Concrete Grey",
+          "Unnamed_121_145_117"
+        ],
+        "orig": 26.4,
+        "sim": 7.5
+      },
+      {
+        "pair": [
+          "Unnamed_147_125_104",
+          "Unnamed_153_109_125"
+        ],
+        "orig": 27.1,
+        "sim": 7.7
+      },
+      {
+        "pair": [
+          "Cool Metal",
+          "Unnamed_91_111_95"
+        ],
+        "orig": 35.5,
+        "sim": 8.2
+      },
+      {
+        "pair": [
+          "Unnamed_88_96_139",
+          "Unnamed_81_140_111"
+        ],
+        "orig": 52.6,
+        "sim": 8.2
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_139_110_128"
+        ],
+        "orig": 35.7,
+        "sim": 8.2
+      },
+      {
+        "pair": [
+          "Sickly Green",
+          "Bat Fur"
+        ],
+        "orig": 35.8,
+        "sim": 8.3
+      },
+      {
+        "pair": [
+          "Unnamed_150_99_181",
+          "Unnamed_143_131_145"
+        ],
+        "orig": 48.7,
+        "sim": 8.8
+      },
+      {
+        "pair": [
+          "Unnamed_196_75_83",
+          "Unnamed_199_103_70"
+        ],
+        "orig": 31.0,
+        "sim": 9.0
+      },
+      {
+        "pair": [
+          "Unnamed_112_123_100",
+          "Unnamed_122_108_118"
+        ],
+        "orig": 25.5,
+        "sim": 9.2
+      },
+      {
+        "pair": [
+          "Unnamed_73_77_99",
+          "Unnamed_62_99_86"
+        ],
+        "orig": 27.8,
+        "sim": 9.9
+      },
+      {
+        "pair": [
+          "Dust Tan",
+          "Unnamed_163_121_125"
+        ],
+        "orig": 33.7,
+        "sim": 10.0
+      },
+      {
+        "pair": [
+          "Unnamed_247_140_115",
+          "Unnamed_240_207_48"
+        ],
+        "orig": 95.0,
+        "sim": 10.3
+      },
+      {
+        "pair": [
+          "Unnamed_142_129_145",
+          "Unnamed_150_99_181"
+        ],
+        "orig": 47.5,
+        "sim": 10.5
+      },
+      {
+        "pair": [
+          "Skin Light",
+          "Unnamed_240_220_146"
+        ],
+        "orig": 41.8,
+        "sim": 10.7
+      },
+      {
+        "pair": [
+          "Unnamed_122_108_118",
+          "Unnamed_118_148_98"
+        ],
+        "orig": 44.9,
+        "sim": 10.9
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_145_125_130"
+        ],
+        "orig": 27.2,
+        "sim": 11.2
+      },
+      {
+        "pair": [
+          "Unnamed_134_141_111",
+          "Unnamed_135_109_123"
+        ],
+        "orig": 34.2,
+        "sim": 11.4
+      },
+      {
+        "pair": [
+          "Unnamed_112_123_100",
+          "Unnamed_115_110_125"
+        ],
+        "orig": 28.3,
+        "sim": 11.6
+      },
+      {
+        "pair": [
+          "Unnamed_147_125_104",
+          "Unnamed_139_110_128"
+        ],
+        "orig": 29.4,
+        "sim": 11.7
+      }
+    ]
+  }
+}

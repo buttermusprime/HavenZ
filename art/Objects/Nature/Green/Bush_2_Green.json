@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Bush_2_Green.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 28, "h": 13 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 28, "h": 13 },
+    "sourceSize": { "w": 28, "h": 13 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Bush_2_Green.png",
+  "format": "I8",
+  "size": { "w": 28, "h": 13 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

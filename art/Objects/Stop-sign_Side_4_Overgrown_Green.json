@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Stop-sign_Side_4_Overgrown_Green.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 9, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 9, "h": 25 },
+    "sourceSize": { "w": 9, "h": 25 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Stop-sign_Side_4_Overgrown_Green.png",
+  "format": "I8",
+  "size": { "w": 9, "h": 25 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

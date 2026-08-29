@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Crafting-cell.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 22 },
+    "sourceSize": { "w": 21, "h": 22 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Crafting-cell.png",
+  "format": "I8",
+  "size": { "w": 21, "h": 22 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

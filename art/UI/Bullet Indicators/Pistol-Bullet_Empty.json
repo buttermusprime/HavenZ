@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Pistol-Bullet_Empty.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 7, "h": 13 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 13 },
+    "sourceSize": { "w": 7, "h": 13 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Pistol-Bullet_Empty.png",
+  "format": "I8",
+  "size": { "w": 7, "h": 13 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

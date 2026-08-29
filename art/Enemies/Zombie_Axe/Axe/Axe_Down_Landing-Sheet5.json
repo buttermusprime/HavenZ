@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Axe_Down_Landing-Sheet5.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 65, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 18 },
+    "sourceSize": { "w": 65, "h": 18 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Axe_Down_Landing-Sheet5.png",
+  "format": "I8",
+  "size": { "w": 65, "h": 18 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

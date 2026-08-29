@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Balcony_4_Right_Ladder-hole.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 40, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 40, "h": 32 },
+    "sourceSize": { "w": 40, "h": 32 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Balcony_4_Right_Ladder-hole.png",
+  "format": "I8",
+  "size": { "w": 40, "h": 32 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

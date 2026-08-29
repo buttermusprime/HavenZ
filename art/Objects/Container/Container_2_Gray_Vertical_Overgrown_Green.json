@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Container_2_Gray_Vertical_Overgrown_Green.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 29, "h": 46 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 29, "h": 46 },
+    "sourceSize": { "w": 29, "h": 46 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Container_2_Gray_Vertical_Overgrown_Green.png",
+  "format": "I8",
+  "size": { "w": 29, "h": 46 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

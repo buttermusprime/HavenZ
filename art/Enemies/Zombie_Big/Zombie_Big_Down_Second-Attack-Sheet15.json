@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Zombie_Big_Down_Second-Attack-Sheet15.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 330, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 330, "h": 30 },
+    "sourceSize": { "w": 330, "h": 30 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Zombie_Big_Down_Second-Attack-Sheet15.png",
+  "format": "I8",
+  "size": { "w": 330, "h": 30 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

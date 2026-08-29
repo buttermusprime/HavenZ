@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Quick-Access-Inventory.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 124, "h": 19 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 124, "h": 19 },
+    "sourceSize": { "w": 124, "h": 19 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Quick-Access-Inventory.png",
+  "format": "I8",
+  "size": { "w": 124, "h": 19 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

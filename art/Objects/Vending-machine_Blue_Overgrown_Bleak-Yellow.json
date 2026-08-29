@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Vending-machine_Blue_Overgrown_Bleak-Yellow.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 19, "h": 26 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 19, "h": 26 },
+    "sourceSize": { "w": 19, "h": 26 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Vending-machine_Blue_Overgrown_Bleak-Yellow.png",
+  "format": "I8",
+  "size": { "w": 19, "h": 26 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

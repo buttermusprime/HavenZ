@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Street-Light_4_Side_Overgrown_Green.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 26, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 26, "h": 40 },
+    "sourceSize": { "w": 26, "h": 40 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.3-x64",
+  "image": "Street-Light_4_Side_Overgrown_Green.png",
+  "format": "I8",
+  "size": { "w": 26, "h": 40 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

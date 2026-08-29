@@ -16,8 +16,54 @@ metrics table for Phase 14.4's retrospective rollup. Update both at the end of e
 | 1 | 1.2 | checkpoint | 1 | 1 | 1 sitting | no |
 | 2 | 2.1 | build | 1 | 1 | 1 sitting | no |
 | 2 | 2.2 | build | 1 | 1 | 1 sitting | no |
+| 2 | 2.3 | build | 1 | 1 | 1 sitting | no |
 
 ## Entries
+
+### S2.3 — Real pack conversion & sync
+
+Ran PixelPipe's real Aseprite-CLI batch conversion against the full real pack, using S2.2's
+141-color master palette and `convert_indexed.lua`'s own (previously undocumented in the
+README, but real and working) `--script-param ignore=...` flag — passed the same 15 patterns
+from `pixelpipe.config.json`'s `ignore_globs` directly, since the Python-side wiring for that
+field is still the separately-flagged gap. **761 converted, 352 skipped (ignored), 0 errors.**
+Then ran `pixelpipe_sync.py`, exporting all 761 to `res://art/` (sheets, per-asset JSON,
+`asset_manifest.json`) — clean, 0 errors.
+
+**Real bug found during the roadmap's own required spot-check (a character sheet, a building
+tile, a vehicle) — not a hypothetical, this is PixelPipe's first real-world test just as the
+roadmap anticipated:** the character sheet (`Character_side-left_death2-Sheet7.png`) exported
+completely blank — 0 opaque pixels out of 2,352, despite the original having real content.
+Traced to a genuine PixelPipe bug: this source PNG is itself palette-mode (`P` in Pillow), and
+Aseprite opens it preserving `ColorMode.INDEXED` rather than always RGB — `convert_indexed.lua`
+called `app.pixelColor.rgbaA/R/G/B()` unconditionally, which silently misreads a raw indexed
+pixel value (a palette index) as if it were packed RGBA, reading alpha=0 for everything, no
+error anywhere in the chain. **116 of the pack's 1,113 real PNGs are palette-mode** — a
+non-trivial fraction, not a one-off. Fixed directly in PixelPipe's own repo (`5201b8c`): force
+`app.command.ChangePixelFormat{format="rgb"}` right after opening each source sprite if it
+isn't already RGB — confirmed via a real Aseprite CLI session that this recovers real pixel data
+(colorMode 2→0, 0→931 real opaque pixels) and is a no-op on already-RGB sources (verified against
+the vehicle sample, identical results before/after). Re-ran the full conversion and re-synced
+from scratch after the fix; wrote a verification pass checking all 88 kept converted files that
+trace back to a palette-mode source (28 of the 116 were correctly among the ignored 352) — **zero
+still blank.**
+
+**Final spot-check, all three categories clean:** character sheet (147×16, 931 opaque px, was
+the blank one — now fixed), building tile (`Objects/Buildings/Roof-hole_1_Gray.png`, 13×15, 114
+opaque px), vehicle (`Car_1_Blue.png`, 25×37, 698 opaque px) — dimensions match source exactly in
+all three, and every opaque pixel in all three lands exactly on the 141-color master palette,
+zero off-palette pixels.
+
+**Shipped:** `haven-z/art_source/` (761 real `.aseprite` files, first real content) and
+`haven-z/art/` (761 exported PNG+JSON pairs + `asset_manifest.json`) — both real, not fixtures.
+Deleted the throwaway debug Lua/Python scripts and raw conversion/sync logs used to diagnose the
+bug; the fix itself lives in PixelPipe's repo, not copied into HavenZ.
+
+**Next:** no new HavenZ `SpriteFrames` scenes were built yet — D.1's `import_sprite_frames.gd` is
+an `EditorScript` and genuinely cannot run outside a live interactive editor (confirmed by
+PixelPipe's own D.1 session), so building real scenes from this export is deferred to whichever
+future gameplay session first needs a specific asset, not done wholesale here. S2.4 (HavenZ
+palette tuning pass via the remap shader/LUT) per the roadmap.
 
 ### S2.2 — Real palette extraction & reconciliation
 
